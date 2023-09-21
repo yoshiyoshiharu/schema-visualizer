@@ -1,0 +1,23 @@
+services:
+  web:
+    build:
+      context: "."
+    depends_on:
+      - db
+    environment:
+      - TZ=Asia/Tokyo
+    volumes:
+      - .:/myapp
+    command: sh -c "rm -f /myapp/tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0"
+    ports:
+      - 3000:3000
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      TZ: Asia/Toyko
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
