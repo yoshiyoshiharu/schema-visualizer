@@ -20,18 +20,22 @@ namespace :tables do
 
     tables_hash = SchemaToHash::Scanner.new(schema_text).generate_table_list.to_hash
 
-    tables_hash.each do |table_hash|
-      table = product.tables.find_or_create_by!(
-        name: table_hash[:name],
-        comment: table_hash[:comment].to_s
-      )
+    ActiveRecord::Base.transaction do
+      product.tables.destroy_all
 
-      table_hash[:columns].each do |column_hash|
-        table.columns.find_or_create_by!(
-          name: column_hash[:name],
-          comment: column_hash[:comment].to_s,
-          type: column_hash[:type]
+      tables_hash.each do |table_hash|
+        table = product.tables.find_or_create_by!(
+          name: table_hash[:name],
+          comment: table_hash[:comment].to_s
         )
+
+        table_hash[:columns].each do |column_hash|
+          table.columns.find_or_create_by!(
+            name: column_hash[:name],
+            comment: column_hash[:comment].to_s,
+            type: column_hash[:type]
+          )
+        end
       end
     end
   end
