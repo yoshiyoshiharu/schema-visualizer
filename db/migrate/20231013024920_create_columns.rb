@@ -4,7 +4,7 @@ class CreateColumns < ActiveRecord::Migration[7.0]
       t.references :table, null: false, foreign_key: true, comment: 'テーブルID'
       t.string :name, null: false, comment: 'カラム名'
       t.string :type, null: false, comment: 'カラム型'
-      t.string :comment, comment: 'カラムコメント'
+      t.string :comment, null: false, default: '', comment: 'カラムコメント'
 
       t.timestamps
     end

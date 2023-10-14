@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_024920) do
     t.bigint "table_id", null: false, comment: "テーブルID"
     t.string "name", null: false, comment: "カラム名"
     t.string "type", null: false, comment: "カラム型"
-    t.string "comment", comment: "カラムコメント"
+    t.string "comment", default: "", null: false, comment: "カラムコメント"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["table_id", "name"], name: "index_columns_on_table_id_and_name", unique: true
