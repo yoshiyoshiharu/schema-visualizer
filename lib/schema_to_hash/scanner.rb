@@ -29,8 +29,6 @@ module SchemaToHash
 
     def generate_table_list
       @schema_text.each_line do |line|
-        next if comment?(line)
-
         if start_table_definition?(line)
           @table = Table.new(name: table_name(line))
         elsif start_columm_definition?(line)
@@ -45,10 +43,6 @@ module SchemaToHash
     end
 
     private
-
-    def comment?(line)
-      line.strip.start_with?('#')
-    end
 
     def start_table_definition?(line)
       line.strip.start_with?('create_table')
