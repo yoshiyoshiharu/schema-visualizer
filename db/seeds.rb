@@ -1,19 +1,9 @@
 # frozen_string_literal: true
-
-ColumnType.create!(
-  [
-    { name: "string" },
-    { name: "integer" },
-    { name: "float" },
-    { name: "boolean" },
-    { name: "date" },
-    { name: "datetime" },
-    { name: "text" }
-  ]
-)
+#
+require_relative '../lib/schema_to_hash/schema_to_hash'
 
 (1..3).each do |i|
-  Product.create!(
+  Product.find_or_create_by!(
     {
       name: "Product#{i}"
     }
@@ -22,7 +12,7 @@ end
 
 Product.all.each do |product|
   (1..3).each do |i|
-    product.tables.create!(
+    product.tables.find_or_create_by!(
       {
         name: "#{product.name}-Table#{i}",
         comment: "#{product.name}のテーブル#{i}"
@@ -33,10 +23,10 @@ end
 
 Table.all.each do |table|
   (1..3).each do |i|
-    table.columns.create!(
+    table.columns.find_or_create_by!(
       {
         name: "#{table.name}-Column#{i}",
-        column_type: ColumnType.all.sample,
+        type: SchemaToHash::TYPE.sample,
         comment: "#{table.name}のカラム#{i}"
       }
     )
