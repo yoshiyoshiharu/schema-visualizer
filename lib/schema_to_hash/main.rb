@@ -2,7 +2,7 @@
 
 require_relative 'scanner'
 
-if ARGV.length == 0
+if ARGV.length != 1
   puts 'Usage: ruby main.rb <schema_text>'
   exit
 end
