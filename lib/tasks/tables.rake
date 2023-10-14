@@ -24,19 +24,25 @@ namespace :tables do
       product.tables.destroy_all
 
       tables_hash.each do |table_hash|
-        table = product.tables.find_or_create_by!(
+        table = product.tables.create!(
           name: table_hash[:name],
           comment: table_hash[:comment].to_s
         )
 
         table_hash[:columns].each do |column_hash|
-          table.columns.find_or_create_by!(
+          table.columns.create!(
             name: column_hash[:name],
             comment: column_hash[:comment].to_s,
             type: column_hash[:type]
           )
         end
+
+        log("Created #{table_hash}")
       end
     end
+  end
+
+  def log(text)
+    puts text
   end
 end
