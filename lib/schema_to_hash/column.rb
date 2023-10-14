@@ -2,10 +2,11 @@
 
 module SchemaToHash
   class Column
-    attr_reader :name, :type
+    attr_reader :name, :comment, :type
 
-    def initialize(name:, type:)
+    def initialize(name:, comment:, type:)
       @name = name
+      @comment = comment
       @type = type
     end
   end
