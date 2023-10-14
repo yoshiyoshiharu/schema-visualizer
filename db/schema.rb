@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_024920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "column_types", force: :cascade do |t|
+  create_table "column_types", comment: "カラム型マスタ", force: :cascade do |t|
     t.string "name", null: false, comment: "カラム型名"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_024920) do
     t.bigint "table_id", null: false, comment: "テーブルID"
     t.bigint "column_type_id", null: false, comment: "カラム型ID"
     t.string "name", null: false, comment: "カラム名"
+    t.string "comment", comment: "カラムコメント"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["column_type_id"], name: "index_columns_on_column_type_id"
@@ -40,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_024920) do
   create_table "tables", force: :cascade do |t|
     t.bigint "product_id", null: false, comment: "プロダクトID"
     t.string "name", null: false, comment: "テーブル名"
+    t.string "comment", default: "", null: false, comment: "テーブルコメント"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id", "name"], name: "index_tables_on_product_id_and_name", unique: true

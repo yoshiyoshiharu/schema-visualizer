@@ -11,7 +11,7 @@ ColumnType.create!(
     { name: "text" }
   ]
 )
-    
+
 (1..3).each do |i|
   Product.create!(
     {
@@ -24,7 +24,8 @@ Product.all.each do |product|
   (1..3).each do |i|
     product.tables.create!(
       {
-        name: "#{product.name}-Table#{i}"
+        name: "#{product.name}-Table#{i}",
+        comment: "#{product.name}のテーブル#{i}"
       }
     )
   end
@@ -35,7 +36,8 @@ Table.all.each do |table|
     table.columns.create!(
       {
         name: "#{table.name}-Column#{i}",
-        column_type: ColumnType.all.sample
+        column_type: ColumnType.all.sample,
+        comment: "#{table.name}のカラム#{i}"
       }
     )
   end
