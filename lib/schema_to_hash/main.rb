@@ -10,6 +10,6 @@ end
 if __FILE__ == $0
   schema_text = ARGV[0]
 
-  schema = Scanner.new(schema_text).generate_table_list.to_hash
-  pp schema
+  schema_hash = SchemaToHash::Scanner.new(schema_text).generate_table_list.to_hash
+  pp schema_hash
 end
