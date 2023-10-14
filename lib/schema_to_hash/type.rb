@@ -11,6 +11,8 @@ module SchemaToHash
     'float',
     'integer',
     'string',
-    'text'
+    'text',
+    'timestamp',
+    'time'
   ]
 end
