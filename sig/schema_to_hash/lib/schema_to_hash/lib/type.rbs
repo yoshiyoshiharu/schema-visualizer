@@ -1,0 +1,4 @@
+module SchemaToHash
+  TYPE: ::Array[String]
+end
+

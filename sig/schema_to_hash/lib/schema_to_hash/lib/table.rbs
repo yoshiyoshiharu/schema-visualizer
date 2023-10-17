@@ -1,0 +1,19 @@
+module SchemaToHash
+  class Table
+    @name: String
+
+    @comment: String
+
+    @columns: Array[Column]
+
+    attr_reader name: String
+
+    attr_reader comment: String
+
+    attr_reader columns: Array[Column]
+
+    def initialize: (name: String, ?comment: String?, ?columns: Array[String]) -> self
+
+    def add_column: (Column column) -> Array[Column]
+  end
+end

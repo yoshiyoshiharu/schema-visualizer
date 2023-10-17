@@ -1,0 +1,17 @@
+module SchemaToHash
+  class Column
+    @name: String
+
+    @comment: String
+
+    @type: String
+
+    attr_reader name: String
+
+    attr_reader comment: String
+
+    attr_reader type: String
+
+    def initialize: (name: String, comment: String, type: String) -> self
+  end
+end

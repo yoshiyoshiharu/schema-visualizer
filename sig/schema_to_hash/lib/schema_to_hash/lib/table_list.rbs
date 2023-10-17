@@ -1,0 +1,11 @@
+module SchemaToHash
+  class TableList
+    @tables: Array[Table]
+
+    attr_reader tables: Array[Table]
+
+    def initialize: (?Array[Table] tables) -> self
+
+    def add: (Table table) -> TableList
+  end
+end

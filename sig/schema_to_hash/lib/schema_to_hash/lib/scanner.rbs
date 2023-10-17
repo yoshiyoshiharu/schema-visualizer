@@ -1,0 +1,31 @@
+module SchemaToHash
+  class Scanner
+    @table_list: TableList
+
+    @table: Table
+
+    @schema_text: String
+
+    def initialize: (String schema_text) -> self
+
+    def to_hash: () -> Hash
+
+    def generate_table_list: () -> self
+
+    private
+
+    def start_table_definition?: (String line) -> bool
+
+    def end_table_definition?: (String line) -> bool
+
+    def table_name: (String line) -> String?
+
+    def table_comment: (String line) -> String?
+
+    def start_columm_definition?: (String line) -> bool
+
+    def column: (String line) -> { type: String, name: String }
+
+    def column_comment: (String line) -> String?
+  end
+end
