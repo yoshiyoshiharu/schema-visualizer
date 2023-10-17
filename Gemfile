@@ -7,3 +7,8 @@ gem "rails"
 gem "pg"
 gem "puma"
 gem "bootsnap", require: false
+
+group :development do
+  gem "rbs_rails"
+  gem "steep"
+end
