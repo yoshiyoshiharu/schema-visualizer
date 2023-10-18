@@ -14,7 +14,7 @@ export default function MainTable({ table }: { table: Table }) {
           </tr>
         </thead>
         <tbody>
-          { table.columns.map((column: Column) => (
+          { table.columns?.map((column: Column) => (
             <tr key={ column.name }>
               <td className="border px-4 py-2">{ column.name }</td>
               <td className="border px-4 py-2">{ column.type }</td>
