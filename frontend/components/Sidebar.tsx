@@ -1,6 +1,7 @@
 import { Product } from '../types/product'
 
 export default function Sidebar() {
+  // [TODO] APIから取得する
   const products: Product[] = [
     { 
       name: 'プロダクトA',
