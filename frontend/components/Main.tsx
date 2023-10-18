@@ -1,7 +1,7 @@
 export default function Main() {
   return (
     <>
-      <main>This is main</main>
+      <main className="min-h-screen">This is main</main>
     </>
   )
 }
