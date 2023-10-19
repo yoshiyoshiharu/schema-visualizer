@@ -3,6 +3,6 @@
 class Api::ProductsController < ApplicationController
   def index
     products = Product.all
-    render json: products
+    render json: products, include: :tables
   end
 end
