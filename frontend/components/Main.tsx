@@ -2,6 +2,7 @@ import { Table } from '../types/table'
 import { Column } from '../types/column'
 
 export default function Main({ table }: { table: Table | null}) {
+  // TODO useEffectでマウント時にtableのカラムをfetchする
   return (
     <>
       <main className="min-h-screen">

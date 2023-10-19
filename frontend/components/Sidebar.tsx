@@ -2,7 +2,7 @@ import { Product } from '../types/product'
 import { Table } from '../types/table'
 
 export default function Sidebar({ handleTargetTable }: { handleTargetTable: (table: Table) => void; }) {
-  // [TODO] APIから取得する
+  // [TODO] マウント時にAPIから取得する
   const products: Product[] = [
     {
       id: 1,
