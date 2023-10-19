@@ -1,24 +1,29 @@
 import { Table } from '../types/table'
-import MainTable from '../components/MainTable'
+import { Column } from '../types/column'
 
-export default function Main() {
-  // [TODO] APIから取得する
-  const table: Table = {
-    name: 'users',
-    comment: 'ユーザー',
-    columns: [
-      { name: 'id', type: 'integer', comment: 'ID' },
-      { name: 'name', type: 'string', comment: '名前' },
-      { name: 'email', type: 'string', comment: 'メールアドレス' },
-      { name: 'created_at', type: 'datetime', comment: '作成日時' },
-      { name: 'updated_at', type: 'datetime', comment: '更新日時' },
-    ],
-  }
-    
+export default function Main({ table }: { table: Table}) {
   return (
     <>
       <main className="min-h-screen">
-        <MainTable table = { table }></MainTable>
+        <h2 className="text-xl font-bold">{ table?.name }テーブル</h2>
+        <table className="table-auto">
+          <thead>
+            <tr>
+              <th className="border px-4 py-2">カラム名</th>
+              <th className="border px-4 py-2">型</th>
+              <th className="border px-4 py-2">コメント</th>
+            </tr>
+          </thead>
+          <tbody>
+            { table?.columns?.map((column: Column) => (
+              <tr key={ column.name }>
+                <td className="border px-4 py-2">{ column.name }</td>
+                <td className="border px-4 py-2">{ column.type }</td>
+                <td className="border px-4 py-2">{ column.comment }</td>
+              </tr>
+            )) }
+          </tbody>
+        </table>
       </main>
     </>
   )
