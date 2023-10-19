@@ -1,28 +1,21 @@
 import { Product } from '../types/product'
 import { Table } from '../types/table'
+import { useEffect, useState } from 'react'
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
 export default function Sidebar({ handleTargetTable }: { handleTargetTable: (table: Table) => void; }) {
-  // [TODO] マウント時にAPIから取得する
-  const products: Product[] = [
-    {
-      id: 1,
-      name: 'プロダクトA',
-      tables: [
-        {
-          id: 1,
-          name: 'テーブルA',
-          comment: 'コメントA',
-          columns: []
-        },
-        {
-          id: 2,
-          name: 'テーブルB',
-          comment: 'コメントB',
-          columns: []
-        }
-      ]
-    }
-  ]
+  const [products, setProducts] = useState<Product[]>([])
+
+  const fetchProducts = async () => {
+    const res = await fetch(`${BASE_URL}/api/products`)
+    const data = await res.json()
+    setProducts(data)
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
 
   const handleClick = (table: Table) => () => {
     handleTargetTable(table)
