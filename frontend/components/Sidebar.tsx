@@ -1,7 +1,7 @@
 import { Product } from '../types/product'
 import { Table } from '../types/table'
 
-export default function Sidebar() {
+export default function Sidebar({ handleTargetTable }: { handleTargetTable: (table: Table) => void; }) {
   // [TODO] APIから取得する
   const products: Product[] = [
     {
@@ -25,7 +25,7 @@ export default function Sidebar() {
   ]
 
   const handleClick = (table: Table) => () => {
-    console.log(table)
+    handleTargetTable(table)
   }
 
   return (

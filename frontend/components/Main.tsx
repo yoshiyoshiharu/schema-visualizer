@@ -1,7 +1,7 @@
 import { Table } from '../types/table'
 import { Column } from '../types/column'
 
-export default function Main({ table }: { table: Table}) {
+export default function Main({ table }: { table: Table | null}) {
   return (
     <>
       <main className="min-h-screen">
