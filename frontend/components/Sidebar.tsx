@@ -1,62 +1,53 @@
 import { Product } from '../types/product'
+import { Table } from '../types/table'
 
 export default function Sidebar() {
   // [TODO] APIから取得する
   const products: Product[] = [
-    { 
+    {
+      id: 1,
       name: 'プロダクトA',
       tables: [
         {
+          id: 1,
           name: 'テーブルA',
           comment: 'コメントA',
-          columns: [
-            {
-              name: 'カラムA',
-              type: 'integer',
-              comment: 'コメントA'
-            },
-            {
-              name: 'カラムB',
-              type: 'string',
-              comment: 'コメントB'
-            }
-          ]
+          columns: []
         },
         {
+          id: 2,
           name: 'テーブルB',
           comment: 'コメントB',
-          columns: [
-            {
-              name: 'カラムC',
-              type: 'integer',
-              comment: 'コメントC'
-            },
-            {
-              name: 'カラムD',
-              type: 'string',
-              comment: 'コメントD'
-            }
-          ]
+          columns: []
         }
       ]
     }
   ]
+
+  const handleClick = (table: Table) => () => {
+    console.log(table)
+  }
 
   return (
     <>
       <aside className="w-1/6 bg-gray-50">
         <h2 className="text-xl font-bold">Products</h2>
         <ul className="ml-8">
-          { products.map((product: Product) => (
-            <li key={ product.name }>
-              { product.name }
-              <ul className="ml-5">
-                { product.tables?.map((table) => (
-                  <li key={ table.name }>{ table.name }</li>
-                )) }
-              </ul>
-            </li>
-          )) }
+          {
+            products.map((product: Product) => (
+              <li key={ product.name }>
+                { product.name }
+                <ul className="ml-5">
+                  { product.tables?.map((table) => (
+                    <li
+                      key={ table.name }
+                      onClick={handleClick(table)}
+                    >{ table.name }</li>
+                  )) }
+                </ul>
+              </li>
+            ))
+          }
         </ul>
       </aside>
     </>
