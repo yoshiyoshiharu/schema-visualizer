@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       <Header></Header>
-      <div className="flex">
+      <div className="flex h-[calc(100vh-3rem)]">
         <Sidebar handleTargetTable={handleTargetTable}></Sidebar>
         <Main table={targetTable}></Main>
       </div>

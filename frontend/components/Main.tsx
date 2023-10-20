@@ -24,26 +24,28 @@ export default function Main({ table }: { table: Table | null}) {
   }, [table])
 
   return (
-    <main className="min-h-screen">
-      <h2 className="text-xl font-bold">{ table?.name }テーブル</h2>
-      <table className="table-auto">
-        <thead>
-          <tr>
-            <th className="border px-4 py-2">カラム名</th>
-            <th className="border px-4 py-2">型</th>
-            <th className="border px-4 py-2">コメント</th>
-          </tr>
-        </thead>
-        <tbody>
-          { columns?.map((column: Column) => (
-            <tr key={column.name}>
-              <td className="border px-4 py-2">{ column.name }</td>
-              <td className="border px-4 py-2">{ column.type }</td>
-              <td className="border px-4 py-2">{ column.comment }</td>
+    <main className="min-h-screen w-5/6 h-full overflow-y-auto">
+      <div className="mx-auto w-5/6">
+        <h2 className="text-xl font-bold my-2">{ table?.name }</h2>
+        <table className="table-fixed w-full text-sm">
+          <thead>
+            <tr>
+              <th className="border px-4 py-2">name</th>
+              <th className="border px-4 py-2">type</th>
+              <th className="border px-4 py-2">comment</th>
             </tr>
-          )) }
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            { columns?.map((column: Column) => (
+              <tr key={column.name}>
+                <td className="border px-4 py-2">{ column.name }</td>
+                <td className="border px-4 py-2">{ column.type }</td>
+                <td className="border px-4 py-2">{ column.comment }</td>
+              </tr>
+            )) }
+          </tbody>
+        </table>
+      </div>
     </main>
   )
 }
