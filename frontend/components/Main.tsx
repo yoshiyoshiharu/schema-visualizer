@@ -26,13 +26,13 @@ export default function Main({ table }: { table: Table | null}) {
   return (
     <main className="min-h-screen w-5/6">
       <div className="mx-auto w-5/6">
-        <h2 className="text-xl font-bold ">{ table?.name }テーブル</h2>
-        <table className="table-fixed w-full">
+        <h2 className="text-xl font-bold my-2">{ table?.name }</h2>
+        <table className="table-fixed w-full text-sm">
           <thead>
             <tr>
-              <th className="border px-4 py-2">カラム名</th>
-              <th className="border px-4 py-2">型</th>
-              <th className="border px-4 py-2">コメント</th>
+              <th className="border px-4 py-2">name</th>
+              <th className="border px-4 py-2">type</th>
+              <th className="border px-4 py-2">comment</th>
             </tr>
           </thead>
           <tbody>
