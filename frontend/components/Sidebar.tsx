@@ -23,7 +23,7 @@ export default function Sidebar({ handleTargetTable }: { handleTargetTable: (tab
 
   return (
     <>
-      <aside className="w-1/6 bg-gray-50">
+      <aside className="w-1/6 bg-gray-50 h-full overflow-y-auto">
         <h2 className="font-bold mt-3 ml-3 text-lg">Products</h2>
         <ul className="ml-5">
           {
