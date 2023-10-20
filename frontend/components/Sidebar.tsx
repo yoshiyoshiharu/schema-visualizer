@@ -24,17 +24,21 @@ export default function Sidebar({ handleTargetTable }: { handleTargetTable: (tab
   return (
     <>
       <aside className="w-1/6 bg-gray-50">
-        <h2 className="text-xl font-bold">Products</h2>
-        <ul className="ml-8">
+        <h2 className="font-bold mt-3 ml-3 text-lg">Products</h2>
+        <ul className="ml-5">
           {
             products.map((product: Product) => (
-              <li key={ product.name }>
+              <li
+                key={ product.name }
+                className="text-base"
+              >
                 { product.name }
-                <ul className="ml-5">
+                <ul className="ml-4">
                   { product.tables?.map((table) => (
                     <li
                       key={ table.name }
                       onClick={handleClick(table)}
+                      className="cursor-pointer text-sm p-0.5 text-gray-900 hover:text-gray-500"
                     >{ table.name }</li>
                   )) }
                 </ul>
