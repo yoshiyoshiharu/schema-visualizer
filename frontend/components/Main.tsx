@@ -1,7 +1,16 @@
 import { Table } from '../types/table'
 import { Column } from '../types/column'
-import MainTable from './MainTable'
 import { useEffect, useState } from 'react'
+
+import {
+  Table as ChakraTable,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+} from '@chakra-ui/react'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
@@ -24,28 +33,27 @@ export default function Main({ table }: { table: Table | null}) {
   }, [table])
 
   return (
-    <main className="w-5/6 h-full overflow-y-auto">
-      <div className="mx-auto w-5/6">
-        <h2 className="text-xl font-bold my-2">{ table?.name }</h2>
-        <table className="table-fixed w-full text-sm">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2">name</th>
-              <th className="border px-4 py-2">type</th>
-              <th className="border px-4 py-2">comment</th>
-            </tr>
-          </thead>
-          <tbody>
-            { columns?.map((column: Column) => (
-              <tr key={column.name}>
-                <td className="border px-4 py-2">{ column.name }</td>
-                <td className="border px-4 py-2">{ column.type }</td>
-                <td className="border px-4 py-2">{ column.comment }</td>
-              </tr>
-            )) }
-          </tbody>
-        </table>
-      </div>
+    <main className="w-3/4 overflow-auto">
+      <TableContainer className="p-3">
+        <ChakraTable size='sm' className="table-fixed">
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th>Type</Th>
+              <Th>Comment</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {columns.map((column) => (
+              <Tr>
+                <Td>{column.name}</Td>
+                <Td>{column.type}</Td>
+                <Td>{column.comment}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </ChakraTable>
+      </TableContainer>
     </main>
   )
 }
