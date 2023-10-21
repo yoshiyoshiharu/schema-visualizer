@@ -24,7 +24,7 @@ export default function Main({ table }: { table: Table | null}) {
   }, [table])
 
   return (
-    <main className="min-h-screen w-5/6 h-full overflow-y-auto">
+    <main className="w-5/6 h-full overflow-y-auto">
       <div className="mx-auto w-5/6">
         <h2 className="text-xl font-bold my-2">{ table?.name }</h2>
         <table className="table-fixed w-full text-sm">
