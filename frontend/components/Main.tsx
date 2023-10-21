@@ -45,7 +45,7 @@ export default function Main({ table }: { table: Table | null}) {
           </Thead>
           <Tbody>
             {columns.map((column) => (
-              <Tr>
+              <Tr key={column.name}>
                 <Td>{column.name}</Td>
                 <Td>{column.type}</Td>
                 <Td>{column.comment}</Td>
