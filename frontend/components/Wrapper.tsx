@@ -11,6 +11,7 @@ export default function Wrapper() {
   const handleTargetTable = (table: Table) => {
     setTargetTable(table)
   }
+
   return (
     <>
       <Header></Header>

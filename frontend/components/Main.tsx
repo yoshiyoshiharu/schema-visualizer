@@ -3,6 +3,7 @@ import { Column } from '../types/column'
 import { useEffect, useState } from 'react'
 
 import {
+  Tag,
   Table as ChakraTable,
   Thead,
   Tbody,
@@ -35,7 +36,11 @@ export default function Main({ table }: { table: Table | null}) {
   return (
     <main className="w-3/4 overflow-auto">
       <TableContainer className="p-3">
-        <ChakraTable size='sm' className="table-fixed">
+        { 
+          table && 
+            <Tag>{table?.product.name} / {table.name}</Tag> 
+        }
+        <ChakraTable size='sm' className="table-fixed mt-1">
           <Thead>
             <Tr>
               <Th>Name</Th>

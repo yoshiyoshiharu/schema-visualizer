@@ -26,7 +26,9 @@ export default function Sidebar({ handleTargetTable }: { handleTargetTable: (tab
     fetchProducts()
   }, [])
 
-  const handleClick = (table: Table) => () => {
+  const handleClick = (product: Product, table: Table) => () => {
+    table.product = product
+
     handleTargetTable(table)
   }
 
@@ -48,7 +50,7 @@ export default function Sidebar({ handleTargetTable }: { handleTargetTable: (tab
                 {product.tables.map((table) => (
                   <li
                     key={table.id}
-                    onClick={handleClick(table)}
+                    onClick={handleClick(product, table)}
                     className="cursor-pointer hover:text-gray-500"
                   >
                     {table.name}
