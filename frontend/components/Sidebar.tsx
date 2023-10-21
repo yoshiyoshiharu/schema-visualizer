@@ -38,7 +38,7 @@ export default function Sidebar({ handleTargetTable }: { handleTargetTable: (tab
             <h2>
               <AccordionButton>
                 <Box>
-                  {product.name}
+                  {product.name}({product.tables.length})
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
