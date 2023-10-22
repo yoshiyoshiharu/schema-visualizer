@@ -21,7 +21,7 @@ export default function Main({ table }: { table: Table | null}) {
   const fetchColumms = async (table: Table | null) => {
     if (!table) return
 
-    const res = await fetch(`${BASE_URL}/api/columns?table_id=${table.id}`)
+    const res = await fetch(`${BASE_URL}/api/tables/${table.id}/columns`)
 
     if (res.status !== 200) return
 
