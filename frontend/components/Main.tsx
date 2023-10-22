@@ -1,6 +1,8 @@
 import { Table } from '../types/table'
 import { Column } from '../types/column'
 import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import { targetTableState } from '../recoil/atom/target_table_state'
 
 import {
   Tag,
@@ -15,7 +17,9 @@ import {
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
-export default function Main({ table }: { table: Table | null}) {
+export default function Main() {
+  const targetTable = useRecoilValue(targetTableState)
+
   const [columns, setColumns] = useState<Column[]>([])
 
   const fetchColumms = async (table: Table | null) => {
@@ -30,15 +34,15 @@ export default function Main({ table }: { table: Table | null}) {
   }
 
   useEffect(() => {
-    fetchColumms(table)
-  }, [table])
+    fetchColumms(targetTable)
+  }, [targetTable])
 
   return (
     <main className="w-3/4 overflow-auto">
       <TableContainer className="p-3">
         { 
-          table && 
-            <Tag>{table?.product.name} / {table.name}</Tag> 
+          targetTable && 
+            <Tag>{targetTable?.product.name} / {targetTable.name}</Tag> 
         }
         <ChakraTable size='sm' className="table-fixed mt-1">
           <Thead>

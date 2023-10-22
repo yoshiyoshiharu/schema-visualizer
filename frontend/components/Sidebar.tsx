@@ -1,6 +1,8 @@
 import { Product } from '../types/product'
 import { Table } from '../types/table'
 import { useEffect, useState } from 'react'
+import { useSetRecoilState } from 'recoil'
+import { targetTableState } from '../recoil/atom/target_table_state'
 
 import {
   Accordion,
@@ -13,8 +15,9 @@ import {
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
-export default function Sidebar({ handleTargetTable }: { handleTargetTable: (table: Table) => void; }) {
+export default function Sidebar() {
   const [products, setProducts] = useState<Product[]>([])
+  const setTargetTable = useSetRecoilState(targetTableState)
 
   const fetchProducts = async () => {
     const res = await fetch(`${BASE_URL}/api/products`)
@@ -27,9 +30,10 @@ export default function Sidebar({ handleTargetTable }: { handleTargetTable: (tab
   }, [])
 
   const handleClick = (product: Product, table: Table) => () => {
-    table.product = product
-
-    handleTargetTable(table)
+    setTargetTable({
+      ...table,
+      product: product
+    })
   }
 
   return (
