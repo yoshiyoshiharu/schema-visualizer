@@ -2,7 +2,12 @@
 
 class Api::ColumnsController < ApplicationController
   def index
-    columns = Column.all
+    columns = if params[:name_like].blank?
+                Column.none
+              else
+                Column.name_like(params[:name_like])
+              end
+
     render json: columns, include: :table
   end
 end
