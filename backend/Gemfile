@@ -8,4 +8,3 @@ gem "pg"
 gem "puma"
 gem "bootsnap", require: false
 gem 'rack-cors'
-gem 'ransack'
