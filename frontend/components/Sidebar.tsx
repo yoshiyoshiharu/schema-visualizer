@@ -34,6 +34,7 @@ export default function Sidebar({ handleTargetTable }: { handleTargetTable: (tab
 
   return (
     <aside className="w-1/4 overflow-auto h-full bg-gray-50">
+      <h2 className="font-bold p-4">Tables</h2>
       <Accordion allowMultiple>
         {products.map((product) => (
           <AccordionItem key={product.id}>
