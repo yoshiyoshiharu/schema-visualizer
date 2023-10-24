@@ -8,6 +8,6 @@ class Column < ApplicationRecord
   def self.name_like(keyword)
     return all if keyword.blank?
 
-    where('name LIKE ?', "%#{sanitize_sql_like(keyword)}%")
+    where('columns.name LIKE ?', "%#{sanitize_sql_like(keyword)}%")
   end
 end

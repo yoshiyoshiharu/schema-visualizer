@@ -12,7 +12,7 @@ import {
   Box
 } from '@chakra-ui/react'
 
-export default function SidebarTables({ products }: { products: Product[] }) {
+export default function SidebarColumns({ products }: { products: Product[] }) {
   const setTargetTable = useSetRecoilState(targetTableState)
 
   const handleClick = (product: Product, table: Table) => () => {
@@ -24,14 +24,14 @@ export default function SidebarTables({ products }: { products: Product[] }) {
 
   return(
     <>
-      <h2 className="font-bold p-4">Tables</h2>
+      <h2 className="font-bold p-4">Columns</h2>
       <Accordion allowMultiple>
         {products.map((product) => (
           <AccordionItem key={product.id}>
             <h2>
               <AccordionButton>
                 <Box className="text-sm">
-                  {product.name}({product.tables.length})
+                  {product.name}({product.tables.map((table) => table.columns).length})
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -39,14 +39,16 @@ export default function SidebarTables({ products }: { products: Product[] }) {
             <AccordionPanel pb={4}>
               <ul className="ml-4">
                 {product.tables.map((table) => (
-                  <li
-                    key={table.id}
-                    onClick={handleClick(product, table)}
-                    className="cursor-pointer hover:text-gray-500 text-sm"
-                  >
-                    {table.name}
-                  </li>
-              ))}
+                  table.columns.map((column) => (
+                    <li
+                      key={table.id}
+                      onClick={handleClick(product, table)}
+                      className="cursor-pointer hover:text-gray-500 text-sm"
+                    >
+                      {table.name}.{column.name}
+                    </li>
+                  )))
+              )}
             </ul>
             </AccordionPanel>
           </AccordionItem>
