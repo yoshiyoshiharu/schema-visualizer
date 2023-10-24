@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::ProductsController < ApplicationController
+class Api::Products::TablesController < ApplicationController
   def index
     products = Product.all
     render json: products, include: :tables

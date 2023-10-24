@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::ColumnsController < ApplicationController
+class Api::Products::ColumnsController < ApplicationController
   def index
     columns = if params[:name_like].blank?
                 Column.none

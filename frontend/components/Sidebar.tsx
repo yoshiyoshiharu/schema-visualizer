@@ -8,7 +8,7 @@ export default function Sidebar() {
   const [products, setProducts] = useState<Product[]>([])
 
   const fetchProducts = async () => {
-    const res = await fetch(`${BASE_URL}/api/products`)
+    const res = await fetch(`${BASE_URL}/api/products/tables`)
     const data = await res.json()
     setProducts(data)
   }
