@@ -2,6 +2,9 @@ import { Product } from '../types/product'
 import SidebarTables from './Sidebar/Tables'
 import SidebarColumns from './Sidebar/Columns'
 import { useEffect, useState } from 'react'
+import {
+  Input,
+} from '@chakra-ui/react'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
@@ -34,16 +37,21 @@ export default function Sidebar() {
 
   return (
     <aside className="w-1/4 overflow-auto h-full bg-gray-50">
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            handleSearch()
-          }
-        }}
-      />
+      <div className="m-3">
+        <Input
+          bgColor="white"
+          borderColor="gray.300"
+          placeholder="Search"
+          size="sm"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSearch()
+            }
+          }}
+        />
+      </div>
+
       <SidebarTables products={productsWithTables} />
       <SidebarColumns products={productsWithColumns} />
     </aside>
