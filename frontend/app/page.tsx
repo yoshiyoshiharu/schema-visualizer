@@ -2,13 +2,16 @@
 
 import Wrapper from '../components/Wrapper'
 import { ChakraProvider } from '@chakra-ui/react'
+import { RecoilRoot } from 'recoil'
 
 export default function Home() {
   return (
     <>
-      <ChakraProvider>
-        <Wrapper></Wrapper>
-      </ChakraProvider>
+      <RecoilRoot>
+        <ChakraProvider>
+          <Wrapper></Wrapper>
+        </ChakraProvider>
+      </RecoilRoot>
     </>
   )
 }
