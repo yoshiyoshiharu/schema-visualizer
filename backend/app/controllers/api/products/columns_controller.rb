@@ -14,12 +14,12 @@ class Api::Products::ColumnsController < ApplicationController
              tables: {
                include: {
                  columns: {
-                   only: :name
+                   only: [:id, :name]
                  }
                },
                only: [:id, :name]
              }
            },
-           only: :name
+           only: [:id, :name]
   end
 end
