@@ -3,7 +3,7 @@
 class Api::Products::ColumnsController < ApplicationController
   def index
     columns = if params[:name_like].blank?
-                Column.none
+                Product.none
               else
                 Product.eager_load(tables: :columns)
                        .merge(Column.name_like(params[:name_like]))

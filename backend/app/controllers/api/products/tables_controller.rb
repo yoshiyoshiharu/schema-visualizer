@@ -2,7 +2,19 @@
 
 class Api::Products::TablesController < ApplicationController
   def index
-    products = Product.all
-    render json: products, include: :tables
+    tables = if params[:name_like].blank?
+                Product.all
+              else
+                Product.eager_load(:tables)
+                       .merge(Table.name_like(params[:name_like]))
+              end
+
+    render json: tables,
+           include:{
+             tables: {
+               only: [:id, :name]
+             }
+           },
+           only: :name
   end
 end
