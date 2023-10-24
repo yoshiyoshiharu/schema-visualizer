@@ -30,7 +30,7 @@ export default function SidebarColumns({ products }: { products: Product[] }) {
           <AccordionItem key={product.id}>
             <h2>
               <AccordionButton>
-                <Box>
+                <Box className="text-sm">
                   {product.name}({product.tables.map((table) => table.columns).length})
                 </Box>
                 <AccordionIcon />
@@ -43,7 +43,7 @@ export default function SidebarColumns({ products }: { products: Product[] }) {
                     <li
                       key={table.id}
                       onClick={handleClick(product, table)}
-                      className="cursor-pointer hover:text-gray-500"
+                      className="cursor-pointer hover:text-gray-500 text-sm"
                     >
                       {table.name}.{column.name}
                     </li>
