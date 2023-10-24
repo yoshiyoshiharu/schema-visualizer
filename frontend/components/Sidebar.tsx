@@ -8,17 +8,23 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 export default function Sidebar() {
   const [productsWithTables, setProductsWithTables] = useState<Product[]>([])
   const [productsWithColumns, setProductsWithColumns] = useState<Product[]>([])
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
   const fetchProductsWithTables = async () => {
-    const res = await fetch(`${BASE_URL}/api/products/tables`)
+    const res = await fetch(`${BASE_URL}/api/products/tables?name_like=${searchTerm}`)
     const data = await res.json()
     setProductsWithTables(data)
   }
 
   const fetchProductsWithColumns = async () => {
-    const res = await fetch(`${BASE_URL}/api/products/columns?name_like=article`)
+    const res = await fetch(`${BASE_URL}/api/products/columns?name_like=${searchTerm}`)
     const data = await res.json()
     setProductsWithColumns(data)
+  }
+
+  const handleSearch = () => {
+    fetchProductsWithTables()
+    fetchProductsWithColumns()
   }
 
   useEffect(() => {
@@ -28,6 +34,16 @@ export default function Sidebar() {
 
   return (
     <aside className="w-1/4 overflow-auto h-full bg-gray-50">
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch()
+          }
+        }}
+      />
       <SidebarTables products={productsWithTables} />
       <SidebarColumns products={productsWithColumns} />
     </aside>

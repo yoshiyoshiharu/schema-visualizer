@@ -2,6 +2,7 @@ import { Product } from '../../types/product'
 import { Table } from '../../types/table'
 import { targetTableState } from '../../recoil/atom/target_table_state'
 import { useSetRecoilState } from 'recoil'
+import { useEffect } from 'react'
 
 import {
   Accordion,
@@ -22,6 +23,8 @@ export default function SidebarColumns({ products }: { products: Product[] }) {
     })
   }
 
+  useEffect(() => {}, [products])
+
   return(
     <>
       <h2 className="font-bold p-4">Columns</h2>
@@ -41,7 +44,7 @@ export default function SidebarColumns({ products }: { products: Product[] }) {
                 {product.tables.map((table) => (
                   table.columns.map((column) => (
                     <li
-                      key={table.id}
+                      key={column.id}
                       onClick={handleClick(product, table)}
                       className="cursor-pointer hover:text-gray-500 text-sm"
                     >

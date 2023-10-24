@@ -2,6 +2,7 @@ import { Product } from '../../types/product'
 import { Table } from '../../types/table'
 import { targetTableState } from '../../recoil/atom/target_table_state'
 import { useSetRecoilState } from 'recoil'
+import { useEffect } from 'react'
 
 import {
   Accordion,
@@ -21,6 +22,8 @@ export default function SidebarTables({ products }: { products: Product[] }) {
       product: product
     })
   }
+
+  useEffect(() => {}, [products])
 
   return(
     <>

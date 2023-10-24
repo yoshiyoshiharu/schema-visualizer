@@ -15,6 +15,6 @@ class Api::Products::TablesController < ApplicationController
                only: [:id, :name]
              }
            },
-           only: :name
+           only: [:id, :name]
   end
 end
