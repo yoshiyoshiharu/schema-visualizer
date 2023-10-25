@@ -1,0 +1,405 @@
+[
+  {
+      "name": "E-commerce Platform",
+      "tables": [
+          {
+              "name": "Products",
+              "comment": "Information about products available for sale",
+              "columns": [
+                  {
+                      "name": "product_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the product"
+                  },
+                  {
+                      "name": "product_name",
+                      "type": "string",
+                      "comment": "Name of the product"
+                  },
+                  {
+                      "name": "price",
+                      "type": "decimal",
+                      "comment": "Price of the product"
+                  },
+                  {
+                      "name": "description",
+                      "type": "text",
+                      "comment": "Description of the product"
+                  }
+              ]
+          },
+          {
+              "name": "Customers",
+              "comment": "Information about customers who make purchases",
+              "columns": [
+                  {
+                      "name": "customer_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the customer"
+                  },
+                  {
+                      "name": "first_name",
+                      "type": "string",
+                      "comment": "First name of the customer"
+                  },
+                  {
+                      "name": "last_name",
+                      "type": "string",
+                      "comment": "Last name of the customer"
+                  },
+                  {
+                      "name": "email",
+                      "type": "string",
+                      "comment": "Email address of the customer"
+                  }
+              ]
+          },
+          {
+              "name": "Orders",
+              "comment": "Information about customer orders",
+              "columns": [
+                  {
+                      "name": "order_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the order"
+                  },
+                  {
+                      "name": "order_date",
+                      "type": "date",
+                      "comment": "Date the order was placed"
+                  },
+                  {
+                      "name": "customer_id",
+                      "type": "integer",
+                      "comment": "ID of the customer who placed the order"
+                  },
+                  {
+                      "name": "product_id",
+                      "type": "integer",
+                      "comment": "ID of the product in the order"
+                  },
+                  {
+                      "name": "quantity",
+                      "type": "integer",
+                      "comment": "Quantity of the product in the order"
+                  }
+              ]
+          },
+          {
+              "name": "Categories",
+              "comment": "Categories to which products belong",
+              "columns": [
+                  {
+                      "name": "category_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the category"
+                  },
+                  {
+                      "name": "category_name",
+                      "type": "string",
+                      "comment": "Name of the category"
+                  }
+              ]
+          },
+          {
+              "name": "Reviews",
+              "comment": "Customer reviews of products",
+              "columns": [
+                  {
+                      "name": "review_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the review"
+                  },
+                  {
+                      "name": "product_id",
+                      "type": "integer",
+                      "comment": "ID of the reviewed product"
+                  },
+                  {
+                      "name": "customer_id",
+                      "type": "integer",
+                      "comment": "ID of the customer who wrote the review"
+                  },
+                  {
+                      "name": "rating",
+                      "type": "integer",
+                      "comment": "Rating given in the review"
+                  },
+                  {
+                      "name": "comment",
+                      "type": "text",
+                      "comment": "Text of the review"
+                  }
+              ]
+          },
+          {
+              "name": "Cart",
+              "comment": "Shopping cart of customers",
+              "columns": [
+                  {
+                      "name": "cart_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the shopping cart"
+                  },
+                  {
+                      "name": "customer_id",
+                      "type": "integer",
+                      "comment": "ID of the customer who owns the cart"
+                  },
+                  {
+                      "name": "product_id",
+                      "type": "integer",
+                      "comment": "ID of the product in the cart"
+                  },
+                  {
+                      "name": "quantity",
+                      "type": "integer",
+                      "comment": "Quantity of the product in the cart"
+                  }
+              ]
+          },
+          {
+              "name": "Payment",
+              "comment": "Payment information for orders",
+              "columns": [
+                  {
+                      "name": "payment_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the payment"
+                  },
+                  {
+                      "name": "order_id",
+                      "type": "integer",
+                      "comment": "ID of the order being paid"
+                  },
+                  {
+                      "name": "payment_date",
+                      "type": "datetime",
+                      "comment": "Date and time of the payment"
+                  },
+                  {
+                      "name": "amount",
+                      "type": "decimal",
+                      "comment": "Amount paid"
+                  },
+                  {
+                      "name": "payment_method",
+                      "type": "string",
+                      "comment": "Payment method used"
+                  }
+              ]
+          },
+          {
+              "name": "Shipping",
+              "comment": "Shipping information for orders",
+              "columns": [
+                  {
+                      "name": "shipping_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the shipping record"
+                  },
+                  {
+                      "name": "order_id",
+                      "type": "integer",
+                      "comment": "ID of the order being shipped"
+                  },
+                  {
+                      "name": "ship_date",
+                      "type": "datetime",
+                      "comment": "Date and time of shipment"
+                  },
+                  {
+                      "name": "shipping_address",
+                      "type": "text",
+                      "comment": "Shipping address"
+                  }
+              ]
+          },
+          {
+              "name": "Suppliers",
+              "comment": "Information about product suppliers",
+              "columns": [
+                  {
+                      "name": "supplier_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the supplier"
+                  },
+                  {
+                      "name": "supplier_name",
+                      "type": "string",
+                      "comment": "Name of the supplier"
+                  },
+                  {
+                      "name": "contact_name",
+                      "type": "string",
+                      "comment": "Name of the supplier's contact person"
+                  },
+                  {
+                      "name": "email",
+                      "type": "string",
+                      "comment": "Email address of the supplier"
+                  }
+              ]
+          }
+      ]
+  },
+  {
+      "name": "Medical Record Management Application",
+      "tables": [
+          {
+              "name": "Patients",
+              "comment": "Information about patients and their medical records",
+              "columns": [
+                  {
+                      "name": "patient_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the patient"
+                  },
+                  {
+                      "name": "first_name",
+                      "type": "string",
+                      "comment": "First name of the patient"
+                  },
+                  {
+                      "name": "last_name",
+                      "type": "string",
+                      "comment": "Last name of the patient"
+                  },
+                  {
+                      "name": "date_of_birth",
+                      "type": "date",
+                      "comment": "Date of birth of the patient"
+                  },
+                  {
+                      "name": "gender",
+                      "type": "string",
+                      "comment": "Gender of the patient"
+                  }
+              ]
+          },
+          {
+              "name": "MedicalRecords",
+              "comment": "Records of medical diagnoses and prescriptions",
+              "columns": [
+                  {
+                      "name": "record_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the medical record"
+                  },
+                  {
+                      "name": "patient_id",
+                      "type": "integer",
+                      "comment": "ID of the patient associated with the record"
+                  },
+                  {
+                      "name": "doctor_id",
+                      "type": "integer",
+                      "comment": "ID of the doctor who created the record"
+                  },
+                  {
+                      "name": "diagnosis",
+                      "type": "text",
+                      "comment": "Description of the medical diagnosis"
+                  },
+                  {
+                      "name": "prescription",
+                      "type": "text",
+                      "comment": "Prescription details"
+                  }
+              ]
+          }
+      ]
+  },
+  {
+      "name": "Real Estate Listing Platform",
+      "tables": [
+          {
+              "name": "Listings",
+              "comment": "Information about real estate listings",
+              "columns": [
+                  {
+                      "name": "listing_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the listing"
+                  },
+                  {
+                      "name": "property_type",
+                      "type": "string",
+                      "comment": "Type of the property (e.g., house, apartment)"
+                  },
+                  {
+                      "name": "price",
+                      "type": "decimal",
+                      "comment": "Listing price"
+                  },
+                  {
+                      "name": "location",
+                      "type": "string",
+                      "comment": "Location of the property"
+                  },
+                  {
+                      "name": "description",
+                      "type": "text",
+                      "comment": "Description of the property"
+                  }
+              ]
+          },
+          {
+              "name": "Agents",
+              "comment": "Information about real estate agents",
+              "columns": [
+                  {
+                      "name": "agent_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the agent"
+                  },
+                  {
+                      "name": "agent_name",
+                      "type": "string",
+                      "comment": "Name of the agent"
+                  },
+                  {
+                      "name": "contact_email",
+                      "type": "string",
+                      "comment": "Email address of the agent"
+                  },
+                  {
+                      "name": "phone",
+                      "type": "string",
+                      "comment": "Phone number of the agent"
+                  }
+              ]
+          },
+          {
+              "name": "Inquiries",
+              "comment": "Inquiries from potential buyers/renters",
+              "columns": [
+                  {
+                      "name": "inquiry_id",
+                      "type": "integer",
+                      "comment": "Unique identifier for the inquiry"
+                  },
+                  {
+                      "name": "listing_id",
+                      "type": "integer",
+                      "comment": "ID of the listing the inquiry is related to"
+                  },
+                  {
+                      "name": "name",
+                      "type": "string",
+                      "comment": "Name of the person making the inquiry"
+                  },
+                  {
+                      "name": "email",
+                      "type": "string",
+                      "comment": "Email address of the inquirer"
+                  },
+                  {
+                      "name": "message",
+                      "type": "text",
+                      "comment": "Message or inquiry details"
+                  }
+              ]
+          }
+      ]
+  }
