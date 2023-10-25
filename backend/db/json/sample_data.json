@@ -3,7 +3,7 @@
     "name": "E-commerce Platform",
     "tables": [
       {
-        "name": "Products",
+        "name": "products",
         "comment": "Information about products available for sale",
         "columns": [
           {
@@ -29,7 +29,7 @@
         ]
       },
       {
-        "name": "Customers",
+        "name": "customers",
         "comment": "Information about customers who make purchases",
         "columns": [
           {
@@ -55,7 +55,7 @@
         ]
       },
       {
-        "name": "Orders",
+        "name": "orders",
         "comment": "Information about customer orders",
         "columns": [
           {
@@ -86,7 +86,7 @@
         ]
       },
       {
-        "name": "Categories",
+        "name": "categories",
         "comment": "Categories to which products belong",
         "columns": [
           {
@@ -102,7 +102,7 @@
         ]
       },
       {
-        "name": "Reviews",
+        "name": "reviews",
         "comment": "Customer reviews of products",
         "columns": [
           {
@@ -133,7 +133,7 @@
         ]
       },
       {
-        "name": "Cart",
+        "name": "cart",
         "comment": "Shopping cart of customers",
         "columns": [
           {
@@ -159,7 +159,7 @@
         ]
       },
       {
-        "name": "Payment",
+        "name": "payment",
         "comment": "Payment information for orders",
         "columns": [
           {
@@ -190,7 +190,7 @@
         ]
       },
       {
-        "name": "Shipping",
+        "name": "shipping",
         "comment": "Shipping information for orders",
         "columns": [
           {
@@ -216,7 +216,7 @@
         ]
       },
       {
-        "name": "Suppliers",
+        "name": "suppliers",
         "comment": "Information about product suppliers",
         "columns": [
           {
@@ -247,7 +247,7 @@
     "name": "Medical Record Management Application",
     "tables": [
       {
-        "name": "Patients",
+        "name": "patients",
         "comment": "Information about patients and their medical records",
         "columns": [
           {
@@ -278,7 +278,7 @@
         ]
       },
       {
-        "name": "MedicalRecords",
+        "name": "medical_records",
         "comment": "Records of medical diagnoses and prescriptions",
         "columns": [
           {
@@ -314,7 +314,7 @@
     "name": "Real Estate Listing Platform",
     "tables": [
       {
-        "name": "Listings",
+        "name": "listings",
         "comment": "Information about real estate listings",
         "columns": [
           {
@@ -345,7 +345,7 @@
         ]
       },
       {
-        "name": "Agents",
+        "name": "agents",
         "comment": "Information about real estate agents",
         "columns": [
           {
@@ -371,7 +371,7 @@
         ]
       },
       {
-        "name": "Inquiries",
+        "name": "inquiries",
         "comment": "Inquiries from potential buyers/renters",
         "columns": [
           {

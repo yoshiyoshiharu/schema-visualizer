@@ -1,34 +1,21 @@
 # frozen_string_literal: true
-#
+
 require_relative '../lib/schema_to_hash/schema_to_hash'
 
-(1..3).each do |i|
-  Product.find_or_create_by!(
-    {
-      name: "Product#{i}"
-    }
-  )
-end
+data = JSON.parse(File.read(Rails.root.join('db/json/sample_data.json')))
 
-Product.all.each do |product|
-  (1..3).each do |i|
-    product.tables.find_or_create_by!(
-      {
-        name: "#{product.name}-Table#{i}",
-        comment: "#{product.name}のテーブル#{i}"
-      }
-    )
-  end
-end
+data.each do |product_data|
+  product = Product.create!(name: product_data["name"])
 
-Table.all.each do |table|
-  (1..3).each do |i|
-    table.columns.find_or_create_by!(
-      {
-        name: "#{table.name}-Column#{i}",
-        type: SchemaToHash::TYPE.sample,
-        comment: "#{table.name}のカラム#{i}"
-      }
-    )
+  product_data["tables"].each do |table_data|
+    table = product.tables.create!(name: table_data["name"], comment: table_data["comment"])
+
+    table_data["columns"].each do |column_data|
+      table.columns.create!(
+        name: column_data["name"],
+        type: column_data["type"],
+        comment: column_data["comment"]
+      )
+    end
   end
 end
