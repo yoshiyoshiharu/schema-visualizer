@@ -8,8 +8,8 @@ if ARGV.length != 1
 end
 
 if __FILE__ == $0
-  schema_text = ARGV[0]
+  file_path = ARGV[0]
 
-  schema_hash = SchemaToHash::Scanner.new(schema_text).generate_table_list.to_hash
+  schema_hash = SchemaToHash::Scanner.new(File.read(file_path)).generate_table_list.to_hash
   pp schema_hash
 end
