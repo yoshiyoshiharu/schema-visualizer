@@ -19,6 +19,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_13_024920) do
     t.string "name", null: false, comment: "カラム名"
     t.string "type", null: false, comment: "カラム型"
     t.string "comment", default: "", null: false, comment: "カラムコメント"
+    t.boolean "nullable", default: false, null: false, comment: "NULL許容フラグ"
+    t.boolean "primary_key", default: false, null: false, comment: "主キーフラグ"
+    t.boolean "foreign_key", default: false, null: false, comment: "外部キーフラグ"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["table_id", "name"], name: "index_columns_on_table_id_and_name", unique: true
