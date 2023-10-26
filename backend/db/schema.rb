@@ -19,8 +19,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_13_024920) do
     t.string "name", null: false, comment: "カラム名"
     t.string "type", null: false, comment: "カラム型"
     t.string "comment", default: "", null: false, comment: "カラムコメント"
+    t.boolean "nullable", default: false, null: false, comment: "NULL許容フラグ"
+    t.boolean "primary_key", default: false, null: false, comment: "主キーフラグ"
+    t.bigint "foreign_key_table_id", comment: "外部キー先テーブル"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["foreign_key_table_id"], name: "index_columns_on_foreign_key_table_id"
     t.index ["table_id", "name"], name: "index_columns_on_table_id_and_name", unique: true
     t.index ["table_id"], name: "index_columns_on_table_id"
   end
@@ -43,5 +47,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_13_024920) do
   end
 
   add_foreign_key "columns", "tables"
+  add_foreign_key "columns", "tables", column: "foreign_key_table_id"
   add_foreign_key "tables", "products"
 end

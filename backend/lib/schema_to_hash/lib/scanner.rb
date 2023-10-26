@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'table'
 require_relative 'table_list'
-require_relative 'column'
-require_relative 'type'
+require_relative 'scanners/table'
 
 module SchemaToHash
   class Scanner
@@ -11,7 +9,7 @@ module SchemaToHash
       @table_list = TableList.new
       @table = nil
       @schema_text = schema_text
-   end
+    end
 
     def to_hash
       @table_list.tables.map do |table|
@@ -22,7 +20,8 @@ module SchemaToHash
             {
               name: column.name,
               type: column.type,
-              comment: column.comment
+              comment: column.comment,
+              nullable: column.nullable
             }
           end
         }
@@ -30,14 +29,18 @@ module SchemaToHash
     end
 
     def generate_table_list
+      table_definition = ''
+
       @schema_text.each_line do |line|
         if start_table_definition?(line)
-          @table = Table.new(name: table_name(line), comment: table_comment(line))
-        elsif start_columm_definition?(line)
-          @table.add_column(Column.new(**column(line), comment: column_comment(line)))
-        elsif end_table_definition?(line)
-          @table_list.add(@table)
-          @table = nil
+          table_definition += line
+        elsif !table_definition.empty? && end_table_definition?(line)
+          table_definition += line
+          table = Scanners::Table.new(table_definition).execute
+          @table_list.add(table)
+          table_definition = ''
+        elsif !table_definition.empty?
+          table_definition += line
         end
       end
 
@@ -51,49 +54,7 @@ module SchemaToHash
     end
 
     def end_table_definition?(line)
-      @table && line.strip.start_with?('end')
-    end
-
-    def table_name(line)
-      match = line.match(/create_table "(.*?)"/)
-      if match
-        match.captures[0]
-      else
-        nil
-      end
-    end
-
-    def table_comment(line)
-      match = line.match(/comment: "(.*?)"/)
-      if match
-        match.captures[0]
-      else
-        nil
-      end
-    end
-
-    def start_columm_definition?(line)
-      match = line.strip.match(/t\.(\w+)/)
-
-      @table && match && TYPE.include?(match.captures[0])
-    end
-
-    def column(line)
-      match = line.match(/t\.(\w+) "(.*?)"/)
-
-      type = match.captures[0]
-      name = match.captures[1]
-
-      { type: type, name: name }
-    end
-
-    def column_comment(line)
-      match = line.match(/comment: "(.*?)"/)
-      if match
-        match.captures[0]
-      else
-        nil
-      end
+      line.strip.start_with?('end')
     end
   end
 end
