@@ -21,7 +21,9 @@ module SchemaToHash
               name: column.name,
               type: column.type,
               comment: column.comment,
-              nullable: column.nullable
+              nullable: column.nullable,
+              primary_key: column.primary_key,
+              foreign_key_table: column.foreign_key_table
             }
           end
         }

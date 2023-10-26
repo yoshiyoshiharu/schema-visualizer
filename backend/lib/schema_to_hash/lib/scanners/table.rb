@@ -17,6 +17,7 @@ module SchemaToHash
         @table_definition.each_line.with_index do |line, index|
           if index == 0
             @table = ::SchemaToHash::Table.new(name: name(line), comment: comment(line))
+            @table.add_column(SchemaToHash::Column.primary_key_id) if primary_key_id?(line)
             next
           end
 
@@ -54,6 +55,9 @@ module SchemaToHash
         @table && match && TYPE.include?(match.captures[0])
       end
 
+      def primary_key_id?(line)
+        !line.strip.include?('id: false')
+      end
     end
   end
 end
