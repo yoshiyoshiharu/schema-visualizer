@@ -4,6 +4,10 @@ class Column < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
   belongs_to :table
+  belongs_to :foreign_key_table,
+             class_name: 'Table',
+             foreign_key: 'foreign_key_table_id',
+             optional: true
 
   def self.name_like(keyword)
     return all if keyword.blank?
