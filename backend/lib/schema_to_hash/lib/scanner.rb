@@ -2,6 +2,7 @@
 
 require_relative 'table_list'
 require_relative 'scanners/table'
+require_relative 'scanners/foreign_key'
 
 module SchemaToHash
   class Scanner
@@ -44,6 +45,13 @@ module SchemaToHash
         elsif !table_definition.empty?
           table_definition += line
         end
+
+        if start_foreign_key_definition?(line)
+          foreign_key_scanner = Scanners::ForeignKey.new(foreign_key_definition: line)
+          from_table = @table_list.find_table_by_name(foreign_key_scanner.table_names[:from])
+          to_table = @table_list.find_table_by_name(foreign_key_scanner.table_names[:to])
+          from_column = from_table.find_column_by_name(foreign_key_scanner.from_column_name)
+        end
       end
 
       self
@@ -57,6 +65,10 @@ module SchemaToHash
 
     def end_table_definition?(line)
       line.strip.start_with?('end')
+    end
+
+    def start_foreign_key_definition?(line)
+      line.strip.start_with?('add_foreign_key')
     end
   end
 end

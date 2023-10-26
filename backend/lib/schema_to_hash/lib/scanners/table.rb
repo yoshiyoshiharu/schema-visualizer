@@ -15,15 +15,13 @@ module SchemaToHash
 
       def execute
         @table_definition.each_line.with_index do |line, index|
-          if index == 0
+          if index.zero?
             @table = ::SchemaToHash::Table.new(name: name(line), comment: comment(line))
             @table.add_column(SchemaToHash::Column.primary_key_id) if primary_key_id?(line)
             next
           end
 
-          if start_columm_definition?(line)
-            @table.add_column(Scanners::Column.new(line).execute)
-          end
+          @table.add_column(Scanners::Column.new(line).execute) if start_columm_definition?(line)
         end
 
         @table
@@ -33,20 +31,15 @@ module SchemaToHash
 
       def name(line)
         match = line.match(/create_table "(.*?)"/)
-        if match
-          match.captures[0]
-        else
-          raise 'Table name not found'
-        end
+        raise 'Table name not found' unless match
+
+        match.captures[0]
       end
 
       def comment(line)
         match = line.match(/comment: "(.*?)"/)
-        if match
-          match.captures[0]
-        else
-          nil
-        end
+
+        match.captures[0] if match
       end
 
       def start_columm_definition?(line)

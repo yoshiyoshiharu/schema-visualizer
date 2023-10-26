@@ -7,7 +7,7 @@ if ARGV.length != 1
   exit
 end
 
-if __FILE__ == $0
+if __FILE__ == $PROGRAM_NAME
   file_path = ARGV[0]
 
   schema_hash = SchemaToHash::Scanner.new(File.read(file_path)).generate_table_list.to_hash

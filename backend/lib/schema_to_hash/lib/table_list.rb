@@ -11,5 +11,9 @@ module SchemaToHash
     def add(table)
       @tables << table
     end
+
+    def find_table_by_name(name)
+      @tables.find { |table| table.name == name }
+    end
   end
 end

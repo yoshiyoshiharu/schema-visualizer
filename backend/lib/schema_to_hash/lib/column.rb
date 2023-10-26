@@ -4,7 +4,7 @@ module SchemaToHash
   class Column
     attr_reader :name, :comment, :type, :nullable, :primary_key, :foreign_key_table
 
-    def initialize(name:, comment: '', type:, nullable: true, primary_key: false, foreign_key_table: nil)
+    def initialize(name:, type:, comment: '', nullable: true, primary_key: false, foreign_key_table: nil)
       @name = name
       @comment = comment
       @type = type
@@ -14,7 +14,7 @@ module SchemaToHash
     end
 
     def self.primary_key_id
-     self.new(
+      new(
         name: 'id',
         type: 'integer',
         comment: 'ID',
