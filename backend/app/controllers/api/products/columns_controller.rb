@@ -10,16 +10,19 @@ class Api::Products::ColumnsController < ApplicationController
               end
 
     render json: columns,
-           include:{
+           include: {
              tables: {
                include: {
                  columns: {
-                   only: [:id, :name]
+                   include: {
+                     foreign_key_table: { only: %i[id name] }
+                   },
+                   only: %i[id name]
                  }
                },
-               only: [:id, :name]
+               only: %i[id name]
              }
            },
-           only: [:id, :name]
+           only: %i[id name]
   end
 end
