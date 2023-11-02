@@ -10,16 +10,16 @@ class Api::Products::ColumnsController < ApplicationController
               end
 
     render json: columns,
-           include:{
+           include: {
              tables: {
                include: {
                  columns: {
-                   only: [:id, :name]
+                   only: %i[id name]
                  }
                },
-               only: [:id, :name]
+               only: %i[id name]
              }
            },
-           only: [:id, :name]
+           only: %i[id name]
   end
 end
