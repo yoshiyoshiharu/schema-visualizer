@@ -14,6 +14,9 @@ class Api::Products::ColumnsController < ApplicationController
              tables: {
                include: {
                  columns: {
+                   include: {
+                     foreign_key_table: { only: %i[id name] }
+                   },
                    only: %i[id name]
                  }
                },
