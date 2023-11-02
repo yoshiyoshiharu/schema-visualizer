@@ -8,7 +8,7 @@ module SchemaToHash
       end
 
       def execute
-        ::SchemaToHash::Column.new(**type_name, comment: comment, nullable: nullable)
+        ::SchemaToHash::Column.new(**type_name, comment:, nullable:)
       end
 
       private
@@ -19,16 +19,12 @@ module SchemaToHash
         type = match.captures[0]
         name = match.captures[1]
 
-        { type: type, name: name }
+        { type:, name: }
       end
 
       def comment
         match = @column_definition.match(/comment: "(.*?)"/)
-        if match
-          match.captures[0]
-        else
-          nil
-        end
+        match.captures[0] if match
       end
 
       def nullable
