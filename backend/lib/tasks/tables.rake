@@ -18,9 +18,12 @@ namespace :tables do
       exit
     end
 
-    tables_hash = SchemaToHash::Scanner.new(schema_text).generate_table_list.to_hash
+    scanner_hash = SchemaToHash::Scanner.new(schema_text).execute.to_hash
+    tables_hash = scanner_hash[:tables]
+    foreign_keys_hash = scanner_hash[:foreign_keys]
 
     ActiveRecord::Base.transaction do
+      product.tables.map(&:columns).flatten.each(&:destroy!)
       product.tables.destroy_all
 
       tables_hash.each do |table_hash|
@@ -37,7 +40,21 @@ namespace :tables do
           )
         end
 
-        log("Created #{table_hash}")
+        log("Created Table: #{table_hash}")
+      end
+
+      foreign_keys_hash.each do |foreign_key_hash|
+        from_table = product.tables.find_by!(name: foreign_key_hash[:from_table_name])
+        from_column = from_table.columns.find_by!(name: foreign_key_hash[:from_column_name])
+        to_table = product.tables.find_by!(name: foreign_key_hash[:to_table_name])
+
+        puts from_table.name
+        puts to_table.name
+        puts from_column.name
+
+        from_column.update!(foreign_key_table: to_table)
+
+        log("Created Foreign Key: #{foreign_key_hash}")
       end
     end
   end

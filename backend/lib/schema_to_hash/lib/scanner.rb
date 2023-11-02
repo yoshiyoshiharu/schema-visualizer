@@ -21,7 +21,7 @@ module SchemaToHash
       }
     end
 
-    def generate_table_list
+    def execute
       table_definition = ''
 
       @schema_text.each_line do |line|
