@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/inflector'
+require_relative '../foreign_key'
 
 module SchemaToHash
   module Scanners
@@ -8,6 +9,16 @@ module SchemaToHash
       def initialize(foreign_key_definition:)
         @foreign_key_definition = foreign_key_definition
       end
+
+      def execute
+        ::SchemaToHash::ForeignKey.new(
+          from_table_name: table_names[:from],
+          to_table_name: table_names[:to],
+          from_column_name: from_column_name
+        )
+      end
+
+      private
 
       def table_names
         match = @foreign_key_definition.match(/add_foreign_key "(.*?)", "(.*?)"/)
