@@ -48,10 +48,6 @@ namespace :tables do
         from_column = from_table.columns.find_by!(name: foreign_key_hash[:from_column_name])
         to_table = product.tables.find_by!(name: foreign_key_hash[:to_table_name])
 
-        puts from_table.name
-        puts to_table.name
-        puts from_column.name
-
         from_column.update!(foreign_key_table: to_table)
 
         log("Created Foreign Key: #{foreign_key_hash}")
