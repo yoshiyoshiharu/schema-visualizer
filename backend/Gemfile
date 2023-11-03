@@ -8,3 +8,7 @@ gem "pg"
 gem "puma"
 gem "bootsnap", require: false
 gem 'rack-cors'
+
+group 'development' do
+  gem 'rubocop', require: false
+end
