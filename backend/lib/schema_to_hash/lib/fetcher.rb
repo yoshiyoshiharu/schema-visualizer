@@ -14,7 +14,7 @@ module SchemaToHash
       schemas.map do |schema|
         {
           schema:,
-          tables: tables(schema:).map(&:to_hash)
+          tables: tables(schema_name: schema).map(&:to_hash)
         }
       end
     end

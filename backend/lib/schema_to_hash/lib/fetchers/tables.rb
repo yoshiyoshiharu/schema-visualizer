@@ -5,9 +5,9 @@ require_relative '../table'
 module SchemaToHash
   module Fetchers
     class Tables
-      def initialize(db:, schema:)
+      def initialize(db:, schema_name:)
         @db = db
-        @schema = schema
+        @schema_name = schema_name
       end
 
       def all
@@ -17,18 +17,18 @@ module SchemaToHash
           Table.new(
             name: row['table_name'],
             comment: row['table_description'],
-            columns: Columns.new(db:, table_name: row['table_name']).all
+            columns: Columns.new(db:, scheam_name:, table_name: row['table_name']).all
           )
         end
       end
 
       private
 
-      attr_reader :db, :schema
+      attr_reader :db, :schema_name
 
       def sql
         <<-SQL
-          SET search_path TO #{schema};
+          SET search_path TO #{schema_name};
 
           SELECT
             table_name,
@@ -36,7 +36,7 @@ module SchemaToHash
           FROM
             information_schema.tables
           WHERE
-            table_schema = '#{schema}';
+            table_schema = '#{schema_name}';
         SQL
       end
     end

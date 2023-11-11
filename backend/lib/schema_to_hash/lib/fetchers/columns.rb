@@ -5,8 +5,9 @@ require_relative '../column'
 module SchemaToHash
   module Fetchers
     class Columns
-      def initialize(db:, table_name:)
+      def initialize(db:, schema_name:, table_name:)
         @db = db
+        @schema_name = schema_name
         @table_name = table_name
       end
 
@@ -26,11 +27,12 @@ module SchemaToHash
 
       private
 
-      attr_reader :db, :schema, :table_name
+      attr_reader :db, :schema_name, :table_name
 
       def sql
         <<-SQL
           SELECT
+            table_schema,
             table_name,
             column_name,
             column_default,
@@ -41,6 +43,8 @@ module SchemaToHash
             information_schema.columns
           WHERE
             table_name = '#{table_name}'
+          AND
+            table_schema = #{schema_name};
           ORDER BY
             ordinal_position;
         SQL
