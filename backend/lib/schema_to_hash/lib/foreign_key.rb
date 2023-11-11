@@ -9,5 +9,13 @@ module SchemaToHash
       @to_table_name = to_table_name
       @from_column_name = from_column_name
     end
+
+    def to_hash
+      {
+        from_table_name:,
+        to_table_name:,
+        from_column_name:
+      }
+    end
   end
 end

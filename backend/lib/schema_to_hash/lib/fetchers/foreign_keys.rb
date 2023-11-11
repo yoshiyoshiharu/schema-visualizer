@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../primary_key'
+require_relative '../foreign_key'
 
 module SchemaToHash
   module Fetchers
-    class PrimaryKeys
+    class ForeignKeys
       def initialize(db:, schema_name:)
         @db = db
         @schema_name = schema_name

@@ -3,6 +3,8 @@
 require_relative 'fetchers/schemas'
 require_relative 'fetchers/tables'
 require_relative 'fetchers/columns'
+require_relative 'fetchers/primary_keys'
+require_relative 'fetchers/foreign_keys'
 
 module SchemaToHash
   class Fetcher
@@ -10,23 +12,16 @@ module SchemaToHash
       @db = db
     end
 
-    def execute
-      schemas.map do |schema_name|
-        {
-          schema: schema_name,
-          tables: tables(schema_name:).map(&:to_hash)
-        }
-      end
-    end
-
-    private
-
     def schemas
       Fetchers::Schemas.new(db:).all
     end
 
     def tables(schema_name:)
-      Fetchers::Tables.new(db:, schema_name:).all
+      Fetchers::Tables.new(db:, schema_name:).all.map(&:to_hash)
+    end
+
+    def foreign_keys(schema_name:)
+      Fetchers::ForeignKeys.new(db:, schema_name:).all.map(&:to_hash)
     end
 
     attr_reader :db

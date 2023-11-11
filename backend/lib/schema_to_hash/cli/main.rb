@@ -7,7 +7,7 @@ if __FILE__ == $PROGRAM_NAME
   db = Db.connect
 
   begin
-    pp SchemaToHash::Fetcher.new(db:).execute
+    pp SchemaToHash::Fetcher.new(db:).tables(schema_name: 'public')
   ensure
     db.close
   end
