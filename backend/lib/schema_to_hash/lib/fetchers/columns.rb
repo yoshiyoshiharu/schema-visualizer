@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../column'
+require_relative 'primary_keys'
 
 module SchemaToHash
   module Fetchers
@@ -9,6 +10,7 @@ module SchemaToHash
         @db = db
         @schema_name = schema_name
         @table_name = table_name
+        @primary_keys = PrimaryKeys.new(db:, schema_name:).all
       end
 
       def all
@@ -20,14 +22,21 @@ module SchemaToHash
             default: row['column_default'],
             nullable: row['is_nullable'] == 'YES',
             type: row['data_type'],
-            comment: row['column_description']
+            comment: row['column_description'],
+            primary_key: primary_key?(row)
           )
         end
       end
 
       private
 
-      attr_reader :db, :schema_name, :table_name
+      attr_reader :db, :schema_name, :table_name, :primary_keys
+
+      def primary_key?(row)
+        primary_keys.any? { |pk|
+          pk.table_name == table_name && pk.column_name == row['column_name']
+        }
+      end
 
       def sql
         <<-SQL
@@ -44,7 +53,7 @@ module SchemaToHash
           WHERE
             table_name = '#{table_name}'
           AND
-            table_schema = #{schema_name};
+            table_schema = '#{schema_name}'
           ORDER BY
             ordinal_position;
         SQL

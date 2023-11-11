@@ -11,10 +11,10 @@ module SchemaToHash
     end
 
     def execute
-      schemas.map do |schema|
+      schemas.map do |schema_name|
         {
-          schema:,
-          tables: tables(schema_name: schema).map(&:to_hash)
+          schema: schema_name,
+          tables: tables(schema_name:).map(&:to_hash)
         }
       end
     end
@@ -25,8 +25,8 @@ module SchemaToHash
       Fetchers::Schemas.new(db:).all
     end
 
-    def tables(schema:)
-      Fetchers::Tables.new(db:, schema:).all
+    def tables(schema_name:)
+      Fetchers::Tables.new(db:, schema_name:).all
     end
 
     attr_reader :db

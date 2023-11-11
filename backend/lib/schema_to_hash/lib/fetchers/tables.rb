@@ -17,7 +17,7 @@ module SchemaToHash
           Table.new(
             name: row['table_name'],
             comment: row['table_description'],
-            columns: Columns.new(db:, scheam_name:, table_name: row['table_name']).all
+            columns: Columns.new(db:, schema_name:, table_name: row['table_name']).all
           )
         end
       end

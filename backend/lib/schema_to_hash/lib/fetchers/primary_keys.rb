@@ -38,7 +38,7 @@ module SchemaToHash
           AND
             t.constraint_name = k.constraint_name
           AND
-            t.schema_name = #{schema_name};
+            t.table_schema = '#{schema_name}';
         SQL
       end
     end
