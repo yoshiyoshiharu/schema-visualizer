@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'scanner'
-
-if ARGV.length != 1
-  puts 'Usage: ruby main.rb <schema_text>'
-  exit
-end
+require_relative 'db'
+require_relative 'fetcher'
 
 if __FILE__ == $PROGRAM_NAME
-  file_path = ARGV[0]
+  db = Db.connect
 
-  schema_hash = SchemaToHash::Scanner.new(File.read(file_path)).execute.to_hash
-  pp schema_hash
+  pp Fetcher.new(db:).all_schemas
 end
