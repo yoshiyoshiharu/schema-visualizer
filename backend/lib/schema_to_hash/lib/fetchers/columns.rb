@@ -18,7 +18,7 @@ module SchemaToHash
           Column.new(
             name: row['column_name'],
             default: row['column_default'],
-            nullable: row['is_nullable'] == 'YES' ? true : false,
+            nullable: row['is_nullable'] == 'YES',
             type: row['data_type'],
             comment: row['column_description']
           )
