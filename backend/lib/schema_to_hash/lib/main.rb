@@ -6,5 +6,5 @@ require_relative 'fetcher'
 if __FILE__ == $PROGRAM_NAME
   db = Db.connect
 
-  pp Fetcher.new(db:).all_schemas
+  pp SchemaToHash::Fetcher.new(db:).tables(schema: 'supplier')
 end
