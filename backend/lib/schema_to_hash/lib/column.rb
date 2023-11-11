@@ -13,5 +13,17 @@ module SchemaToHash
       @default = default
       @primary_key = primary_key
     end
+
+    def to_hash
+      {
+        name:,
+        comment:,
+        type:,
+        nullable:,
+        default:,
+        primary_key:,
+        foreign_key_table:
+      }
+    end
   end
 end

@@ -10,12 +10,16 @@ module SchemaToHash
       @db = db
     end
 
-    def to_hash
-      {
-        tables: @table_list.to_hash,
-        foreign_keys: @foreign_key_list.to_hash
-      }
+    def execute
+      schemas.map do |schema|
+        {
+          schema:,
+          tables: tables(schema:).map(&:to_hash)
+        }
+      end
     end
+
+    private
 
     def schemas
       Fetchers::Schemas.new(db:).all
@@ -24,8 +28,6 @@ module SchemaToHash
     def tables(schema:)
       Fetchers::Tables.new(db:, schema:).all
     end
-
-    private
 
     attr_reader :db
   end

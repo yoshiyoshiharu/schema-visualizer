@@ -6,7 +6,9 @@ require_relative 'fetcher'
 if __FILE__ == $PROGRAM_NAME
   db = Db.connect
 
-  pp SchemaToHash::Fetcher.new(db:).schemas
-
-  db.close
+  begin
+    pp SchemaToHash::Fetcher.new(db:).execute
+  ensure
+    db.close
+  end
 end
