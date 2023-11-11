@@ -7,4 +7,6 @@ if __FILE__ == $PROGRAM_NAME
   db = Db.connect
 
   pp SchemaToHash::Fetcher.new(db:).tables(schema: 'supplier')
+
+  db.close
 end
