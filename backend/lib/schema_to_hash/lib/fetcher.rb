@@ -10,6 +10,13 @@ module SchemaToHash
       @db = db
     end
 
+    def to_hash
+      {
+        tables: @table_list.to_hash,
+        foreign_keys: @foreign_key_list.to_hash
+      }
+    end
+
     def schemas
       Fetchers::Schemas.new(db:).all
     end

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-module SchemaTohas
+module SchemaToHash
   module Fetchers
-    class Schema
-      EXCEPT_SCHEMAS = %w[
+    class Schemas
+      EXCEPT_SCHEMA_KEYWORDS = %w[
         information_schema
         pg_catalog
         pg_toast
+        pg_temp
       ].freeze
 
       def initialize(db:)
@@ -15,7 +16,8 @@ module SchemaTohas
 
       def all
         result = db.exec(sql)
-        result.map { |row| row['schema_name'] }.difference(EXCEPT_SCHEMAS)
+        result.map { |row| row['schema_name'] }
+              .delete_if { |schema_name| EXCEPT_SCHEMA_KEYWORDS.any? { |keyword| schema_name.include?(keyword) } }
       end
 
       private
