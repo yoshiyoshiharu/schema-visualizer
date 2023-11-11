@@ -28,6 +28,8 @@ module SchemaToHash
 
       def sql
         <<-SQL
+          SET search_path TO #{schema};
+
           SELECT
             table_name,
             obj_description(table_name::regclass) AS table_description
