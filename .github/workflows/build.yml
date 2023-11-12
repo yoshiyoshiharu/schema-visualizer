@@ -9,4 +9,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Build docke image
         run: docker-compose -f backend/docker-compose.yml build
+      - name: Run rubocop
+        run: docker-compose -f backend/docker-compose.yml run --rm web bundle exec rubocop
 
