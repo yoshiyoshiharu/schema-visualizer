@@ -14,9 +14,7 @@ module SchemaToHash
       end
 
       def all
-        result = db.exec(sql)
-
-        result.map do |row|
+        db.exec(sql).map do |row|
           Column.new(
             name: row['column_name'],
             default: row['column_default'],
