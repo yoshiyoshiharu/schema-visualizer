@@ -11,8 +11,7 @@ jobs:
         run: docker-compose -f backend/docker-compose.yml build
       - name: Prepare test db
         run: |
-          docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails db:create RAILS_ENV=test
-          docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails db:schema:load RAILS_ENV=test
+          docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails db:drop db:create db:schema:load RAILS_ENV=test
       - name: Run test
         run: docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails test
   rubocop:
