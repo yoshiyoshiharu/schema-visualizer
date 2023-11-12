@@ -2,12 +2,25 @@ name: Build
 on: push
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build docker image
+        run: docker-compose -f backend/docker-compose.yml build
+      - name: Prepare test db
+        run: |
+          docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails db:create RAILS_ENV=test
+          docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails db:schema:load RAILS_ENV=test
+      - name: Run test
+        run: docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails test
   rubocop:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build docke image
+      - name: Build docker image
         run: docker-compose -f backend/docker-compose.yml build
       - name: Run rubocop
         run: docker-compose -f backend/docker-compose.yml run --rm web bundle exec rubocop
