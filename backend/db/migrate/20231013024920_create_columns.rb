@@ -1,6 +1,6 @@
 class CreateColumns < ActiveRecord::Migration[7.0]
   def change
-    create_table :columns do |t|
+    create_table :columns, comment: 'カラム' do |t|
       t.references :table, null: false, foreign_key: true, comment: 'テーブルID'
       t.string :name, null: false, comment: 'カラム名'
       t.string :type, null: false, comment: 'カラム型'
