@@ -4,6 +4,6 @@ class Api::Tables::ColumnsController < ApplicationController
   def index
     table = Table.find(params[:table_id])
 
-    render json: table.columns, only: [:name, :type, :comment]
+    render json: table.columns, only: %i[name type comment]
   end
 end

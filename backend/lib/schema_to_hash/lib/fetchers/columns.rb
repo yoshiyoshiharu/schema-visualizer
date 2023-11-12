@@ -33,9 +33,9 @@ module SchemaToHash
       attr_reader :db, :schema_name, :table_name, :primary_keys
 
       def primary_key?(row)
-        primary_keys.any? { |pk|
+        primary_keys.any? do |pk|
           pk.table_name == table_name && pk.column_name == row['column_name']
-        }
+        end
       end
 
       def sql
