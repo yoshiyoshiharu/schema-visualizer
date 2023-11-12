@@ -1,28 +1,32 @@
 # frozen_string_literal: true
 
-class Api::Products::ColumnsController < ApplicationController
-  def index
-    columns = if params[:name_like].blank?
-                Product.none
-              else
-                Product.eager_load(tables: :columns)
-                       .merge(Column.name_like(params[:name_like]))
-              end
+module Api
+  module Products
+    class ColumnsController < ApplicationController
+      def index
+        columns = if params[:name_like].blank?
+                    Product.none
+                  else
+                    Product.eager_load(tables: :columns)
+                           .merge(Column.name_like(params[:name_like]))
+                  end
 
-    render json: columns,
-           include: {
-             tables: {
+        render json: columns,
                include: {
-                 columns: {
+                 tables: {
                    include: {
-                     foreign_key_table: { only: %i[id name] }
+                     columns: {
+                       include: {
+                         foreign_key_table: { only: %i[id name] }
+                       },
+                       only: %i[id name]
+                     }
                    },
                    only: %i[id name]
                  }
                },
                only: %i[id name]
-             }
-           },
-           only: %i[id name]
+      end
+    end
   end
 end
