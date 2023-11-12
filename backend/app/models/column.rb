@@ -6,8 +6,7 @@ class Column < ApplicationRecord
   belongs_to :table
   belongs_to :foreign_key_table,
              class_name: 'Table',
-             optional: true,
-             inverse_of: 'columns'
+             optional: true
 
   def self.name_like(keyword)
     return all if keyword.blank?
