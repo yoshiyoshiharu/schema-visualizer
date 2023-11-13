@@ -1,5 +1,7 @@
 import { Table } from '../types/table'
 import { Column } from '../types/column'
+import PrimaryKey from '../components/Key/Primary'
+import ForeignKey from '../components/Key/Foreign'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { targetTableState } from '../recoil/atom/target_table_state'
@@ -40,45 +42,52 @@ export default function Main() {
 
   return (
     <main className="w-3/4 overflow-auto">
-      <TableContainer className="p-3">
-        { 
-          targetTable && 
-            <Tag>{targetTable?.product.name} / {targetTable.name}</Tag> 
+      {
+        targetTable &&
+          <>
+            <TableContainer className="p-3">
+              <Tag>{targetTable?.product.name} / {targetTable.name}</Tag>
+              <ChakraTable size='sm' className="mt-1">
+                <Thead>
+                  <Tr>
+                    <Th>Name</Th>
+                    <Th>Type</Th>
+                    <Th>Key</Th>
+                    <Th>
+                      <Center>
+                        Nullable
+                      </Center>
+                    </Th>
+                    <Th>Comment</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {columns.map((column) => (
+                    <Tr key={column.name}>
+                      <Td>{column.name}</Td>
+                      <Td>{column.type}</Td>
+                      <Td>
+                        {column.primary_key && <PrimaryKey></PrimaryKey>}
+                        {
+                          column.foreign_key_table &&
+                            <ForeignKey
+                              product={targetTable.product}
+                              table={column.foreign_key_table} />
+                        }
+                      </Td>
+                      <Td>
+                        <Center>
+                          {column.nullable ? '○' : '×'}
+                        </Center>
+                      </Td>
+                      <Td>{column.comment}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </ChakraTable>
+            </TableContainer>
+          </>
         }
-        <ChakraTable size='sm' className="mt-1">
-          <Thead>
-            <Tr>
-              <Th>Name</Th>
-              <Th>Type</Th>
-              <Th>Key</Th>
-              <Th>
-                <Center>
-                  Nullabe
-                </Center>
-              </Th>
-              <Th>Comment</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {columns.map((column) => (
-              <Tr key={column.name}>
-                <Td>{column.name}</Td>
-                <Td>{column.type}</Td>
-                <Td>
-                  {column.primary_key && 'PK'}
-                  {column.foreign_key_table && 'FK'}
-                </Td>
-                <Td>
-                  <Center>
-                    {column.nullable ? '○' : '×'}
-                  </Center>
-                </Td>
-                <Td>{column.comment}</Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </ChakraTable>
-      </TableContainer>
     </main>
   )
 }
