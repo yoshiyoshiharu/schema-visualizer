@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    namespace :products, only: %i() do
+    namespace :products do
       resources :tables, only: %i(index)
       resources :columns, only: %i(index)
     end
