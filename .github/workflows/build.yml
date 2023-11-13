@@ -9,6 +9,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Build docker image
         run: docker-compose -f backend/docker-compose.yml build
+      - name: Prepare db container
+        run: docker-compose -f backend/docker-compose.yml up -d db
       - name: Prepare test db
         run: |
           docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails db:drop db:create db:schema:load RAILS_ENV=test
