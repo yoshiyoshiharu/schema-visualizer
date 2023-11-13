@@ -1,61 +1,77 @@
 # frozen_string_literal: true
 
+require 'pg'
 require_relative '../schema_to_hash/schema_to_hash'
 
 namespace :tables do
   desc 'Create tables'
-  task :create, ['product', 'schema_file_path'] => :environment do |_task, args|
-    unless args[:product] && args[:schema_file_path]
-      puts "Usage: rake tables:create[product,schema_file_path]"
+  task :create, %w[host port dbname user password schema product] => :environment do |_task, args|
+    unless args[:host] &&
+           args[:port] &&
+           args[:dbname] &&
+           args[:user] &&
+           args[:password] &&
+           args[:schema] &&
+           args[:product]
+      puts 'Usage: rake tables:create[host,port,dbname,user,password,schema,product]'
       exit
     end
 
-    schema_text = File.read(args[:schema_file_path])
-    product =  Product.find_by(name: args[:product])
+    db_config = {
+      host: args[:host],
+      port: args[:port],
+      dbname: args[:dbname],
+      user: args[:user],
+      password: args[:password]
+    }
 
-    if product.nil?
-      puts "product: #{args[:product]} is not exist"
-      exit
-    end
+    begin
+      db = PG.connect(db_config)
 
-    scanner_hash = SchemaToHash::Scanner.new(schema_text).execute.to_hash
-    tables_hash = scanner_hash[:tables]
-    foreign_keys_hash = scanner_hash[:foreign_keys]
+      schema_to_hash = SchemaToHash::Fetcher.new(db:)
 
-    ActiveRecord::Base.transaction do
-      product.tables.map(&:columns).flatten.each(&:destroy!)
+      unless schema_to_hash.schemas.include?(args[:schema])
+        puts "Schema #{args[:schema]} does not exist"
+        exit
+      end
+
+      product = Product.find_by(name: args[:product])
+      if product.nil?
+        puts "Product #{args[:product]} does not exist"
+        exit
+      end
+
       product.tables.destroy_all
 
-      tables_hash.each do |table_hash|
-        table = product.tables.create!(
-          name: table_hash[:name],
-          comment: table_hash[:comment].to_s
+      schema_to_hash.tables(schema_name: args[:schema]).each do |table|
+        puts "Creating table #{table[:name]}..."
+        product.tables.create!(
+          name: table[:name],
+          comment: table[:comment] || '',
+          columns: table[:columns].map do |column|
+            Column.new(
+              name: column[:name],
+              type: column[:type],
+              comment: column[:comment] || '',
+              nullable: column[:nullable],
+              primary_key: column[:primary_key]
+            )
+          end
         )
-
-        table_hash[:columns].each do |column_hash|
-          table.columns.create!(
-            name: column_hash[:name],
-            comment: column_hash[:comment].to_s,
-            type: column_hash[:type]
-          )
-        end
-
-        log("Created Table: #{table_hash}")
       end
 
-      foreign_keys_hash.each do |foreign_key_hash|
-        from_table = product.tables.find_by!(name: foreign_key_hash[:from_table_name])
-        from_column = from_table.columns.find_by!(name: foreign_key_hash[:from_column_name])
-        to_table = product.tables.find_by!(name: foreign_key_hash[:to_table_name])
+      schema_to_hash.foreign_keys(schema_name: args[:schema]).each do |foreign_key|
+        puts "Creating foreign key #{foreign_key[:from_column_name]} of #{foreign_key[:from_table_name]} to #{foreign_key[:to_table_name]}..."
+        from_table = product.tables.find_by!(name: foreign_key[:from_table_name])
+        from_column = from_table.columns.find_by!(name: foreign_key[:from_column_name])
+        to_table = product.tables.find_by!(name: foreign_key[:to_table_name])
 
-        from_column.update!(foreign_key_table: to_table)
-
-        log("Created Foreign Key: #{foreign_key_hash}")
+        from_column.update!(
+          foreign_key_table: to_table
+        )
       end
+    ensure
+      db.close
     end
-  end
-
-  def log(text)
-    puts text
   end
 end
