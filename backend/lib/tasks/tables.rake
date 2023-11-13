@@ -41,34 +41,34 @@ namespace :tables do
         exit
       end
 
-        product.tables.destroy_all
+      product.tables.destroy_all
 
-        schema_to_hash.tables(schema_name: args[:schema]).each do |table|
-          puts "Creating table #{table[:name]}..."
-          product.tables.create!(
-            name: table[:name],
-            comment: table[:comment] || '',
-            columns: table[:columns].map do |column|
-              Column.new(
-                name: column[:name],
-                type: column[:type],
-                comment: column[:comment] || '',
-                nullable: column[:nullable],
-                primary_key: column[:primary_key]
-              )
-            end
-          )
-        end
+      schema_to_hash.tables(schema_name: args[:schema]).each do |table|
+        puts "Creating table #{table[:name]}..."
+        product.tables.create!(
+          name: table[:name],
+          comment: table[:comment] || '',
+          columns: table[:columns].map do |column|
+            Column.new(
+              name: column[:name],
+              type: column[:type],
+              comment: column[:comment] || '',
+              nullable: column[:nullable],
+              primary_key: column[:primary_key]
+            )
+          end
+        )
+      end
 
-        schema_to_hash.foreign_keys(schema_name: args[:schema]).each do |foreign_key|
-          puts "Creating foreign key #{foreign_key[:from_column_name]} of #{foreign_key[:from_table_name]} to #{foreign_key[:to_table_name]}..."
-          from_table = product.tables.find_by!(name: foreign_key[:from_table_name])
-          from_column = from_table.columns.find_by!(name: foreign_key[:from_column_name])
-          to_table = product.tables.find_by!(name: foreign_key[:to_table_name])
+      schema_to_hash.foreign_keys(schema_name: args[:schema]).each do |foreign_key|
+        puts "Creating foreign key #{foreign_key[:from_column_name]} of #{foreign_key[:from_table_name]} to #{foreign_key[:to_table_name]}..."
+        from_table = product.tables.find_by!(name: foreign_key[:from_table_name])
+        from_column = from_table.columns.find_by!(name: foreign_key[:from_column_name])
+        to_table = product.tables.find_by!(name: foreign_key[:to_table_name])
 
-          from_column.update!(
-            foreign_key_table: to_table
-          )
+        from_column.update!(
+          foreign_key_table: to_table
+        )
       end
     ensure
       db.close
