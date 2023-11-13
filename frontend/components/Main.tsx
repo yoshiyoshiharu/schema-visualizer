@@ -13,6 +13,7 @@ import {
   Th,
   Td,
   TableContainer,
+  Center
 } from '@chakra-ui/react'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
@@ -44,11 +45,17 @@ export default function Main() {
           targetTable && 
             <Tag>{targetTable?.product.name} / {targetTable.name}</Tag> 
         }
-        <ChakraTable size='sm' className="table-fixed mt-1">
+        <ChakraTable size='sm' className="mt-1">
           <Thead>
             <Tr>
               <Th>Name</Th>
               <Th>Type</Th>
+              <Th>Key</Th>
+              <Th>
+                <Center>
+                  Nullabe
+                </Center>
+              </Th>
               <Th>Comment</Th>
             </Tr>
           </Thead>
@@ -57,6 +64,15 @@ export default function Main() {
               <Tr key={column.name}>
                 <Td>{column.name}</Td>
                 <Td>{column.type}</Td>
+                <Td>
+                  {column.primary_key && 'PK'}
+                  {column.foreign_key_table && 'FK'}
+                </Td>
+                <Td>
+                  <Center>
+                    {column.nullable ? '○' : '×'}
+                  </Center>
+                </Td>
                 <Td>{column.comment}</Td>
               </Tr>
             ))}

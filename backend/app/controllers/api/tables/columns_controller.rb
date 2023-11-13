@@ -8,7 +8,7 @@ module Api
 
         render json: table.columns,
                include: { foreign_key_table: { only: %i[id name] } },
-               only: %i[name type comment]
+               only: %i[name type comment nullable primary_key]
       end
     end
   end
