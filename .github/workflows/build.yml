@@ -23,9 +23,13 @@ jobs:
       - name: Prepare db container
         run: docker-compose -f $DOCKER_COMPOSE_PATH up -d db
       - name: Prepare test db
-        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web bundle exec rails db:drop db:create db:schema:load RAILS_ENV=test
+        run: >-
+          docker-compose -f $DOCKER_COMPOSE_PATH run --rm web \
+            rails db:drop \
+                  db:create \
+                  db:schema:load RAILS_ENV=test
       - name: Run test
-        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web bundle exec rails test
+        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web rails test
   rubocop:
     runs-on: ubuntu-latest
     steps:
