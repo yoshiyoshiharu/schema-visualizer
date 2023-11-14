@@ -1,5 +1,12 @@
 name: Build
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  push:
+    branches:
+      - master
 
 jobs:
   test:
