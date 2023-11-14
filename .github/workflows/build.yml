@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - master
+env:
+  DOCKER_COMPOSE_PATH: backend/docker-compose.yml
 
 jobs:
   test:
@@ -17,14 +19,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Build docker image
-        run: docker-compose -f backend/docker-compose.yml build
+        run: docker-compose -f $DOCKER_COMPOSE_PATH build
       - name: Prepare db container
-        run: docker-compose -f backend/docker-compose.yml up -d db
+        run: docker-compose -f $DOCKER_COMPOSE_PATH up -d db
       - name: Prepare test db
-        run: |
-          docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails db:drop db:create db:schema:load RAILS_ENV=test
+        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web bundle exec rails db:drop db:create db:schema:load RAILS_ENV=test
       - name: Run test
-        run: docker-compose -f backend/docker-compose.yml run --rm web bundle exec rails test
+        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web bundle exec rails test
   rubocop:
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +34,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Build docker image
-        run: docker-compose -f backend/docker-compose.yml build
+        run: docker-compose -f $DOCKER_COMPOSE_PATH build
       - name: Run rubocop
-        run: docker-compose -f backend/docker-compose.yml run --rm web bundle exec rubocop
+        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web bundle exec rubocop
