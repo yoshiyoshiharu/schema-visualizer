@@ -41,6 +41,7 @@ export default function ColumnMemoForm({ column }: { column: Column }) {
       <Textarea
         size='xs'
         rows={2}
+        placeholder='Ctrl + Enterで更新'
         defaultValue={column.memo?.content}
         onKeyDown={handleKeyDown}
       />
