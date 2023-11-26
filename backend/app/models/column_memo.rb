@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ColumnComment < ApplicationRecord
+class ColumnMemo < ApplicationRecord
   belongs_to :column
 
   validates :content, presence: true

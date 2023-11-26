@@ -14,12 +14,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_025435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "column_comments", force: :cascade do |t|
+  create_table "column_memos", force: :cascade do |t|
     t.bigint "column_id", null: false, comment: "カラムID"
     t.string "content", default: "", null: false, comment: "内容"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["column_id"], name: "index_column_comments_on_column_id"
+    t.index ["column_id"], name: "index_column_memos_on_column_id"
   end
 
   create_table "columns", force: :cascade do |t|
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_025435) do
     t.index ["product_id"], name: "index_tables_on_product_id"
   end
 
-  add_foreign_key "column_comments", "columns"
+  add_foreign_key "column_memos", "columns"
   add_foreign_key "columns", "tables"
   add_foreign_key "columns", "tables", column: "foreign_key_table_id"
   add_foreign_key "tables", "products"

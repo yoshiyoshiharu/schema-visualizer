@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :columns, only: %i(index), controller: 'tables/columns'
     end
     resources :columns, only: %i() do
-      resource :comment, only: %i(update), controller: 'columns/comments'
+      resource :memo, only: %i(update), controller: 'columns/memos'
     end
   end
 end

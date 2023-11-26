@@ -7,9 +7,9 @@ class Column < ApplicationRecord
   belongs_to :foreign_key_table,
              class_name: 'Table',
              optional: true
-  has_one :comment,
+  has_one :memo,
           dependent: :destroy,
-          class_name: 'ColumnComment'
+          class_name: 'ColumnMemo'
 
   def self.name_like(keyword)
     return all if keyword.blank?
