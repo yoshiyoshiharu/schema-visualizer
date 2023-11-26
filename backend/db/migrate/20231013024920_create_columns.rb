@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateColumns < ActiveRecord::Migration[7.0]
   def change
     create_table :columns, comment: 'カラム' do |t|
