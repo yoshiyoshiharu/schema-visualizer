@@ -2,6 +2,7 @@ import { Table } from '../types/table'
 import { Column } from '../types/column'
 import PrimaryKey from '../components/Key/Primary'
 import ForeignKey from '../components/Key/Foreign'
+import ColumnMemoForm from '../components/ColumnMemoForm'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { targetTableState } from '../recoil/atom/target_table_state'
@@ -59,6 +60,7 @@ export default function Main() {
                       </Center>
                     </Th>
                     <Th>Comment</Th>
+                    <Th>Memo</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -81,6 +83,7 @@ export default function Main() {
                         </Center>
                       </Td>
                       <Td>{column.comment}</Td>
+                      <Td><ColumnMemoForm column={column}></ColumnMemoForm></Td>
                     </Tr>
                   ))}
                 </Tbody>
