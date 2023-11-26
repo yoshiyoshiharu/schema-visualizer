@@ -58,7 +58,7 @@ Rails.application.configure do
       origins "*"
       resource "*",
         headers: :any,
-        methods: [:get, :post, :options, :head]
+        methods: [:get, :post, :put, :patch, :options, :head]
     end
   end
 end
