@@ -36,7 +36,10 @@ export default function ColumnMemoForm({ column }: { column: Column }) {
         })
       }
     } catch (error) {
-      console.error('エラー:', error);
+        setAlert({
+          status: 'error',
+          message: 'サーバーエラーが発生しました'
+        })
     }
   }
 
