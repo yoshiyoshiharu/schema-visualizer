@@ -83,7 +83,7 @@ export default function Main() {
                         </Center>
                       </Td>
                       <Td>{column.comment}</Td>
-                      <Td><ColumnMemoForm></ColumnMemoForm></Td>
+                      <Td><ColumnMemoForm column={column}></ColumnMemoForm></Td>
                     </Tr>
                   ))}
                 </Tbody>
