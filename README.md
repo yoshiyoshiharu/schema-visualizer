@@ -1,7 +1,9 @@
-# スキーマ可視化アプリ
+# README
 
-DBのスキーマ情報を読み取り、メタデータを閲覧するアプリです。
+```
+docker compose run --rm web rails db:create
+```
 
-## 画面収録
-https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/c8d0a235-623c-4934-98e0-2d4f97499e4c
-
+```
+docker compose up
+```
