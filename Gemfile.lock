@@ -77,8 +77,6 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.5)
-    bootsnap (1.17.0)
-      msgpack (~> 1.2)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
@@ -91,6 +89,10 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    importmap-rails (1.2.3)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.6.0)
     irb (1.8.3)
       rdoc
@@ -108,7 +110,6 @@ GEM
     marcel (1.0.2)
     mini_mime (1.1.5)
     minitest (5.20.0)
-    msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.1)
       date
@@ -135,8 +136,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.8)
-    rack-cors (2.0.1)
-      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -219,10 +218,9 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  bootsnap
+  importmap-rails
   pg
   puma
-  rack-cors
   rails
   rubocop
   rubocop-rails
