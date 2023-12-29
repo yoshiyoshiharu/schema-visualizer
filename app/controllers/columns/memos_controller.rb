@@ -1,24 +1,22 @@
 # frozen_string_literal: true
 
-module Api
-  module Columns
-    class MemosController < ApplicationController
-      def update
-        @column = Column.find(params[:column_id])
-        @column_memo = @column.memo || @column.build_memo
+module Columns
+  class MemosController < ApplicationController
+    def update
+      @column = Column.find(params[:column_id])
+      @column_memo = @column.memo || @column.build_memo
 
-        if @column_memo.update(column_memo_params)
-          render json: @column_memo
-        else
-          render json: @column_memo.errors, status: :unprocessable_entity
-        end
+      if @column_memo.update(column_memo_params)
+        render json: @column_memo
+      else
+        render json: @column_memo.errors, status: :unprocessable_entity
       end
+    end
 
-      private
+    private
 
-      def column_memo_params
-        params.require(:column_memo).permit(:content)
-      end
+    def column_memo_params
+      params.require(:column_memo).permit(:content)
     end
   end
 end
