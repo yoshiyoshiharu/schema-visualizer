@@ -8,6 +8,7 @@ gem 'pg'
 gem 'propshaft'
 gem 'puma'
 gem 'rails'
+gem 'turbo-rails'
 
 group 'development' do
   gem 'rubocop', require: false
