@@ -5,6 +5,7 @@ ruby '3.2.2'
 
 gem 'importmap-rails'
 gem 'pg'
+gem 'propshaft'
 gem 'puma'
 gem 'rails'
 
