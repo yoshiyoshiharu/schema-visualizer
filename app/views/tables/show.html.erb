@@ -1,35 +1,35 @@
-<span class="badge rounded-pill text-bg-secondary fs-6 mb-2 mt-3">
-  <%= @table.product.name %> / <%= @table.name %>
-</span>
+<%= turbo_frame_tag 'table' do %>
+  <span class="badge rounded-pill text-bg-secondary fs-6 mb-2 mt-3">
+    <%= @table.product.name %> / <%= @table.name %>
+  </span>
 
-<table class="table">
-  <thead>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Key</th>
-    <th>Nullable</th>
-    <th>Comment</th>
-    <th>Memo</th>
-  </thead>
-  <tbody>
-    <% @table.columns.each do |column| %>
-      <tr>
-        <td><%= column.name %></td>
-        <td><%= column.type %></td>
-        <td>
-          <% if column.primary_key? %>
-            <span class="badge text-bg-danger">PK</span>
-          <% end %>
-          <% if column.foreign_key_table.present? %>
-            <span class="badge text-bg-primary">
-              <%= link_to 'FK', column.foreign_key_table, class: 'link-light link-underline-opacity-0' %>
-            </span>
-          <% end %>
-        </td>
-        <td><%= column.nullable? %></td>
-        <td><%= column.comment %></td>
-        <td><%= column.memo&.content %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Key</th>
+      <th>Nullable</th>
+      <th>Comment</th>
+      <th>Memo</th>
+    </thead>
+    <tbody>
+      <% @table.columns.each do |column| %>
+        <tr>
+          <td><%= column.name %></td>
+          <td><%= column.type %></td>
+          <td>
+            <% if column.primary_key? %>
+              <span class="badge text-bg-danger">PK</span>
+            <% end %>
+            <% if column.foreign_key_table.present? %>
+              <%= link_to 'FK', column.foreign_key_table, class: 'link-light link-underline-opacity-0 badge text-bg-primary' %>
+            <% end %>
+          </td>
+          <td><%= column.nullable? %></td>
+          <td><%= column.comment %></td>
+          <td><%= column.memo&.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
