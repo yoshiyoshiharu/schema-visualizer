@@ -1,0 +1,11 @@
+nav {
+  height: 3rem;
+}
+aside {
+  height: calc(100vh - 3rem);
+  overflow-y: auto;
+}
+main {
+  height: calc(100vh - 3rem);
+  overflow-y: auto;
+}
