@@ -2,7 +2,7 @@
 
 class TablesController < ApplicationController
   def show
-    @products = Product.all.preload(:tables) unless request.headers['Turbo-Frame']
+    @products = Product.all.preload(:tables) unless turbo_frame_request?
 
     @table = Table.preload(columns: [:memo, :foreign_key_table]).find(params[:id])
   end
