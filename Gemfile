@@ -11,6 +11,8 @@ gem 'rails'
 gem 'turbo-rails'
 
 group 'development' do
+  gem 'erb_lint', require: false
+  gem 'htmlbeautifier', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
 end
