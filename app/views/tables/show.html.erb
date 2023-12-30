@@ -1,1 +1,33 @@
 <%= @table.name %>
+
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Key</th>
+    <th>Nullable</th>
+    <th>Comment</th>
+    <th>Memo</th>
+  </thead>
+  <tbody>
+    <% @table.columns.each do |column| %>
+      <tr>
+        <td><%= column.name %></td>
+        <td><%= column.type %></td>
+        <td>
+          <% if column.primary_key? %>
+            <span class="badge text-bg-danger">PK</span>
+          <% end %>
+          <% if column.foreign_key_table.present? %>
+            <span class="badge text-bg-primary">
+              <%= link_to 'FK', column.foreign_key_table, class: 'link-light link-underline-opacity-0' %>
+            </span>
+          <% end %>
+        </td>
+        <td><%= column.nullable? %></td>
+        <td><%= column.comment %></td>
+        <td><%= column.memo&.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
