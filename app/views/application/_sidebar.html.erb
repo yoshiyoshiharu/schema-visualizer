@@ -1,0 +1,13 @@
+<aside class="bg-body-tertiary h-100">
+  <% products.each do |product| %>
+    <h2 class="fs-5"><%= product.name %></h2>
+
+    <ul class="list-unstyled fw-normal pb-2 ps-4">
+      <% product.tables.each do |table| %>
+        <li>
+          <%= link_to table.name, table, class: 'link-dark link-underline-opacity-0 link-opacity-50-hover' %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</aside>
