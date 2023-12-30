@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  resources :tables, only: %w(show)
+  root to: 'home#index'
+  resource :home, only: %w(index)
+
+  resources :tables, only: %w(index show)
 end
