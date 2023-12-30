@@ -1,0 +1,30 @@
+<aside class="bg-body-tertiary pt-3">
+  <% products.each do |product| %>
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#accordion-<%= product.id %>"
+            aria-expanded="false"
+            aria-controls="accordion-<%= product.id %>">
+            <%= product.name %>
+          </button>
+        </div>
+        <div id="accordion-<%= product.id %>" class="accordion-collapse collapse bg-body-tertiary">
+          <div class="accordion-body">
+            <ul class="list-unstyled m-0">
+              <% product.tables.each do |table| %>
+                <li class="text-truncate">
+                  <%= link_to table.name, table, class: 'link-dark link-underline-opacity-0 link-opacity-50-hover' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</aside>

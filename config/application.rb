@@ -14,5 +14,7 @@ module Myapp
 
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
+
+    config.assets.paths << Rails.root.join('app/assets/stylesheets')
   end
 end
