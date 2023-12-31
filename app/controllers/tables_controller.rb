@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class TablesController < ApplicationController
+  def index
+    @products_with_table = if params[:name].blank?
+                             Product.preload(:tables).all
+                           else
+                             Product.eager_load(:tables).merge(Table.name_like(params[:name]))
+                           end
+  end
+
   def show
     @products_with_table = Product.all.preload(:tables) unless turbo_frame_request?
 
