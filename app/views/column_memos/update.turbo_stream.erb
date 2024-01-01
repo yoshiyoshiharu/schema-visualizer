@@ -1,0 +1,6 @@
+<%= turbo_stream.replace @column_memo.column do %>
+  <%= render partial: "column_memos/column_memo",
+             locals: { column_memo: @column_memo } %>
+<% end %>
+
+<%= turbo_stream.update "flash", partial: "flash" %>
