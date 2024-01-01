@@ -18,16 +18,11 @@
           <td><%= column.name %></td>
           <td><%= column.type %></td>
           <td>
-            <% if column.primary_key? %>
-              <span class="badge text-bg-danger">PK</span>
-            <% end %>
-            <% if column.foreign_key_table.present? %>
-              <%= link_to 'FK',
-                          column.foreign_key_table,
-                          class: 'link-light link-underline-opacity-0 badge text-bg-primary' %>
-            <% end %>
+            <%= render 'key', column: column %>
           </td>
-          <td class="text-center"><%= display_nullable(column.nullable?) %></td>
+          <td class="text-center">
+            <%= display_nullable(column.nullable?) %>
+          </td>
           <td><%= column.comment %></td>
           <td><%= column.memo&.content %></td>
         </tr>
