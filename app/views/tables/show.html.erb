@@ -8,7 +8,7 @@
       <th>Name</th>
       <th>Type</th>
       <th>Key</th>
-      <th>Nullable</th>
+      <th class="text-center">Nullable</th>
       <th>Comment</th>
       <th>Memo</th>
     </thead>
@@ -27,7 +27,7 @@
                           class: 'link-light link-underline-opacity-0 badge text-bg-primary' %>
             <% end %>
           </td>
-          <td><%= column.nullable? %></td>
+          <td class="text-center"><%= display_nullable(column.nullable?) %></td>
           <td><%= column.comment %></td>
           <td><%= column.memo&.content %></td>
         </tr>
