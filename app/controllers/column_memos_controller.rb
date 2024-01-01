@@ -16,7 +16,7 @@ class ColumnMemosController < ApplicationController
     @column_memo = column.memo || column.build_memo
 
     if @column_memo.update(column_memo_params)
-      redirect_to column_memo_path(column)
+      flash.now[:notice] = 'メモを更新しました'
     else
       render :edit, status: :unprocessable_entity
     end
