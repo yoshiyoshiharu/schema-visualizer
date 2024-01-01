@@ -1,0 +1,15 @@
+<%= turbo_frame_tag column_memo.column do %>
+  <%= form_with model: column_memo, url: column_memo_path(column_memo.column), method: :patch do |form| %>
+    <%= form.text_area :content, rows: 8, class: 'form-control' %>
+
+    <% if column_memo.errors.present? %>
+      <div class="text-danger">
+        <%= column_memo.errors.full_messages.first %>
+      </div>
+    <% end %>
+
+    <%= form.submit '保存' %>
+  <% end %>
+
+  <%= link_to 'キャンセル', column_memo_path(column_memo.column) %>
+<% end %>
