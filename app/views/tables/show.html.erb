@@ -25,7 +25,9 @@
           </td>
           <td><%= column.comment %></td>
           <td>
-            <%= simple_format(column.memo&.content) %>
+            <%= form_with model: (column.memo || column.build_memo) do |form| %>
+              <%= form.text_area :content, class: 'form-control' %>
+            <% end %>
           </td>
         </tr>
       <% end %>
