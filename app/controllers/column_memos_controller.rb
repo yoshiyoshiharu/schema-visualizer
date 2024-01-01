@@ -18,7 +18,7 @@ class ColumnMemosController < ApplicationController
     if @column_memo.update(column_memo_params)
       redirect_to @column_memo
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +34,7 @@ class ColumnMemosController < ApplicationController
     if @column_memo.update(column_memo_params)
       redirect_to @column_memo
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

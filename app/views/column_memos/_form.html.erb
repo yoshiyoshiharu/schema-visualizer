@@ -2,6 +2,12 @@
   <%= form_with model: column_memo do |form| %>
     <%= form.text_area :content, class: 'form-control' %>
 
+    <% if column_memo.errors.present? %>
+      <div class="text-danger">
+        <%= column_memo.errors.full_messages.first %>
+      </div>
+    <% end %>
+
     <%= form.submit '保存' %>
   <% end %>
 
