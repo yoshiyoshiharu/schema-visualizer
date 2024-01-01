@@ -17,7 +17,10 @@
           <ul class="list-unstyled m-0">
             <% product_with_table.tables.each do |table| %>
               <li class="text-truncate">
-                <%= link_to table.name, table, data: { turbo_frame: 'table', turbo_action: 'advance' }, class: 'link-dark link-underline-opacity-0 link-opacity-50-hover' %>
+                <%= link_to table.name,
+                            table,
+                            data: { turbo_frame: 'table', turbo_action: 'advance' },
+                            class: 'link-dark link-underline-opacity-0 link-opacity-50-hover' %>
               </li>
             <% end %>
           </ul>
