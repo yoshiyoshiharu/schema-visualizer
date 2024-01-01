@@ -9,7 +9,7 @@
           data-bs-target="#accordion-<%= product_with_table.id %>"
           aria-expanded="false"
           aria-controls="accordion-<%= product_with_table.id %>">
-          <%= product_with_table.name %>
+          <%= product_with_table.name %> (<%= product_with_table.tables.size %>)
         </button>
       </div>
       <div id="accordion-<%= product_with_table.id %>" class="accordion-collapse collapse bg-body-tertiary">
