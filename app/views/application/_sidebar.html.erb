@@ -1,9 +1,7 @@
 <aside class="bg-body-tertiary">
-  <%= turbo_frame_tag 'products_with_table' do %>
-    <%= render 'search_form' %>
+  <%= render 'search_form' %>
 
-    <div id="products-with-table">
-      <%= render 'products_with_table', products_with_table: @products_with_table %>
-    </div>
-  <% end %>
+  <div id="products-with-table">
+    <%= render 'products_with_table', products_with_table: @products_with_table %>
+  </div>
 </aside>
