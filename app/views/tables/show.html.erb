@@ -13,24 +13,7 @@
       <th>Memo</th>
     </thead>
     <tbody>
-      <% @table.columns.each do |column| %>
-        <tr>
-          <td><%= column.name %></td>
-          <td><%= column.type %></td>
-          <td>
-            <%= render 'key', column: column %>
-          </td>
-          <td class="text-center">
-            <%= display_nullable(column.nullable?) %>
-          </td>
-          <td><%= column.comment %></td>
-          <td>
-            <%= form_with model: (column.memo || column.build_memo) do |form| %>
-              <%= form.text_area :content, class: 'form-control' %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+      <%= render @table.columns %>
     </tbody>
   </table>
 <% end %>
