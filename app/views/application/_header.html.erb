@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-dark-subtle">
   <div class="container-fluid">
-    <div class="navbar-brand">SchemaVisualizer</div>
+    <%= link_to 'SchemaVisualizer',
+                root_path,
+                data: { turbo_frame: 'table', turbo_action: 'advance' },
+                class: 'navbar-brand' %>
   </div>
 </nav>
