@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :tables, only: %w(index show)
 
   resources :columns, only: %w() do
-    resource :memo, only: %w(new create edit update), controller: 'column_memos'
+    resource :memo, only: %w(show new create edit update), controller: 'column_memos'
   end
 end
