@@ -5,9 +5,9 @@ module ApplicationHelper
     raise ArgumentError, 'Column model must be persisted' unless column_memo.column&.persisted?
 
     if column_memo.persisted?
-      edit_column_column_memo_path([column_memo.column, column_memo])
+      edit_column_memo_path([column_memo.column, column_memo])
     else
-      new_column_column_memo_path(column_memo.column, column_memo)
+      new_column_memo_path(column_memo.column, column_memo)
     end
   end
 

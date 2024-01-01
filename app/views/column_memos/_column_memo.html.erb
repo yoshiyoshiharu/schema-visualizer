@@ -1,3 +1,5 @@
-<%= simple_format(column_memo.content) %>
+<%= turbo_frame_tag column_memo do %>
+  <%= simple_format(column_memo.content) %>
 
-<%= link_to '編集', new_or_edit_column_memo_path(column_memo) %>
+  <%= link_to '編集', new_or_edit_column_memo_path(column_memo) %>
+<% end %>

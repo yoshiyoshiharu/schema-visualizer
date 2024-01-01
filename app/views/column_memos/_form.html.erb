@@ -1,0 +1,5 @@
+<%= turbo_frame_tag column_memo do %>
+  <%= form_with model: column_memo do |form| %>
+    <%= form.text_area :content, class: 'form-control' %>
+  <% end %>
+<% end %>
