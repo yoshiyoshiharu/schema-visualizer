@@ -24,7 +24,9 @@
             <%= display_nullable(column.nullable?) %>
           </td>
           <td><%= column.comment %></td>
-          <td><%= column.memo&.content %></td>
+          <td>
+            <%= simple_format(column.memo&.content) %>
+          </td>
         </tr>
       <% end %>
     </tbody>
