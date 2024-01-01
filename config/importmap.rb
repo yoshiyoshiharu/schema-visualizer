@@ -1,4 +1,5 @@
 pin "application", preload: true
+pin "flash", to: "flash.js", preload: true
 
 pin "turbo-rails", to: "turbo.min.js", preload: true
 

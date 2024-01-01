@@ -1,6 +1,6 @@
 <% if flash[:notice].present? %>
-<div class="alert alert-info alert-dismissible fade show my-2">
-  <%= flash[:notice] %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+  <div id="alert" class="alert alert-info alert-dismissible fade show my-2">
+    <%= flash[:notice] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 <% end %>
