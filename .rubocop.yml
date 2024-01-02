@@ -17,6 +17,5 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'Gemfile'
+RSpec/ContextWording:
+  Enabled: false
