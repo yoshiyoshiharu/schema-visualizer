@@ -1,15 +1,5 @@
-name: Build
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-  push:
-    branches:
-      - master
-env:
-  DOCKER_COMPOSE_PATH: docker-compose.yml
-
+name: Test & Lint
+on: push
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -18,26 +8,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Build docker image
-        run: docker-compose -f $DOCKER_COMPOSE_PATH build
-      - name: Prepare db container
-        run: docker-compose -f $DOCKER_COMPOSE_PATH up -d db
-      - name: Prepare test db
-        run: >-
-          docker-compose -f $DOCKER_COMPOSE_PATH run --rm web \
-            rails db:drop \
-                  db:create \
-                  db:schema:load RAILS_ENV=test
-      - name: Run test
-        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web rails test
-  rubocop:
+      - name: Setup
+        run: make setup
+      - name: Test
+        run: make test
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Build docker image
-        run: docker-compose -f $DOCKER_COMPOSE_PATH build
-      - name: Run rubocop
-        run: docker-compose -f $DOCKER_COMPOSE_PATH run --rm web bundle exec rubocop
+      - name: Setup
+        run: make setup
+      - name: Lint
+        run: make lint

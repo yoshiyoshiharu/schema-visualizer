@@ -1,3 +1,5 @@
+#!/bin/bash -eu
+
 docker compose run --rm web bundle exec rubocop
 docker compose run --rm web bundle exec erblint --lint-all
 docker compose run --rm web bash -c '
