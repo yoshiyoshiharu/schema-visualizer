@@ -37,7 +37,7 @@ module SchemaToHash
       end
 
       def sql
-        <<-SQL
+        <<-SQL.squish
           SELECT
             table_schema,
             table_name,

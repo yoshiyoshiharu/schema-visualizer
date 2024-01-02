@@ -27,7 +27,7 @@ module SchemaToHash
       attr_reader :db, :schema_name
 
       def sql
-        <<-SQL
+        <<-SQL.squish
           SET search_path TO #{schema_name};
 
           SELECT

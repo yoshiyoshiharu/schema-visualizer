@@ -16,7 +16,7 @@ module SchemaToHash
 
       def all
         result = db.exec(sql)
-        result.map { |row| row['schema_name'] }
+        result.pluck('schema_name')
               .delete_if { |schema_name| EXCEPT_SCHEMA_KEYWORDS.any? { |keyword| schema_name.include?(keyword) } }
       end
 
@@ -25,7 +25,7 @@ module SchemaToHash
       attr_reader :db
 
       def sql
-        <<-SQL
+        <<-SQL.squish
           SELECT
             schema_name
           FROM

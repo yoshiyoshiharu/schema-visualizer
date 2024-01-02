@@ -27,7 +27,7 @@ module SchemaToHash
       attr_reader :db, :schema_name
 
       def sql
-        <<-SQL
+        <<-SQL.squish
           SELECT k.table_name AS from_table_name,
             k.column_name AS from_column_name,
             c.table_name AS to_table_name
