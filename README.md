@@ -1,10 +1,16 @@
 # README
 
 ## setup
-`make setup`
+```sh
+make setup
+```
 
 ## test
-`make test`
+```sh
+make test
+```
 
 ## lint
-`make lint`
+```sh
+make lint
+````
