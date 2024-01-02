@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
@@ -11,8 +12,23 @@ gem 'rails'
 gem 'turbo-rails'
 
 group 'development' do
+  gem 'brakeman', require: false
+  gem 'bullet'
   gem 'erb_lint', require: false
   gem 'htmlbeautifier', require: false
+end
+
+group 'development', 'test' do
   gem 'rubocop', require: false
+  gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-thread_safety', require: false
+end
+
+group 'test' do
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', require: false
 end
