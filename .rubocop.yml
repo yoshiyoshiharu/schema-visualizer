@@ -13,9 +13,10 @@ AllCops:
     - 'db/**/*'
     - 'Rakefile'
     - 'config.ru'
+  NewCops: enable
+
 Style/Documentation:
   Enabled: false
-
 Style/FrozenStringLiteralComment:
   Exclude:
     - 'Gemfile'
