@@ -1,5 +1,10 @@
 require:
+  - rubocop-factory_bot
+  - rubocop-performance
   - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-thread_safety
 
 AllCops:
   Exclude:
