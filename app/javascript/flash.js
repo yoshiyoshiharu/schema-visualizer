@@ -1,5 +1,5 @@
 document.addEventListener('turbo:submit-end', function() {
-  setTimeout(function () {
-    document.getElementById("alert").style.display = "none";
+  setTimeout(function() {
+    document.getElementById("alert").classList.remove('show');
   }, 2000);
 });
