@@ -27,3 +27,8 @@ group 'development', 'test' do
   gem 'rubocop-rspec', require: false
   gem 'rubocop-thread_safety', require: false
 end
+
+group 'test' do
+  gem 'factory_bot_rails', require: false
+  gem 'rspec-rails', require: false
+end
