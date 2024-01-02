@@ -13,7 +13,7 @@ class ColumnMemosController < ApplicationController
 
   def update
     column = Column.find(params[:column_id])
-    @column_memo = column.memo || column.build_memo
+    @column_memo = column.memo || column.build_memo 
 
     if @column_memo.update(column_memo_params)
       flash.now[:notice] = t('.success')
