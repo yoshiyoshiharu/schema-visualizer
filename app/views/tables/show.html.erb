@@ -1,0 +1,19 @@
+<%= turbo_frame_tag 'table', data: { turbo_action: 'advance' } do %>
+  <span class="badge rounded-pill text-bg-secondary fs-6 mb-2 mt-3">
+    <%= @table.product.name %> / <%= @table.name %>
+  </span>
+
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Key</th>
+      <th class="text-center">Nullable</th>
+      <th>Comment</th>
+      <th>Memo</th>
+    </thead>
+    <tbody>
+      <%= render @table.columns %>
+    </tbody>
+  </table>
+<% end %>

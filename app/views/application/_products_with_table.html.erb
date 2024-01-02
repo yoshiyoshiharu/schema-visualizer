@@ -1,0 +1,31 @@
+<% @products_with_table.each do |product_with_table| %>
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#accordion-<%= product_with_table.id %>"
+          aria-expanded="false"
+          aria-controls="accordion-<%= product_with_table.id %>">
+          <%= product_with_table.name %> (<%= product_with_table.tables.size %>)
+        </button>
+      </div>
+      <div id="accordion-<%= product_with_table.id %>" class="accordion-collapse collapse bg-body-tertiary">
+        <div class="accordion-body">
+          <ul class="list-unstyled m-0">
+            <% product_with_table.tables.each do |table| %>
+              <li class="text-truncate">
+                <%= link_to table.name,
+                            table,
+                            data: { turbo_frame: 'table', turbo_action: 'advance' },
+                            class: 'link-dark link-underline-opacity-0 link-opacity-50-hover' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

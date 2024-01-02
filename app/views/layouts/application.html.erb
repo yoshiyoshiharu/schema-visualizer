@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SchemaVisualizer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <%= render 'header' %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2 p-0 bg-body-tertiary">
+          <%= render 'sidebar', products_with_table: @products_with_table %>
+        </div>
+
+        <div class="col-10">
+          <main>
+            <%= yield %>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <div id="flash" class="fixed-bottom">
+      <%= render 'flash' %>
+    </div>
+  </body>
+</html>

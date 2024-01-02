@@ -1,0 +1,14 @@
+<tr>
+  <td><%= column.name %></td>
+  <td><%= column.type %></td>
+  <td>
+    <%= render 'columns/key', column: %>
+  </td>
+  <td class="text-center">
+    <%= display_nullable(column.nullable?) %>
+  </td>
+  <td><%= column.comment %></td>
+  <td>
+    <%= render column.memo || column.build_memo %>
+  </td>
+</tr>
