@@ -36,8 +36,9 @@ module SchemaToHash
         end
       end
 
+      # rubocop:disable Metrics/MethodLength
       def sql
-        <<-SQL
+        <<-SQL.squish
           SELECT
             table_schema,
             table_name,
@@ -56,6 +57,7 @@ module SchemaToHash
             ordinal_position;
         SQL
       end
+      # rubocop:enable Metrics/MethodLength
     end
   end
 end

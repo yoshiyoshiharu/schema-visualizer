@@ -1,4 +1,7 @@
 ja:
+  column_memos:
+    update:
+      success: "メモを更新しました"
   activerecord:
   errors:
     format: "%{attribute}%{message}"

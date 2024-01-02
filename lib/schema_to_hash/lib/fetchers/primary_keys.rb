@@ -25,8 +25,9 @@ module SchemaToHash
 
       attr_reader :db, :schema_name
 
+      # rubocop:disable Metrics/MethodLength
       def sql
-        <<-SQL
+        <<-SQL.squish
           SELECT
             k.table_name,
             k.column_name
@@ -41,6 +42,7 @@ module SchemaToHash
             t.table_schema = '#{schema_name}';
         SQL
       end
+      # rubocop:enable Metrics/MethodLength
     end
   end
 end
