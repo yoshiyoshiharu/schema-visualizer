@@ -1,9 +1,10 @@
 # README
 
-```
-docker compose run --rm web rails db:create
-```
+## setup
+`make setup`
 
-```
-docker compose up
-```
+## test
+`make test`
+
+## lint
+`make lint`
