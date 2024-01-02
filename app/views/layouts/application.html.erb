@@ -19,15 +19,15 @@
         </div>
 
         <div class="col-10">
-          <div id="flash">
-            <%= render 'flash' %>
-          </div>
-
           <main>
             <%= yield %>
           </main>
         </div>
       </div>
+    </div>
+
+    <div id="flash" class="fixed-bottom">
+      <%= render 'flash' %>
     </div>
   </body>
 </html>
