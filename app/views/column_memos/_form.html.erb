@@ -1,16 +1,13 @@
 <%= turbo_frame_tag column_memo.column do %>
   <%= form_with model: column_memo, url: column_memo_path(column_memo.column), method: :patch do |form| %>
     <%= form.text_area :content, rows: 8, class: 'form-control' %>
-
     <% if column_memo.errors.present? %>
       <div class="text-danger">
         <%= column_memo.errors.full_messages.first %>
       </div>
     <% end %>
-
     <div class="d-flex justify-content-between align-items-center">
       <%= form.submit '保存', class: 'btn btn-primary mt-1' %>
-
       <%= link_to 'キャンセル', column_memo_path(column_memo.column) %>
     </div>
   <% end %>

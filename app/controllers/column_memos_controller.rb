@@ -16,7 +16,7 @@ class ColumnMemosController < ApplicationController
     @column_memo = column.memo || column.build_memo
 
     if @column_memo.update(column_memo_params)
-      flash.now[:notice] =  t(".success")
+      flash.now[:notice] = t('.success')
     else
       render :edit, status: :unprocessable_entity
     end

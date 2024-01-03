@@ -1,5 +1,4 @@
 <%= turbo_frame_tag column_memo.column do %>
   <%= simple_format(column_memo.content) if column_memo.content.present? %>
-
   <%= link_to '編集', edit_column_memo_path(column_memo.column) %>
 <% end %>
