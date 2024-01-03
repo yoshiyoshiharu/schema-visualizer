@@ -7,7 +7,7 @@ RSpec.describe Column do
     let!(:not_id_include_column) { create(:column, table:, name: 'name') }
 
     it 'キーワードに一致するレコードを含む' do
-      expect(described_class.name_like('id')).to not_eq [id_include_column]
+      expect(described_class.name_like('id')).to eq [id_include_column]
     end
 
     it 'キーワードに一致しないレコードは含まない' do
