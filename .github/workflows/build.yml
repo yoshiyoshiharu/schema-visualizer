@@ -20,8 +20,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup
-        shell: bash
         run: make setup
       - name: Lint
-        shell: bash
         run: make lint
