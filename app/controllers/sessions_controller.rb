@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if (user = User.find_from_auth_hash(auth_hash))
       log_in user
     else
-      flash.now[:danger] = 'ログインに失敗しました'
+      flash.now[:danger] = t('.danger')
       return render :new
     end
 
