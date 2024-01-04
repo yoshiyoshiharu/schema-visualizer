@@ -9,7 +9,7 @@
           data-bs-target="#accordion-column-<%= product_with_column.id %>"
           aria-expanded="false"
           aria-controls="accordion-column-<%= product_with_column.id %>">
-          <%= product_with_column.name %>
+          <%= product_with_column.name %> (<%= product_with_column.tables.map(&:columns).flatten.count %>)
         </button>
       </div>
       <div id="accordion-column-<%= product_with_column.id %>" class="accordion-collapse collapse bg-body-tertiary">
