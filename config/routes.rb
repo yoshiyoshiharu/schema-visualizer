@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resource :sessions, only: %w(new create)
 
+  resources :users
   resources :products, only: %w(index)
   resources :tables, only: %w(show)
 
