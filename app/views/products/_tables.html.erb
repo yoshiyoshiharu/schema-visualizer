@@ -1,4 +1,5 @@
-<% @products_with_table.each do |product_with_table| %>
+<p class="fs-5 mb-0 ms-1">Tables</p>
+<% products_with_table.each do |product_with_table| %>
   <div class="accordion">
     <div class="accordion-item">
       <div class="accordion-header">
@@ -6,13 +7,13 @@
           class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#accordion-<%= product_with_table.id %>"
+          data-bs-target="#accordion-table-<%= product_with_table.id %>"
           aria-expanded="false"
-          aria-controls="accordion-<%= product_with_table.id %>">
+          aria-controls="accordion-table-<%= product_with_table.id %>">
           <%= product_with_table.name %> (<%= product_with_table.tables.size %>)
         </button>
       </div>
-      <div id="accordion-<%= product_with_table.id %>" class="accordion-collapse collapse bg-body-tertiary">
+      <div id="accordion-table-<%= product_with_table.id %>" class="accordion-collapse collapse bg-body-tertiary">
         <div class="accordion-body">
           <ul class="list-unstyled m-0">
             <% product_with_table.tables.each do |table| %>

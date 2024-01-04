@@ -1,0 +1,34 @@
+<p class="fs-5 mb-0 ms-1">Columns</p>
+<% products_with_column.each do |product_with_column| %>
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#accordion-column-<%= product_with_column.id %>"
+          aria-expanded="false"
+          aria-controls="accordion-column-<%= product_with_column.id %>">
+          <%= product_with_column.name %> (<%= product_with_column.tables.map(&:columns).flatten.count %>)
+        </button>
+      </div>
+      <div id="accordion-column-<%= product_with_column.id %>" class="accordion-collapse collapse bg-body-tertiary">
+        <div class="accordion-body">
+          <ul class="list-unstyled m-0">
+            <% product_with_column.tables.each do |table| %>
+              <% table.columns.each do |column| %>
+                <li class="text-truncate">
+                  <%= link_to "#{table.name}##{column.name}",
+                              table,
+                              data: { turbo_frame: 'table', turbo_action: 'advance' },
+                              class: 'link-dark link-underline-opacity-0 link-opacity-50-hover' %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
