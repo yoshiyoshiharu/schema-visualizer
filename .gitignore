@@ -1,4 +1,4 @@
 config/master.key
 log
 tmp
-
+.env
