@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resource :home, only: %w(index)
 
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+
+  resource :sessions, only: %w(new create)
+
   resources :products, only: %w(index)
   resources :tables, only: %w(show)
 

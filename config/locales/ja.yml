@@ -2,6 +2,9 @@ ja:
   column_memos:
     update:
       success: "メモを更新しました"
+  sessions:
+    create:
+      danger: "ログインに失敗しました"
   activerecord:
   errors:
     format: "%{attribute}%{message}"
