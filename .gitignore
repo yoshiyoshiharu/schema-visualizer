@@ -2,3 +2,5 @@ config/master.key
 log
 tmp
 .env
+
+/config/master.key
