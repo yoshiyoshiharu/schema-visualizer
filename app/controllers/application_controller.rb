@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound,   with: :render404
   rescue_from ActionController::RoutingError, with: :render404
 
-  def routing_error
+  def raise_routing_error
     raise ActionController::RoutingError, params[:path]
   end
 
@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   def render500
     render 'errors/500', status: :internal_server_error, layout: 'without_products'
   end
+
 
   def require_login
     return if current_user.present?
