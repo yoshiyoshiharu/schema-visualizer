@@ -4,7 +4,23 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :require_login
 
+  rescue_from Exception,                      with: :render500
+  rescue_from ActiveRecord::RecordNotFound,   with: :render404
+  rescue_from ActionController::RoutingError, with: :render404
+
+  def raise_routing_error
+    raise ActionController::RoutingError, params[:path]
+  end
+
   private
+
+  def render404
+    render 'errors/404', status: :not_found, layout: 'without_products'
+  end
+
+  def render500
+    render 'errors/500', status: :internal_server_error, layout: 'without_products'
+  end
 
   def require_login
     return if current_user.present?

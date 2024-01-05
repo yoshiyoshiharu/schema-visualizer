@@ -2,6 +2,8 @@
 
 class ProductsController < ApplicationController
   def index
+    raise_routing_error unless turbo_frame_request?
+
     @products_with_table = fetch_product_with_table
     @products_with_column = fetch_product_with_column
   end

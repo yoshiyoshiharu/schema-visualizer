@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   resources :columns, only: %w() do
     resource :memo, only: %w(show edit update), controller: 'column_memos'
   end
+
+  get '*not_found' => 'application#raise_routing_error'
+  post '*not_found' => 'application#raise_routing_error'
 end
