@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
     render 'errors/500', status: :internal_server_error, layout: 'without_products'
   end
 
-
   def require_login
     return if current_user.present?
 
