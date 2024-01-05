@@ -10,6 +10,6 @@ module LoginSupport
       }
     )
 
-    get "/auth/google_oauth2/callback"
+    get '/auth/google_oauth2/callback'
   end
 end
