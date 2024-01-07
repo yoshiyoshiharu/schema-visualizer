@@ -22,7 +22,7 @@ RSpec.describe ColumnMemosController do
 
     context 'Turboリクエストのとき' do
       before do
-        get column_memo_path(column), headers: { 'Turbo-Frame': 'memo' }
+        get column_memo_path(column), headers: { 'Turbo-Frame': "column_#{column.id}" }
       end
 
       it 'ステータスコード200を返すこと' do
@@ -46,7 +46,7 @@ RSpec.describe ColumnMemosController do
 
     context 'Turboリクエストのとき' do
       before do
-        get edit_column_memo_path(column), headers: { 'Turbo-Frame': 'memo' }
+        get edit_column_memo_path(column), headers: { 'Turbo-Frame': "column_#{column.id}" }
       end
 
       it 'ステータスコード200を返すこと' do
@@ -77,15 +77,14 @@ RSpec.describe ColumnMemosController do
         end
 
         it 'showにリダイレクトすること' do
-          patch column_memo_path(column), params: valid_param, headers: { 'Turbo-Frame': 'memo' }
-          pp response
+          patch column_memo_path(column), params: valid_param, headers: { 'Turbo-Frame': "column_#{column.id}" }
           pp response.body
           expect(response).to redirect_to(column_memo_path(column))
         end
 
         it 'メモが更新されること' do
           expect do
-            patch column_memo_path(column), params: valid_param, headers: { 'Turbo-Frame': 'memo' }
+            patch column_memo_path(column), params: valid_param, headers: { 'Turbo-Frame': "column_#{column.id}" }
           end.to change { column.reload.memo.content }.to('Updated memo')
         end
       end
