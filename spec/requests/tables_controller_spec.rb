@@ -7,7 +7,7 @@ RSpec.describe TablesController do
     let!(:table) { create(:table) }
 
     before do
-      login_as(create(:user))
+      login_as(create(:login_user))
     end
 
     context '通常のリクエストのとき' do

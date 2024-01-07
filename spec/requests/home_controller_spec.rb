@@ -5,7 +5,7 @@ RSpec.describe HomeController do
 
   describe '#index' do
     before do
-      login_as(create(:user))
+      login_as(create(:login_user))
     end
 
     context '通常のリクエストのとき' do
