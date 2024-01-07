@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
-RSpec.describe HomeController do
+RSpec.describe TablesController do
   include LoginSupport
 
-  describe '#index' do
+  describe '#show' do
+    let!(:table) { create(:table) }
+
     before do
       login_as(create(:login_user))
     end
 
     context '通常のリクエストのとき' do
       before do
-        get root_path
+        get table_path(table)
       end
 
       it 'ステータスコード200を返すこと' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:success)
       end
 
       it 'SidebarのHTMLも返すこと' do
@@ -24,7 +26,7 @@ RSpec.describe HomeController do
 
     context 'Turboリクエストのとき' do
       before do
-        get root_path, headers: { 'Turbo-Frame': 'table' }
+        get table_path(table), headers: { 'Turbo-Frame': 'table' }
       end
 
       it 'ステータスコード200を返すこと' do
