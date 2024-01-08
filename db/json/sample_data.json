@@ -1,53 +1,67 @@
 [
   {
+    "id": 1,
     "name": "E-commerce Platform",
     "tables": [
       {
+        "id": 1,
         "name": "products",
         "comment": "Information about products available for sale",
         "columns": [
           {
+            "id": 1,
             "name": "product_id",
             "type": "integer",
-            "comment": "Unique identifier for the product"
+            "comment": "Unique identifier for the product",
+            "primary_key": true
           },
           {
+            "id": 2,
             "name": "product_name",
             "type": "string",
             "comment": "Name of the product"
           },
           {
+            "id": 3,
             "name": "price",
             "type": "decimal",
             "comment": "Price of the product"
           },
           {
+            "id": 4,
             "name": "description",
             "type": "text",
-            "comment": "Description of the product"
+            "comment": "Description of the product",
+            "nullable": true
           }
         ]
       },
       {
+        "id": 2,
         "name": "customers",
         "comment": "Information about customers who make purchases",
         "columns": [
           {
+            "id": 5,
             "name": "customer_id",
             "type": "integer",
-            "comment": "Unique identifier for the customer"
+            "comment": "Unique identifier for the customer",
+            "primary_key": true
           },
           {
+            "id": 6,
             "name": "first_name",
             "type": "string",
             "comment": "First name of the customer"
           },
           {
+            "id": 7,
             "name": "last_name",
             "type": "string",
             "comment": "Last name of the customer"
           },
           {
+            "id": 8,
             "name": "email",
             "type": "string",
             "comment": "Email address of the customer"
@@ -55,30 +69,39 @@
         ]
       },
       {
+        "id": 3,
         "name": "orders",
         "comment": "Information about customer orders",
         "columns": [
           {
+            "id": 9,
             "name": "order_id",
             "type": "integer",
-            "comment": "Unique identifier for the order"
+            "comment": "Unique identifier for the order",
+            "primary_key": true
           },
           {
+            "id": 10,
             "name": "order_date",
             "type": "date",
             "comment": "Date the order was placed"
           },
           {
+            "id": 11,
             "name": "customer_id",
             "type": "integer",
-            "comment": "ID of the customer who placed the order"
+            "comment": "ID of the customer who placed the order",
+            "foreign_key_table_id": 2
           },
           {
+            "id": 12,
             "name": "product_id",
             "type": "integer",
-            "comment": "ID of the product in the order"
+            "comment": "ID of the product in the order",
+            "foreign_key_table_id": 1
           },
           {
+            "id": 13,
             "name": "quantity",
             "type": "integer",
             "comment": "Quantity of the product in the order"
@@ -86,15 +109,19 @@
         ]
       },
       {
+        "id": 4,
         "name": "categories",
         "comment": "Categories to which products belong",
         "columns": [
           {
+            "id": 14,
             "name": "category_id",
             "type": "integer",
-            "comment": "Unique identifier for the category"
+            "comment": "Unique identifier for the category",
+            "primary_key": true
           },
           {
+            "id": 15,
             "name": "category_name",
             "type": "string",
             "comment": "Name of the category"
@@ -102,56 +129,74 @@
         ]
       },
       {
+        "id": 5,
         "name": "reviews",
         "comment": "Customer reviews of products",
         "columns": [
           {
+            "id": 16,
             "name": "review_id",
             "type": "integer",
-            "comment": "Unique identifier for the review"
+            "comment": "Unique identifier for the review",
+            "primary_key": true
           },
           {
+            "id": 17,
             "name": "product_id",
             "type": "integer",
-            "comment": "ID of the reviewed product"
+            "comment": "ID of the reviewed product",
+            "foreign_key_table_id": 1
           },
           {
+            "id": 18,
             "name": "customer_id",
             "type": "integer",
-            "comment": "ID of the customer who wrote the review"
+            "comment": "ID of the customer who wrote the review",
+            "foreign_key_table_id": 2
           },
           {
+            "id": 19,
             "name": "rating",
             "type": "integer",
             "comment": "Rating given in the review"
           },
           {
+            "id": 20,
             "name": "comment",
             "type": "text",
-            "comment": "Text of the review"
+            "comment": "Text of the review",
+            "nullable": true
           }
         ]
       },
       {
+        "id": 6,
         "name": "cart",
         "comment": "Shopping cart of customers",
         "columns": [
           {
+            "id": 21,
             "name": "cart_id",
             "type": "integer",
-            "comment": "Unique identifier for the shopping cart"
+            "comment": "Unique identifier for the shopping cart",
+            "primary_key": true
           },
           {
+            "id": 22,
             "name": "customer_id",
             "type": "integer",
-            "comment": "ID of the customer who owns the cart"
+            "comment": "ID of the customer who owns the cart",
+            "foreign_key_table_id": 2
           },
           {
+            "id": 23,
             "name": "product_id",
             "type": "integer",
-            "comment": "ID of the product in the cart"
+            "comment": "ID of the product in the cart",
+            "foreign_key_table_id": 1
           },
           {
+            "id": 24,
             "name": "quantity",
             "type": "integer",
             "comment": "Quantity of the product in the cart"
@@ -159,30 +204,38 @@
         ]
       },
       {
+        "id": 7,
         "name": "payment",
         "comment": "Payment information for orders",
         "columns": [
           {
+            "id": 25,
             "name": "payment_id",
             "type": "integer",
-            "comment": "Unique identifier for the payment"
+            "comment": "Unique identifier for the payment",
+            "primary_key": true
           },
           {
+            "id": 26,
             "name": "order_id",
             "type": "integer",
-            "comment": "ID of the order being paid"
+            "comment": "ID of the order being paid",
+            "foreign_key_table_id": 3
           },
           {
+            "id": 27,
             "name": "payment_date",
             "type": "datetime",
             "comment": "Date and time of the payment"
           },
           {
+            "id": 28,
             "name": "amount",
             "type": "decimal",
             "comment": "Amount paid"
           },
           {
+            "id": 29,
             "name": "payment_method",
             "type": "string",
             "comment": "Payment method used"
@@ -190,25 +243,32 @@
         ]
       },
       {
+        "id": 8,
         "name": "shipping",
         "comment": "Shipping information for orders",
         "columns": [
           {
+            "id": 30,
             "name": "shipping_id",
             "type": "integer",
-            "comment": "Unique identifier for the shipping record"
+            "comment": "Unique identifier for the shipping record",
+            "primary_key": true
           },
           {
+            "id": 31,
             "name": "order_id",
             "type": "integer",
-            "comment": "ID of the order being shipped"
+            "comment": "ID of the order being shipped",
+            "foreign_key_table_id": 3
           },
           {
+            "id": 32,
             "name": "ship_date",
             "type": "datetime",
             "comment": "Date and time of shipment"
           },
           {
+            "id": 33,
             "name": "shipping_address",
             "type": "text",
             "comment": "Shipping address"
@@ -216,25 +276,31 @@
         ]
       },
       {
+        "id": 9,
         "name": "suppliers",
         "comment": "Information about product suppliers",
         "columns": [
           {
+            "id": 34,
             "name": "supplier_id",
             "type": "integer",
-            "comment": "Unique identifier for the supplier"
+            "comment": "Unique identifier for the supplier",
+            "primary_key": true
           },
           {
+            "id": 35,
             "name": "supplier_name",
             "type": "string",
             "comment": "Name of the supplier"
           },
           {
+            "id": 36,
             "name": "contact_name",
             "type": "string",
             "comment": "Name of the supplier's contact person"
           },
           {
+            "id": 37,
             "name": "email",
             "type": "string",
             "comment": "Email address of the supplier"
@@ -244,33 +310,41 @@
     ]
   },
   {
+    "id": 2,
     "name": "Medical Record Management Application",
     "tables": [
       {
+        "id": 10,
         "name": "patients",
         "comment": "Information about patients and their medical records",
         "columns": [
           {
+            "id": 38,
             "name": "patient_id",
             "type": "integer",
-            "comment": "Unique identifier for the patient"
+            "comment": "Unique identifier for the patient",
+            "primary_key": true
           },
           {
+            "id": 39,
             "name": "first_name",
             "type": "string",
             "comment": "First name of the patient"
           },
           {
+            "id": 40,
             "name": "last_name",
             "type": "string",
             "comment": "Last name of the patient"
           },
           {
+            "id": 41,
             "name": "date_of_birth",
             "type": "date",
             "comment": "Date of birth of the patient"
           },
           {
+            "id": 42,
             "name": "gender",
             "type": "string",
             "comment": "Gender of the patient"
@@ -278,92 +352,116 @@
         ]
       },
       {
+        "id": 11,
         "name": "medical_records",
         "comment": "Records of medical diagnoses and prescriptions",
         "columns": [
           {
+            "id": 43,
             "name": "record_id",
             "type": "integer",
-            "comment": "Unique identifier for the medical record"
+            "comment": "Unique identifier for the medical record",
+            "primary_key": true
           },
           {
+            "id": 44,
             "name": "patient_id",
             "type": "integer",
-            "comment": "ID of the patient associated with the record"
+            "comment": "ID of the patient associated with the record",
+            "foreign_key_table_id": 10
           },
           {
+            "id": 45,
             "name": "doctor_id",
             "type": "integer",
             "comment": "ID of the doctor who created the record"
           },
           {
+            "id": 46,
             "name": "diagnosis",
             "type": "text",
             "comment": "Description of the medical diagnosis"
           },
           {
+            "id": 47,
             "name": "prescription",
             "type": "text",
-            "comment": "Prescription details"
+            "comment": "Prescription details",
+            "nullable": true
           }
         ]
       }
     ]
   },
   {
+    "id": 3,
     "name": "Real Estate Listing Platform",
     "tables": [
       {
+        "id": 12,
         "name": "listings",
         "comment": "Information about real estate listings",
         "columns": [
           {
+            "id": 48,
             "name": "listing_id",
             "type": "integer",
-            "comment": "Unique identifier for the listing"
+            "comment": "Unique identifier for the listing",
+            "primary_key": true
           },
           {
+            "id": 49,
             "name": "property_type",
             "type": "string",
             "comment": "Type of the property (e.g., house, apartment)"
           },
           {
+            "id": 50,
             "name": "price",
             "type": "decimal",
             "comment": "Listing price"
           },
           {
+            "id": 51,
             "name": "location",
             "type": "string",
             "comment": "Location of the property"
           },
           {
+            "id": 52,
             "name": "description",
             "type": "text",
-            "comment": "Description of the property"
+            "comment": "Description of the property",
+            "nullable": true
           }
         ]
       },
       {
+        "id": 13,
         "name": "agents",
         "comment": "Information about real estate agents",
         "columns": [
           {
+            "id": 53,
             "name": "agent_id",
             "type": "integer",
-            "comment": "Unique identifier for the agent"
+            "comment": "Unique identifier for the agent",
+            "primary_key": true
           },
           {
+            "id": 54,
             "name": "agent_name",
             "type": "string",
             "comment": "Name of the agent"
           },
           {
+            "id": 55,
             "name": "contact_email",
             "type": "string",
             "comment": "Email address of the agent"
           },
           {
+            "id": 56,
             "name": "phone",
             "type": "string",
             "comment": "Phone number of the agent"
@@ -371,33 +469,42 @@
         ]
       },
       {
+        "id": 14,
         "name": "inquiries",
         "comment": "Inquiries from potential buyers/renters",
         "columns": [
           {
+            "id": 57,
             "name": "inquiry_id",
             "type": "integer",
-            "comment": "Unique identifier for the inquiry"
+            "comment": "Unique identifier for the inquiry",
+            "primary_key": true
           },
           {
+            "id": 58,
             "name": "listing_id",
             "type": "integer",
-            "comment": "ID of the listing the inquiry is related to"
+            "comment": "ID of the listing the inquiry is related to",
+            "foreign_key_table_id": 12
           },
           {
+            "id": 59,
             "name": "name",
             "type": "string",
             "comment": "Name of the person making the inquiry"
           },
           {
+            "id": 60,
             "name": "email",
             "type": "string",
             "comment": "Email address of the inquirer"
           },
           {
+            "id": 61,
             "name": "message",
             "type": "text",
-            "comment": "Message or inquiry details"
+            "comment": "Message or inquiry details",
+            "nullable": true
           }
         ]
       }
