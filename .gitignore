@@ -5,5 +5,4 @@ tmp
 **/.DS_Store
 
 /config/master.key
-/coverage/*
-!/coverage/.keep
+/coverage
