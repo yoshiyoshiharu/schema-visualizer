@@ -10,6 +10,9 @@ https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/52eb9308-80d
 - Show table's schema information
 - Save a memo for each columns
 
+## Support
+- PostgreSQL
+
 ## For developers
 
 ### setup
