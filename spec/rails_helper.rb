@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+require 'simplecov'
+SimpleCov.start 'rails' do
+  enable_coverage :branch
+
+  groups.delete('Channels')
+  groups.delete('Mailers')
+  groups.delete('Jobs')
+end
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
