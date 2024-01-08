@@ -4,6 +4,8 @@ require_relative '../lib/schema_to_hash/schema_to_hash'
 
 data = JSON.parse(File.read(Rails.root.join('db/json/sample_data.json')))
 
+Product.destroy_all
+
 data.each do |product_data|
   product = Product.create!(name: product_data["name"])
 
