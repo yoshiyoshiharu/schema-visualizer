@@ -4,6 +4,7 @@
     "name": "E-commerce Platform",
     "tables": [
       {
+        "id": 1,
         "name": "products",
         "comment": "Information about products available for sale",
         "columns": [
@@ -30,6 +31,7 @@
         ]
       },
       {
+        "id": 2,
         "name": "customers",
         "comment": "Information about customers who make purchases",
         "columns": [
@@ -56,6 +58,7 @@
         ]
       },
       {
+        "id": 3,
         "name": "orders",
         "comment": "Information about customer orders",
         "columns": [
@@ -87,6 +90,7 @@
         ]
       },
       {
+        "id": 4,
         "name": "categories",
         "comment": "Categories to which products belong",
         "columns": [
@@ -103,6 +107,7 @@
         ]
       },
       {
+        "id": 5,
         "name": "reviews",
         "comment": "Customer reviews of products",
         "columns": [
@@ -134,6 +139,7 @@
         ]
       },
       {
+        "id": 6,
         "name": "cart",
         "comment": "Shopping cart of customers",
         "columns": [
@@ -160,6 +166,7 @@
         ]
       },
       {
+        "id": 7,
         "name": "payment",
         "comment": "Payment information for orders",
         "columns": [
@@ -191,6 +198,7 @@
         ]
       },
       {
+        "id": 8,
         "name": "shipping",
         "comment": "Shipping information for orders",
         "columns": [
@@ -217,6 +225,7 @@
         ]
       },
       {
+        "id": 9,
         "name": "suppliers",
         "comment": "Information about product suppliers",
         "columns": [
@@ -249,6 +258,7 @@
     "name": "Medical Record Management Application",
     "tables": [
       {
+        "id": 10,
         "name": "patients",
         "comment": "Information about patients and their medical records",
         "columns": [
@@ -280,6 +290,7 @@
         ]
       },
       {
+        "id": 11,
         "name": "medical_records",
         "comment": "Records of medical diagnoses and prescriptions",
         "columns": [
@@ -317,6 +328,7 @@
     "name": "Real Estate Listing Platform",
     "tables": [
       {
+        "id": 12,
         "name": "listings",
         "comment": "Information about real estate listings",
         "columns": [
@@ -348,6 +360,7 @@
         ]
       },
       {
+        "id": 13,
         "name": "agents",
         "comment": "Information about real estate agents",
         "columns": [
@@ -374,6 +387,7 @@
         ]
       },
       {
+        "id": 14,
         "name": "inquiries",
         "comment": "Inquiries from potential buyers/renters",
         "columns": [
