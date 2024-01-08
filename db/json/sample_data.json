@@ -12,7 +12,8 @@
             "id": 1,
             "name": "product_id",
             "type": "integer",
-            "comment": "Unique identifier for the product"
+            "comment": "Unique identifier for the product",
+            "primary_key": true
           },
           {
             "id": 2,
@@ -43,7 +44,8 @@
             "id": 5,
             "name": "customer_id",
             "type": "integer",
-            "comment": "Unique identifier for the customer"
+            "comment": "Unique identifier for the customer",
+            "primary_key": true
           },
           {
             "id": 6,
@@ -74,7 +76,8 @@
             "id": 9,
             "name": "order_id",
             "type": "integer",
-            "comment": "Unique identifier for the order"
+            "comment": "Unique identifier for the order",
+            "primary_key": true
           },
           {
             "id": 10,
@@ -111,7 +114,8 @@
             "id": 14,
             "name": "category_id",
             "type": "integer",
-            "comment": "Unique identifier for the category"
+            "comment": "Unique identifier for the category",
+            "primary_key": true
           },
           {
             "id": 15,
@@ -130,7 +134,8 @@
             "id": 16,
             "name": "review_id",
             "type": "integer",
-            "comment": "Unique identifier for the review"
+            "comment": "Unique identifier for the review",
+            "primary_key": true
           },
           {
             "id": 17,
@@ -167,7 +172,8 @@
             "id": 21,
             "name": "cart_id",
             "type": "integer",
-            "comment": "Unique identifier for the shopping cart"
+            "comment": "Unique identifier for the shopping cart",
+            "primary_key": true
           },
           {
             "id": 22,
@@ -198,7 +204,8 @@
             "id": 25,
             "name": "payment_id",
             "type": "integer",
-            "comment": "Unique identifier for the payment"
+            "comment": "Unique identifier for the payment",
+            "primary_key": true
           },
           {
             "id": 26,
@@ -235,7 +242,8 @@
             "id": 30,
             "name": "shipping_id",
             "type": "integer",
-            "comment": "Unique identifier for the shipping record"
+            "comment": "Unique identifier for the shipping record",
+            "primary_key": true
           },
           {
             "id": 31,
@@ -266,7 +274,8 @@
             "id": 34,
             "name": "supplier_id",
             "type": "integer",
-            "comment": "Unique identifier for the supplier"
+            "comment": "Unique identifier for the supplier",
+            "primary_key": true
           },
           {
             "id": 35,
@@ -303,7 +312,8 @@
             "id": 38,
             "name": "patient_id",
             "type": "integer",
-            "comment": "Unique identifier for the patient"
+            "comment": "Unique identifier for the patient",
+            "primary_key": true
           },
           {
             "id": 39,
@@ -340,7 +350,8 @@
             "id": 43,
             "name": "record_id",
             "type": "integer",
-            "comment": "Unique identifier for the medical record"
+            "comment": "Unique identifier for the medical record",
+            "primary_key": true
           },
           {
             "id": 44,
@@ -383,7 +394,8 @@
             "id": 48,
             "name": "listing_id",
             "type": "integer",
-            "comment": "Unique identifier for the listing"
+            "comment": "Unique identifier for the listing",
+            "primary_key": true
           },
           {
             "id": 49,
@@ -420,7 +432,8 @@
             "id": 53,
             "name": "agent_id",
             "type": "integer",
-            "comment": "Unique identifier for the agent"
+            "comment": "Unique identifier for the agent",
+            "primary_key": true
           },
           {
             "id": 54,
@@ -451,7 +464,8 @@
             "id": 57,
             "name": "inquiry_id",
             "type": "integer",
-            "comment": "Unique identifier for the inquiry"
+            "comment": "Unique identifier for the inquiry",
+            "primary_key": true
           },
           {
             "id": 58,
