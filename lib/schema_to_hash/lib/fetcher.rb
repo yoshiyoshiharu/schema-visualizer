@@ -9,6 +9,8 @@ require_relative 'fetchers/foreign_keys'
 module SchemaToHash
   class Fetcher
     def initialize(db:)
+      raise ArgumentError unless db.is_a?(ActiveRecord::Base)
+
       @db = db
     end
 
