@@ -1,9 +1,9 @@
 <%= turbo_frame_tag column_memo.column do %>
   <div class="row">
-    <div class="col-9">
+    <div class="col-8">
       <%= simple_format(column_memo.content) if column_memo.content.present? %>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-4 text-center">
       <%= link_to '編集', edit_column_memo_path(column_memo.column) %>
     </div>
   </div>
