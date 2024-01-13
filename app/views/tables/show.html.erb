@@ -2,17 +2,20 @@
   <span class="badge rounded-pill text-bg-secondary fs-6 mb-2 mt-3">
     <%= @table.product.name %> / <%= @table.name %>
   </span>
-  <table class="table">
-    <thead>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Key</th>
-      <th class="text-center">Nullable</th>
-      <th>Comment</th>
-      <th>Memo</th>
-    </thead>
-    <tbody>
-      <%= render @table.columns %>
-    </tbody>
-  </table>
+  <div class="container-fluid">
+    <div class="row bg-light fw-bold border-bottom p-2">
+      <div class="col-2">Name</div>
+      <div class="col-2">Type</div>
+      <div class="col-1">Key</div>
+      <div class="text-center col-1">Nullable</div>
+      <div class="col-3">Comment</div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col-9">Memo</div>
+          <div class="col-3 text-center">Edit</div>
+        </div>
+      </div>
+    </div>
+    <%= render @table.columns %>
+  </div> 
 <% end %>
