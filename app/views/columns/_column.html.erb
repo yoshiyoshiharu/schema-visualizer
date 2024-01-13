@@ -1,14 +1,14 @@
-<tr>
-  <td><%= column.name %></td>
-  <td><%= column.type %></td>
-  <td>
+<div class="row border-bottom p-2">
+  <div class="col-2"><%= column.name %></div>
+  <div class="col-2"><%= column.type %></div>
+  <div class="col-1">
     <%= render 'columns/key', column: %>
-  </td>
-  <td class="text-center">
+  </div>
+  <div class="text-center col-1">
     <%= display_nullable(column.nullable?) %>
-  </td>
-  <td><%= column.comment %></td>
-  <td>
+  </div>
+  <div class="col-2"><%= column.comment %></div>
+  <div class="col-4">
     <%= render column.memo || column.build_memo %>
-  </td>
-</tr>
+  </div>
+</div>
