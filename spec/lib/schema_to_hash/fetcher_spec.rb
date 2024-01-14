@@ -23,6 +23,7 @@ RSpec.describe SchemaToHash::Fetcher do
     end
   end
 
+  # rubocop:disable RSpec/ExampleLength
   describe '#tables' do
     it 'スキーマのテーブル名一覧を取得すること' do
       test_schema(db) do
@@ -73,8 +74,36 @@ RSpec.describe SchemaToHash::Fetcher do
           fetcher.columns(schema_name: test_schema_name, table_name: 'users').pluck(:name)
         ).to eq %w[id name created_at updated_at]
       end
-    end 
+    end
   end
+
+  describe '#foreign_keys' do
+    it 'DBの外部キー一覧を取得すること' do
+      test_schema(db) do
+        db.exec(
+          <<-SQL.squish
+            CREATE TABLE users (
+              id integer PRIMARY KEY
+            );
+            CREATE TABLE profiles (
+              id integer PRIMARY KEY,
+              user_id integer
+            );
+            ALTER TABLE profiles ADD CONSTRAINT profiles_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id);
+          SQL
+        )
+
+        expect(
+          fetcher.foreign_keys(schema_name: test_schema_name).pluck(
+            :from_table_name,
+            :from_column_name,
+            :to_table_name
+          ).flatten
+        ).to eq %w[profiles user_id users]
+      end
+    end
+  end
+  # rubocop:enable RSpec/ExampleLength
 
   private
 
