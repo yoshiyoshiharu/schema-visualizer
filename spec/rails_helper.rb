@@ -3,6 +3,7 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
   enable_coverage :branch
+  minimum_coverage line: 90, branch: 80
 
   groups.delete('Channels')
   groups.delete('Mailers')
