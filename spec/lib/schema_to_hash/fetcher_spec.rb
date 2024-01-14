@@ -24,7 +24,7 @@ RSpec.describe SchemaToHash::Fetcher do
   end
 
   describe '#tables' do
-    it 'DBのテーブル名一覧を取得すること' do
+    it 'スキーマのテーブル名一覧を取得すること' do
       test_schema(db) do
         db.exec(
           <<-SQL.squish
@@ -39,7 +39,7 @@ RSpec.describe SchemaToHash::Fetcher do
       end
     end
 
-    it 'DBのテーブルコメントを取得すること' do
+    it 'スキーマのテーブルコメントを取得すること' do
       test_schema(db) do
         db.exec(
           <<-SQL.squish
@@ -53,6 +53,27 @@ RSpec.describe SchemaToHash::Fetcher do
         ).to eq ['ユーザー']
       end
     end
+  end
+
+  describe '#columns' do
+    it 'テーブルのカラム一覧を取得すること' do
+      test_schema(db) do
+        db.exec(
+          <<-SQL.squish
+            CREATE TABLE users (
+              id integer,
+              name varchar(255),
+              created_at timestamp without time zone,
+              updated_at timestamp without time zone
+            );
+          SQL
+        )
+
+        expect(
+          fetcher.columns(schema_name: test_schema_name, table_name: 'users').pluck(:name)
+        ).to eq %w[id name created_at updated_at]
+      end
+    end 
   end
 
   private

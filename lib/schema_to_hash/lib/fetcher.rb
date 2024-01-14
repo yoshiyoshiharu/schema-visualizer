@@ -20,6 +20,10 @@ module SchemaToHash
       Fetchers::Tables.new(db:, schema_name:).all.map(&:to_hash)
     end
 
+    def columns(schema_name:, table_name:)
+      Fetchers::Columns.new(db:, schema_name:, table_name:).all.map(&:to_hash)
+    end
+
     def foreign_keys(schema_name:)
       Fetchers::ForeignKeys.new(db:, schema_name:).all.map(&:to_hash)
     end

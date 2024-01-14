@@ -10,15 +10,10 @@ module SchemaToHash
       @columns = columns
     end
 
-    def find_column_by_name(name)
-      @columns.find { |column| column.name == name }
-    end
-
     def to_hash
       {
         name:,
-        comment:,
-        columns: columns.map(&:to_hash)
+        comment:
       }
     end
   end

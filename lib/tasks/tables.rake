@@ -49,19 +49,21 @@ namespace :tables do
 
       schema_to_hash.tables(schema_name: args[:schema]).each do |table|
         puts "Creating table #{table[:name]}..."
-        product.tables.create!(
+        table = product.tables.create!(
           name: table[:name],
-          comment: table[:comment] || '',
-          columns: table[:columns].map do |column|
-            Column.new(
-              name: column[:name],
-              type: column[:type],
-              comment: column[:comment] || '',
-              nullable: column[:nullable],
-              primary_key: column[:primary_key]
-            )
-          end
+          comment: table[:comment] || ''
         )
+
+        puts "Creating columns for #{table[:name]}..."
+        schema_to_hash.columns(schema_name: args[:schema], table_name: table[:name]).each do |column|
+          table.columns.create!(
+            name: column[:name],
+            type: column[:type],
+            comment: column[:comment] || '',
+            nullable: column[:nullable],
+            primary_key: column[:primary_key]
+          )
+        end
       end
 
       schema_to_hash.foreign_keys(schema_name: args[:schema]).each do |foreign_key|
