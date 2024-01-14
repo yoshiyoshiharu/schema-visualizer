@@ -12,10 +12,12 @@ RSpec.describe Table do
       expect(described_class.name_like('book')).to eq [book_include_table]
     end
 
-    context 'すべてのレコードの名前にキーワードが含まれないとき' do
-      it '空の配列を返す' do
-        expect(described_class.name_like('hoge')).to eq []
-      end
+    it 'すべてのレコードの名前にキーワードが含まれないとき空の配列を返す' do
+      expect(described_class.name_like('hoge')).to eq []
+    end
+
+    it 'キーワードが空のときすべてのレコードを返す' do
+      expect(described_class.name_like('')).to eq [user_include_table1, user_include_table2, book_include_table]
     end
   end
 end

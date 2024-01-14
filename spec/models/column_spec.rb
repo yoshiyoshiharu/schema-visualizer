@@ -12,10 +12,12 @@ RSpec.describe Column do
       expect(described_class.name_like('key')).to eq [key_include_column]
     end
 
-    context 'すべてのレコードの名前にキーワードが含まれないとき' do
-      it '空の配列を返す' do
-        expect(described_class.name_like('hoge')).to eq []
-      end
+    it 'すべてのレコードの名前にキーワードが含まれないとき空の配列を返す' do
+      expect(described_class.name_like('hoge')).to eq []
+    end
+
+    it 'キーワードが空のときすべてのレコードを返す' do
+      expect(described_class.name_like('')).to eq [id_include_column1, id_include_column2, key_include_column]
     end
   end
 end
