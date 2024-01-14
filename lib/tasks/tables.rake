@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'pg'
 require_relative '../schema_to_hash/schema_to_hash'
 
 # rubocop:disable Metrics/BlockLength
@@ -28,7 +27,7 @@ namespace :tables do
     }
 
     begin
-      db = PG.connect(db_config)
+      db = SchemaToHash::Db.connect(**db_config)
 
       schema_to_hash = SchemaToHash::Fetcher.new(db:)
 
@@ -43,23 +42,28 @@ namespace :tables do
         exit
       end
 
-      product.tables.destroy_all
+      puts "Deleting columns for #{args[:product]}..."
+      Column.joins(table: :product).where(table: { product: Product.find_by(name: 'Supplier') }).delete_all
+      puts "Deleting tables for #{args[:product]}..."
+      product.tables.delete_all
 
       schema_to_hash.tables(schema_name: args[:schema]).each do |table|
         puts "Creating table #{table[:name]}..."
-        product.tables.create!(
+        table = product.tables.create!(
           name: table[:name],
-          comment: table[:comment] || '',
-          columns: table[:columns].map do |column|
-            Column.new(
-              name: column[:name],
-              type: column[:type],
-              comment: column[:comment] || '',
-              nullable: column[:nullable],
-              primary_key: column[:primary_key]
-            )
-          end
+          comment: table[:comment] || ''
         )
+
+        puts "Creating columns for #{table[:name]}..."
+        schema_to_hash.columns(schema_name: args[:schema], table_name: table[:name]).each do |column|
+          table.columns.create!(
+            name: column[:name],
+            type: column[:type],
+            comment: column[:comment] || '',
+            nullable: column[:nullable],
+            primary_key: column[:primary_key]
+          )
+        end
       end
 
       schema_to_hash.foreign_keys(schema_name: args[:schema]).each do |foreign_key|
