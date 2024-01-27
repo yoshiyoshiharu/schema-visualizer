@@ -2,8 +2,6 @@
 
 module Batches
   class RelateForeignKeys
-    class BatchFailedError < StandardError; end
-
     def initialize(tables:, foreign_key_hashes:)
       @tables = tables
       @foreign_key_hashes = foreign_key_hashes

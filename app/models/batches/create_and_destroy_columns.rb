@@ -2,8 +2,6 @@
 
 module Batches
   class CreateAndDestroyColumns
-    class BatchFailedError < StandardError; end
-
     def initialize(existing_columns:, latest_column_hashes:, table:)
       @existing_columns = existing_columns
       @latest_column_hashes = latest_column_hashes

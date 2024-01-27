@@ -2,8 +2,6 @@
 
 module Batches
   class CreateAndDestroyTables
-    class BatchFailedError < StandardError; end
-
     def initialize(existing_tables:, latest_table_hashes:, product:)
       @existing_tables = existing_tables
       @latest_table_hashes = latest_table_hashes
