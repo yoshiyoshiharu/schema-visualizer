@@ -33,7 +33,9 @@ module Batches
 
     def create_column(column_hashes)
       column_hashes.each do |column_hash|
+        # rubocop:disable Rails/Output
         puts "Creating columns: #{table.name}/#{column_hash[:name]}"
+        # rubocop:enable Rails/Output
 
         table.columns.create!(
           name: column_hash[:name],
@@ -48,7 +50,9 @@ module Batches
     def destroy_columns(columns_to_delete)
       return if columns_to_delete.blank?
 
+      # rubocop:disable Rails/Output
       puts "Destroying columns #{columns_to_delete.pluck(:name)}"
+      # rubocop:enable Rails/Output
       Column.where(id: columns_to_delete.pluck(:id)).destroy_all
     end
   end

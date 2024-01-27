@@ -25,7 +25,9 @@ module Batches
     attr_reader :tables, :foreign_key_hashes
 
     def relate_foreign_key(from_column:, to_table:)
+      # rubocop:disable Rails/Output
       puts "Relating foreign key: #{from_column.name} to #{to_table.name}"
+      # rubocop:enable Rails/Output
 
       from_column.update!(
         foreign_key_table: to_table

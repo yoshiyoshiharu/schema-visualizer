@@ -32,7 +32,9 @@ module Batches
 
     def create_tables(tables_hash)
       tables_hash.each do |table_hash|
+        # rubocop:disable Rails/Output
         puts "Creating table: #{table_hash[:name]}"
+        # rubocop:enable Rails/Output
 
         product.tables.create!(
           name: table_hash[:name],
@@ -44,7 +46,9 @@ module Batches
     def destroy_tables(tables_to_delete)
       return if tables_to_delete.blank?
 
+      # rubocop:disable Rails/Output
       puts "Destroying tables #{tables_to_delete.pluck(:name)}"
+      # rubocop:enable Rails/Output
       Table.where(id: tables_to_delete.pluck(:id)).destroy_all
     end
   end

@@ -3,7 +3,6 @@
 require_relative '../schema_to_hash/schema_to_hash'
 
 # rubocop:disable Metrics/BlockLength
-# rubocop:disable Layout/LineLength
 namespace :tables do
   desc 'Create and destroy tables'
   task :create_and_destory, %w[host port dbname user password schema product] => :environment do |_task, args|
@@ -71,4 +70,3 @@ namespace :tables do
   end
 end
 # rubocop:enable Metrics/BlockLength
-# rubocop:enable Layout/LineLength
