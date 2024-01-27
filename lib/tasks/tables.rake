@@ -36,7 +36,7 @@ namespace :tables do
         exit
       end
 
-      product = Product.find_by(name: args[:product])
+      product = Product.preload(tables: :columns).find_by(name: args[:product])
       if product.nil?
         puts "Product #{args[:product]} does not exist"
         exit
