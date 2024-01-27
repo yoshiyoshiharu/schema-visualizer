@@ -3,10 +3,9 @@
 require_relative '../schema_to_hash/schema_to_hash'
 
 # rubocop:disable Metrics/BlockLength
-# rubocop:disable Layout/LineLength
 namespace :tables do
-  desc 'Create tables'
-  task :create, %w[host port dbname user password schema product] => :environment do |_task, args|
+  desc 'Create and destroy tables'
+  task :create_and_destory, %w[host port dbname user password schema product] => :environment do |_task, args|
     unless args[:host] &&
            args[:port] &&
            args[:dbname] &&
@@ -36,45 +35,34 @@ namespace :tables do
         exit
       end
 
-      product = Product.find_by(name: args[:product])
+      product = Product.preload(tables: :columns).find_by(name: args[:product])
       if product.nil?
         puts "Product #{args[:product]} does not exist"
         exit
       end
 
-      puts "Deleting columns for #{args[:product]}..."
-      Column.joins(table: :product).where(table: { product: Product.find_by(name: 'Supplier') }).delete_all
-      puts "Deleting tables for #{args[:product]}..."
-      product.tables.delete_all
+      ActiveRecord::Base.transaction do
+        puts 'Creating and destroying tables'
+        Batches::CreateAndDestroyTables.new(
+          existing_tables: product.tables,
+          latest_table_hashes: schema_to_hash.tables(schema_name: args[:schema]),
+          product:
+        ).run
 
-      schema_to_hash.tables(schema_name: args[:schema]).each do |table|
-        puts "Creating table #{table[:name]}..."
-        table = product.tables.create!(
-          name: table[:name],
-          comment: table[:comment] || ''
-        )
-
-        puts "Creating columns for #{table[:name]}..."
-        schema_to_hash.columns(schema_name: args[:schema], table_name: table[:name]).each do |column|
-          table.columns.create!(
-            name: column[:name],
-            type: column[:type],
-            comment: column[:comment] || '',
-            nullable: column[:nullable],
-            primary_key: column[:primary_key]
-          )
+        puts 'Creating and destroying columns'
+        product.tables.find_each do |table|
+          Batches::CreateAndDestroyColumns.new(
+            existing_columns: table.columns,
+            latest_column_hashes: schema_to_hash.columns(schema_name: args[:schema], table_name: table.name),
+            table:
+          ).run
         end
-      end
 
-      schema_to_hash.foreign_keys(schema_name: args[:schema]).each do |foreign_key|
-        puts "Creating foreign key #{foreign_key[:from_column_name]} of #{foreign_key[:from_table_name]} to #{foreign_key[:to_table_name]}..."
-        from_table = product.tables.find_by!(name: foreign_key[:from_table_name])
-        from_column = from_table.columns.find_by!(name: foreign_key[:from_column_name])
-        to_table = product.tables.find_by!(name: foreign_key[:to_table_name])
-
-        from_column.update!(
-          foreign_key_table: to_table
-        )
+        puts 'Relating foreign keys'
+        Batches::RelateForeignKeys.new(
+          tables: product.tables,
+          foreign_key_hashes: schema_to_hash.foreign_keys(schema_name: args[:schema])
+        ).run
       end
     ensure
       db.close
@@ -82,4 +70,3 @@ namespace :tables do
   end
 end
 # rubocop:enable Metrics/BlockLength
-# rubocop:enable Layout/LineLength

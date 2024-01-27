@@ -64,6 +64,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_092410) do
 
   add_foreign_key "column_memos", "columns"
   add_foreign_key "columns", "tables"
-  add_foreign_key "columns", "tables", column: "foreign_key_table_id"
+  add_foreign_key "columns", "tables", column: "foreign_key_table_id", on_delete: :nullify
   add_foreign_key "tables", "products"
 end
