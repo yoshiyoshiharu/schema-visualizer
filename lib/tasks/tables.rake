@@ -43,9 +43,6 @@ namespace :tables do
       end
 
       ActiveRecord::Base.transaction do
-        puts 'Unrelating foreign keys'
-        Column.update_all(foreign_key_table_id: nil)
-
         puts 'Creating and destroying tables'
         Batches::CreateAndDestroyTables.new(
           existing_tables: product.tables,
