@@ -9,6 +9,7 @@ module Batches
     end
 
     def run
+      destroy_tables(tables_to_delete)
       create_tables(table_hashes_to_create)
     end
 
