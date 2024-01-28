@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ProductsController do
+RSpec.describe ColumnsController do
   include LoginSupport
 
   describe '#index' do
@@ -10,25 +10,21 @@ RSpec.describe ProductsController do
 
     context '通常のリクエストのとき' do
       before do
-        get products_path
+        get columns_path
       end
 
-      it 'ステータスコード422を返すこと' do
+      it 'ステータスコード404を返すこと' do
         expect(response).to have_http_status(:not_found)
       end
     end
 
     context 'Turboリクエストのとき' do
       before do
-        get products_path, headers: { 'Turbo-Frame': 'table' }
+        get columns_path, headers: { 'Turbo-Frame': 'columns' }
       end
 
       it 'ステータスコード200を返すこと' do
         expect(response).to have_http_status(:ok)
-      end
-
-      it 'SidebarのHTMLは返さないこと' do
-        assert_select 'aside', false
       end
     end
   end

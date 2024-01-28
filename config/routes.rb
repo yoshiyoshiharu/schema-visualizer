@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resource :sessions, only: %w(new create)
 
   resources :users
-  resources :products, only: %w(index)
-  resources :tables, only: %w(show)
+  resources :tables, only: %w(index show)
+  resources :columns, only: %w(index)
 
   resources :columns, only: %w() do
     resource :memo, only: %w(show edit update), controller: 'column_memos'
