@@ -2,7 +2,7 @@
 
 class SessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
-  layout 'without_products'
+  layout 'without_sidebar'
 
   def new; end
 

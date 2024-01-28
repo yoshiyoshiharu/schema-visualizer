@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  layout 'without_products'
+  layout 'without_sidebar'
 
   def index
     @users = User.all
