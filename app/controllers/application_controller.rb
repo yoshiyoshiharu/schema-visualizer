@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :require_login
 
-  rescue_from Exception,                      with: :render500
-  rescue_from ActiveRecord::RecordNotFound,   with: :render404
-  rescue_from ActionController::RoutingError, with: :render404
+  unless Rails.env.development?
+    rescue_from Exception,                      with: :render500
+    rescue_from ActiveRecord::RecordNotFound,   with: :render404
+    rescue_from ActionController::RoutingError, with: :render404
+  end
 
   def raise_routing_error
     raise ActionController::RoutingError, params[:path]
