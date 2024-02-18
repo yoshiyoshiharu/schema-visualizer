@@ -1,5 +1,5 @@
 # SchemaVisualizer
-This is a Single-Page Application to display DB schema information for each of your products.
+This is an SPA like Application to display DB schema information for each of your products.
 
 ## Screen capture
 https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/52eb9308-80da-4174-bd12-93cb788aad5f
