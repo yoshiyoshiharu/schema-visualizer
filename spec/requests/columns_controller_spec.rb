@@ -8,7 +8,7 @@ RSpec.describe ColumnsController do
       login_as(create(:login_user))
     end
 
-    context '通常のリクエストのとき' do
+    context '通常のリクエストの場合' do
       before do
         get columns_path
       end
@@ -18,7 +18,7 @@ RSpec.describe ColumnsController do
       end
     end
 
-    context 'Turboリクエストのとき' do
+    context 'Turboリクエストの場合' do
       before do
         get columns_path, headers: { 'Turbo-Frame': 'columns' }
       end

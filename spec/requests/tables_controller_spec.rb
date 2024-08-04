@@ -8,7 +8,7 @@ RSpec.describe TablesController do
       login_as(create(:login_user))
     end
 
-    context '通常のリクエストのとき' do
+    context '通常のリクエストの場合' do
       before do
         get tables_path
       end
@@ -18,7 +18,7 @@ RSpec.describe TablesController do
       end
     end
 
-    context 'Turboリクエストのとき' do
+    context 'Turboリクエストの場合' do
       before do
         get tables_path, headers: { 'Turbo-Frame': 'tables' }
       end
@@ -36,7 +36,7 @@ RSpec.describe TablesController do
       login_as(create(:login_user))
     end
 
-    context '通常のリクエストのとき' do
+    context '通常のリクエストの場合' do
       before do
         get table_path(table)
       end
@@ -50,7 +50,7 @@ RSpec.describe TablesController do
       end
     end
 
-    context 'Turboリクエストのとき' do
+    context 'Turboリクエストの場合' do
       before do
         get table_path(table), headers: { 'Turbo-Frame': 'table' }
       end

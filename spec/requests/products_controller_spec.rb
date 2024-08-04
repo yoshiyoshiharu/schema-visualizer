@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe UsersController do
+RSpec.describe ProductsController do
   include LoginSupport
 
   before do
@@ -9,7 +9,7 @@ RSpec.describe UsersController do
 
   describe '#index' do
     subject do
-      get users_path
+      get products_path
       response
     end
 
@@ -28,7 +28,7 @@ RSpec.describe UsersController do
 
   describe '#new' do
     subject do
-      get new_user_path
+      get new_product_path
       response
     end
 
@@ -47,32 +47,29 @@ RSpec.describe UsersController do
 
   describe '#create' do
     subject do
-      post(users_path, params:)
+      post(products_path, params:)
       response
     end
 
-    let(:params) { { user: { name:, email: } } }
+    let(:params) { { product: { name: } } }
 
     context '管理者権限があり、正常な値を送信した場合' do
       let(:is_admin) { true }
-      let(:name) { 'new_user' }
-      let(:email) { 'new_user@test.com' }
+      let(:name) { 'new_product' }
 
-      it { is_expected.to redirect_to(users_path) }
+      it { is_expected.to redirect_to(products_path) }
     end
 
     context '管理者権限があり、不正な値を送信した場合' do
       let(:is_admin) { true }
       let(:name) { '' }
-      let(:email) { '' }
 
       it { is_expected.to have_http_status(:unprocessable_entity) }
     end
 
     context '管理者権限がない場合' do
       let(:is_admin) { false }
-      let(:name) { 'new_user' }
-      let(:email) { 'new_user@test.com' }
+      let(:name) { 'new_product' }
 
       it { is_expected.to redirect_to(root_path) }
     end
@@ -80,11 +77,11 @@ RSpec.describe UsersController do
 
   describe '#edit' do
     subject do
-      get edit_user_path(user)
+      get edit_product_path(product)
       response
     end
 
-    let(:user) { create(:user) }
+    let(:product) { create(:product) }
 
     context '管理者権限がある場合' do
       let(:is_admin) { true }
@@ -101,30 +98,30 @@ RSpec.describe UsersController do
 
   describe '#update' do
     subject do
-      put(user_path(user), params:)
+      put(product_path(product), params:)
       response
     end
 
-    let(:user) { create(:user) }
-    let(:params) { { user: { email: } } }
+    let(:product) { create(:product) }
+    let(:params) { { product: { name: } } }
 
     context '管理者権限があり、正常な値を送信した場合' do
       let(:is_admin) { true }
-      let(:email) { 'updated_user@test.com' }
+      let(:name) { 'Updated Product' }
 
-      it { is_expected.to redirect_to(users_path) }
+      it { is_expected.to redirect_to(products_path) }
     end
 
     context '管理者権限があり、不正な値を送信した場合' do
       let(:is_admin) { true }
-      let(:email) { '' }
+      let(:name) { '' }
 
       it { is_expected.to have_http_status(:unprocessable_entity) }
     end
 
     context '管理者権限がない場合' do
       let(:is_admin) { false }
-      let(:email) { 'updated_user@test.com' }
+      let(:name) { 'Updated Product' }
 
       it { is_expected.to redirect_to(root_path) }
     end
@@ -132,16 +129,16 @@ RSpec.describe UsersController do
 
   describe '#destroy' do
     subject do
-      delete user_path(user)
+      delete product_path(product)
       response
     end
 
-    let(:user) { create(:user) }
+    let(:product) { create(:product) }
 
     context '管理者権限がある場合' do
       let(:is_admin) { true }
 
-      it { is_expected.to redirect_to(users_path) }
+      it { is_expected.to redirect_to(products_path) }
     end
 
     context '管理者権限がない場合' do

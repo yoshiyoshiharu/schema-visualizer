@@ -10,7 +10,7 @@ RSpec.describe ColumnMemosController do
   describe '#show' do
     let!(:column) { create(:column) }
 
-    context '通常のリクエストのとき' do
+    context '通常のリクエストの場合' do
       before do
         get column_memo_path(column)
       end
@@ -20,7 +20,7 @@ RSpec.describe ColumnMemosController do
       end
     end
 
-    context 'Turboリクエストのとき' do
+    context 'Turboリクエストの場合' do
       before do
         get column_memo_path(column), headers: { 'Turbo-Frame': "column_#{column.id}" }
       end
@@ -34,7 +34,7 @@ RSpec.describe ColumnMemosController do
   describe '#edit' do
     let!(:column) { create(:column) }
 
-    context '通常のリクエストのとき' do
+    context '通常のリクエストの場合' do
       before do
         get edit_column_memo_path(column)
       end
@@ -44,7 +44,7 @@ RSpec.describe ColumnMemosController do
       end
     end
 
-    context 'Turboリクエストのとき' do
+    context 'Turboリクエストの場合' do
       before do
         get edit_column_memo_path(column), headers: { 'Turbo-Frame': "column_#{column.id}" }
       end
@@ -59,14 +59,14 @@ RSpec.describe ColumnMemosController do
     let!(:column) { create(:column) }
     let!(:column_memo) { create(:column_memo, column:) }
 
-    context '通常のリクエストのとき' do
+    context '通常のリクエストの場合' do
       it 'ステータスコード404を返すこと' do
         patch column_memo_path(column)
         expect(response).to have_http_status(:not_found)
       end
     end
 
-    context 'Turboリクエストで正常な値を送信したとき' do
+    context 'Turboリクエストで正常な値を送信した場合' do
       let(:valid_param) do
         {
           column_memo: {

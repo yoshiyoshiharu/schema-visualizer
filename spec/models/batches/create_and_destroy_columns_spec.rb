@@ -4,7 +4,7 @@ RSpec.describe Batches::CreateAndDestroyColumns do
   let(:table) { create(:table) }
 
   describe '#run' do
-    context 'existing_columnsに存在し、latest_column_hashesに存在しないテーブルがあるとき' do
+    context 'existing_columnsに存在し、latest_column_hashesに存在しないテーブルがある場合' do
       before do
         create(:column, name: 'column1', table:)
         create(:column, name: 'column2', table:)
@@ -27,7 +27,7 @@ RSpec.describe Batches::CreateAndDestroyColumns do
       end
     end
 
-    context 'existing_columnsに存在せず、latest_column_hashesに存在するテーブルがあるとき' do
+    context 'existing_columnsに存在せず、latest_column_hashesに存在するテーブルがある場合' do
       before do
         create(:column, name: 'column1', table:)
         create(:column, name: 'column2', table:)

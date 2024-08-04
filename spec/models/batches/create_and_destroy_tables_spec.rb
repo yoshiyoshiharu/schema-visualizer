@@ -4,7 +4,7 @@ RSpec.describe Batches::CreateAndDestroyTables do
   let(:product) { create(:product) }
 
   describe '#run' do
-    context 'existing_tablesに存在し、latest_table_hashesに存在しないテーブルがあるとき' do
+    context 'existing_tablesに存在し、latest_table_hashesに存在しないテーブルがある場合' do
       before do
         create(:table, name: 'table1', product:)
         create(:table, name: 'table2', product:)
@@ -27,7 +27,7 @@ RSpec.describe Batches::CreateAndDestroyTables do
       end
     end
 
-    context 'existing_tablesに存在せず、latest_table_hashesに存在するテーブルがあるとき' do
+    context 'existing_tablesに存在せず、latest_table_hashesに存在するテーブルがある場合' do
       before do
         create(:table, name: 'table1', product:)
         create(:table, name: 'table2', product:)
