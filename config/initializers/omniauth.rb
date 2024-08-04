@@ -10,7 +10,7 @@ OmniAuth.configure do |config|
   config.test_mode = true
   config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
     uid: 'dummy',
-    info: { email: 'dev@ga-tech.co.jp', name: '開発者ユーザー' },
+    info: { email: 'haruki.osaka.u@gmail.com', name: '開発者ユーザー' },
     credentials: { token: 'dummy' },
   )
 end

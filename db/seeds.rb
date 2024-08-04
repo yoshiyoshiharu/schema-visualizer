@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-User.create!(email: 'dev@ga-tech.co.jp', name: '開発者ユーザー', is_admin: true)
+User.create!(email: 'haruki.osaka.u@gmail.com', name: '開発者ユーザー', is_admin: true)
 
 data = JSON.parse(File.read(Rails.root.join('db/json/sample_data.json')))
 
