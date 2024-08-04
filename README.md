@@ -18,20 +18,20 @@ https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/52eb9308-80d
 
 ### setup
 ```
-make setup
+.scripts/setup.sh
 ```
 
 ### test
 ```
-make test
+.scripts/test.sh
 ```
 
 ### lint
 ```
-make lint
+./scripts/lint.sh
 ````
 
 ### fix
 ```
-make fix
+./scripts/fix.sh
 ```
