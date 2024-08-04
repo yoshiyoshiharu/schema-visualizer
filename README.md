@@ -21,6 +21,11 @@ https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/52eb9308-80d
 .scripts/setup.sh
 ```
 
+### start
+```
+.scripts/start.sh
+```
+
 ### test
 ```
 .scripts/test.sh
