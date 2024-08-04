@@ -1,34 +1,28 @@
 [
   {
-    "id": 1,
     "name": "E-commerce Platform",
     "tables": [
       {
-        "id": 1,
         "name": "products",
         "comment": "Information about products available for sale",
         "columns": [
           {
-            "id": 1,
             "name": "product_id",
             "type": "integer",
             "comment": "Unique identifier for the product",
             "primary_key": true
           },
           {
-            "id": 2,
             "name": "product_name",
             "type": "string",
             "comment": "Name of the product"
           },
           {
-            "id": 3,
             "name": "price",
             "type": "decimal",
             "comment": "Price of the product"
           },
           {
-            "id": 4,
             "name": "description",
             "type": "text",
             "comment": "Description of the product",
@@ -37,31 +31,26 @@
         ]
       },
       {
-        "id": 2,
         "name": "customers",
         "comment": "Information about customers who make purchases",
         "columns": [
           {
-            "id": 5,
             "name": "customer_id",
             "type": "integer",
             "comment": "Unique identifier for the customer",
             "primary_key": true
           },
           {
-            "id": 6,
             "name": "first_name",
             "type": "string",
             "comment": "First name of the customer"
           },
           {
-            "id": 7,
             "name": "last_name",
             "type": "string",
             "comment": "Last name of the customer"
           },
           {
-            "id": 8,
             "name": "email",
             "type": "string",
             "comment": "Email address of the customer"
@@ -69,12 +58,10 @@
         ]
       },
       {
-        "id": 3,
         "name": "orders",
         "comment": "Information about customer orders",
         "columns": [
           {
-            "id": 9,
             "name": "order_id",
             "type": "integer",
             "comment": "Unique identifier for the order",
@@ -109,7 +96,6 @@
         ]
       },
       {
-        "id": 4,
         "name": "categories",
         "comment": "Categories to which products belong",
         "columns": [
@@ -129,7 +115,6 @@
         ]
       },
       {
-        "id": 5,
         "name": "reviews",
         "comment": "Customer reviews of products",
         "columns": [
@@ -170,7 +155,6 @@
         ]
       },
       {
-        "id": 6,
         "name": "cart",
         "comment": "Shopping cart of customers",
         "columns": [
@@ -204,7 +188,6 @@
         ]
       },
       {
-        "id": 7,
         "name": "payment",
         "comment": "Payment information for orders",
         "columns": [
@@ -243,7 +226,6 @@
         ]
       },
       {
-        "id": 8,
         "name": "shipping",
         "comment": "Shipping information for orders",
         "columns": [
@@ -276,7 +258,6 @@
         ]
       },
       {
-        "id": 9,
         "name": "suppliers",
         "comment": "Information about product suppliers",
         "columns": [
@@ -310,7 +291,6 @@
     ]
   },
   {
-    "id": 2,
     "name": "Medical Record Management Application",
     "tables": [
       {
@@ -394,7 +374,6 @@
     ]
   },
   {
-    "id": 3,
     "name": "Real Estate Listing Platform",
     "tables": [
       {

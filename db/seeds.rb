@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/schema_to_hash/schema_to_hash'
+User.create!(email: 'dev@ga-tech.co.jp', name: '開発者ユーザー', is_admin: true)
 
 data = JSON.parse(File.read(Rails.root.join('db/json/sample_data.json')))
 
@@ -10,20 +10,18 @@ Product.destroy_all
 
 data.each do |product_data|
   product = Product.create!(
-    id: product_data["id"],
-    name: product_data["name"]
+    name: product_data["name"],
+    env_prefix: product_data["name"].upcase
   )
 
   product_data["tables"].each do |table_data|
     table = product.tables.create!(
-      id: table_data["id"],
       name: table_data["name"],
       comment: table_data["comment"]
     )
 
     table_data["columns"].each do |column_data|
       table.columns.create!(
-        id: column_data["id"],
         name: column_data["name"],
         type: column_data["type"],
         comment: column_data["comment"],

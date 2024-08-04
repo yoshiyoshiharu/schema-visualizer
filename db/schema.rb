@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_04_092410) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_02_053835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_092410) do
     t.string "name", null: false, comment: "プロダクト名"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "env_prefix", default: "", null: false
+    t.index ["name", "env_prefix"], name: "index_products_on_name_and_env_prefix", unique: true
     t.index ["name"], name: "index_products_on_name", unique: true
   end
 
@@ -57,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_092410) do
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
+    t.boolean "is_admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
