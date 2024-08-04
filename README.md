@@ -9,10 +9,17 @@ https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/52eb9308-80d
 - Search tables and columns
 - Show table's schema information
 - Save a memo for each columns
+- Insert schema information from the database
 
-## Support
+## Support database adapter
 - PostgreSQL
 - MySQL
+
+
+## Usage
+1. Create product records with names and environment prefixes.
+2. Add environment variables which key is `{environment prefix}_DATABASE_URL` and value is database connection string.
+3. Run `rake tables:sync` to insert schema information from the database.
 
 ## For developers
 
