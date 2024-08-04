@@ -1,6 +1,9 @@
 <%= turbo_frame_tag 'table', data: { turbo_action: 'advance' } do %>
   <span class="badge rounded-pill text-bg-secondary fs-6 mb-2 mt-3">
     <%= @table.product.name %> / <%= @table.name %>
+    <% if @table.comment.present? %>
+      <span>: <%= @table.comment %></span>
+    <% end %>
   </span>
   <div class="container-fluid">
     <div class="row bg-light fw-bold border-bottom p-2 text-break">

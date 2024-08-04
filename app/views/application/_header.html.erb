@@ -4,8 +4,11 @@
                 root_path,
                 data: { turbo_frame: 'table', turbo_action: 'advance' },
                 class: 'navbar-brand' %>
-    <%= link_to 'ユーザー一覧',
-                users_path,
-                class: 'nav-link' %>
+    <% if current_user&.is_admin? %>
+      <div class="d-flex">
+        <%= link_to 'プロダクト一覧', products_path, class: 'nav-link mx-2' %>
+        <%= link_to 'ユーザー一覧', users_path, class: 'nav-link mx-2' %>
+      </div>
+    <% end %>
   </div>
 </nav>

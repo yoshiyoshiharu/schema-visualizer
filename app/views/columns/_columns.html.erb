@@ -24,7 +24,7 @@
                 <% table.columns.each do |column| %>
                   <li class="text-truncate">
                     <%= link_to "#{table.name}##{column.name}",
-                                table,
+                                table_path(table, column_id: column.id),
                                 data: { turbo_frame: 'table', turbo_action: 'advance' },
                                 class: 'link-dark link-underline-opacity-0 link-opacity-50-hover' %>
                   </li>

@@ -1,1 +1,22 @@
-<%= render 'products' %>
+<div class="d-flex justify-content-between">
+  <h1>プロダクトー覧</h1>
+  <%= link_to 'プロダクト作成', new_product_path, class: 'btn btn-primary h-100' %>
+</div>
+<table class="table">
+  <thead>
+    <th><%= t '.name' %></th>
+    <th><%= t '.action' %></th>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td>
+          <%= link_to '編集', edit_product_path(product), class: 'btn btn-primary' %>
+          <%= link_to '削除', product_path(product), class: 'btn btn-danger',
+                                                   data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

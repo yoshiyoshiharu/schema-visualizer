@@ -4,15 +4,17 @@
 </div>
 <table class="table">
   <thead>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Action</th>
+    <th><%= t '.name' %></th>
+    <th><%= t '.email' %></th>
+    <th><%= t '.is_admin' %></th>
+    <th><%= t '.action' %></th>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <td><%= user.is_admin %></td>
         <td>
           <%= link_to '編集', edit_user_path(user), class: 'btn btn-primary' %>
           <%= link_to '削除', user_path(user), class: 'btn btn-danger',
