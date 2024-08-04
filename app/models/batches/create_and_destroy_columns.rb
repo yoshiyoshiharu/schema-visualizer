@@ -30,27 +30,22 @@ module Batches
     end
 
     def create_column(column_hashes)
-      column_hashes.each do |column_hash|
-        # rubocop:disable Rails/Output
-        puts "Creating columns: #{table.name}/#{column_hash[:name]}"
-        # rubocop:enable Rails/Output
-
-        table.columns.create!(
+      columns = column_hashes.map do |column_hash|
+        {
           name: column_hash[:name],
           type: column_hash[:type],
           comment: column_hash[:comment] || '',
           nullable: column_hash[:nullable],
           primary_key: column_hash[:primary_key]
-        )
+        }
       end
+
+      table.columns.insert_all!(columns, record_timestamps: true) # rubocop:disable Rails/SkipsModelValidations
     end
 
     def destroy_columns(columns_to_delete)
       return if columns_to_delete.blank?
 
-      # rubocop:disable Rails/Output
-      puts "Destroying columns #{columns_to_delete.pluck(:name)}"
-      # rubocop:enable Rails/Output
       Column.where(id: columns_to_delete.pluck(:id)).destroy_all
     end
   end
