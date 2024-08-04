@@ -9,11 +9,17 @@ class ColumnsController < ApplicationController
 
   private
 
+  # rubocop:disable Metrics/AbcSize
   def fetch_product_with_column
     if params[:name].blank?
       Product.preload(tables: :columns).none
     else
-      Product.eager_load(tables: :columns).merge(Column.name_like(params[:name]))
+      Product.eager_load(tables: { columns: :memo }).merge(
+        Column.name_like(params[:name])
+          .or(Column.comment_like(params[:name]))
+          .or(ColumnMemo.content_like(params[:name]))
+      )
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end

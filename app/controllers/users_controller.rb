@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   layout 'without_sidebar'
+  before_action :require_current_user_is_admin
 
   def index
     @users = User.all
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      flash[:notice] = @user.name + t('.success')
       redirect_to users_path
     else
       render :new, status: :unprocessable_entity
@@ -27,7 +29,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
     if @user.update(user_params)
+      flash[:notice] = @user.name + t('.success')
       redirect_to users_path
     else
       render :edit, status: :unprocessable_entity
@@ -43,6 +47,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :is_admin)
   end
 end

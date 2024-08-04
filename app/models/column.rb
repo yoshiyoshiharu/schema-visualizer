@@ -16,4 +16,10 @@ class Column < ApplicationRecord
 
     where('columns.name LIKE ?', "%#{sanitize_sql_like(keyword)}%")
   end
+
+  def self.comment_like(keyword)
+    return all if keyword.blank?
+
+    where('columns.comment LIKE ?', "%#{sanitize_sql_like(keyword)}%")
+  end
 end

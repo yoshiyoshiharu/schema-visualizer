@@ -9,4 +9,10 @@ class Table < ApplicationRecord
 
     where('tables.name LIKE ?', "%#{sanitize_sql_like(keyword)}%")
   end
+
+  def self.comment_like(keyword)
+    return all if keyword.blank?
+
+    where('tables.comment LIKE ?', "%#{sanitize_sql_like(keyword)}%")
+  end
 end

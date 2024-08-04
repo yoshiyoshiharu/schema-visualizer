@@ -22,7 +22,11 @@ class TablesController < ApplicationController
     if params[:name].blank?
       Product.preload(:tables).all
     else
-      Product.eager_load(:tables).merge(Table.name_like(params[:name]))
+      Product
+        .eager_load(:tables)
+        .merge(
+          Table.name_like(params[:name]).or(Table.comment_like(params[:name]))
+        )
     end
   end
 end
