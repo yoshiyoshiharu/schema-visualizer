@@ -3,7 +3,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   config.cache_classes = true
   config.eager_load = ENV["CI"].present?
-  config.public_file_server.enabled = true
   config.public_file_server.headers = {
     "Cache-Control" => "public, max-age=#{1.hour.to_i}"
   }
@@ -18,4 +17,9 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
   config.active_support.disallowed_deprecation = :raise
   config.active_support.disallowed_deprecation_warnings = []
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.raise = true
+  end
 end
