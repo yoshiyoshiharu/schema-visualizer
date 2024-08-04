@@ -18,7 +18,8 @@ AllCops:
 Style/Documentation:
   Enabled: false
 RSpec/ContextWording:
-  Enabled: false
+  AllowedPatterns:
+    - 場合$
 RSpec/MultipleExpectations:
   Enabled: true
   Max: 3
