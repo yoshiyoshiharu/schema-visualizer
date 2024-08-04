@@ -15,12 +15,12 @@ gem 'turbo-rails'
 
 group 'development' do
   gem 'brakeman', require: false
-  gem 'bullet'
   gem 'erb_lint', require: false
   gem 'htmlbeautifier', require: false
 end
 
 group 'development', 'test' do
+  gem 'bullet'
   gem 'rubocop', require: false
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
