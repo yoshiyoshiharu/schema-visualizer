@@ -12,6 +12,7 @@ https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/52eb9308-80d
 
 ## Support
 - PostgreSQL
+- MySQL
 
 ## For developers
 
