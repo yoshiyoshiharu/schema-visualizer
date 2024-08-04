@@ -1,7 +1,6 @@
 config/master.key
 log
 tmp
-.env
 **/.DS_Store
 
 /config/master.key
