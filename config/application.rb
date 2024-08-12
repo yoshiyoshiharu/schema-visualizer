@@ -5,9 +5,6 @@ require "active_model/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_view/railtie"
-# TODO: turbo-railsが修正されたら以下の2行を削除する(https://github.com/hotwired/turbo-rails/issues/512)
-require 'action_cable/engine'
-require 'active_job/railtie'
 
 Bundler.require(*Rails.groups)
 
