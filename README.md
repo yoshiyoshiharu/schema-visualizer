@@ -25,17 +25,17 @@ https://github.com/yoshiyoshiharu/schema-visualizer/assets/54305137/52eb9308-80d
 
 ### setup
 ```
-.scripts/setup.sh
+./scripts/setup.sh
 ```
 
 ### start
 ```
-.scripts/start.sh
+./scripts/start.sh
 ```
 
 ### test
 ```
-.scripts/test.sh
+./scripts/test.sh
 ```
 
 ### lint
