@@ -116,7 +116,7 @@ GEM
       activesupport (>= 6.1)
     hashie (5.0.0)
     htmlbeautifier (1.4.3)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
@@ -190,7 +190,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.8)
-    propshaft (0.9.1)
+    propshaft (1.0.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
