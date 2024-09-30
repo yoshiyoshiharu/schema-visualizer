@@ -124,7 +124,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.14.0)
+    irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.7.2)
@@ -191,7 +191,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.8)
-    propshaft (1.0.0)
+    propshaft (1.0.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
@@ -318,7 +318,7 @@ GEM
     uri (0.13.1)
     useragent (0.16.10)
     version_gem (1.1.4)
-    webrick (1.8.1)
+    webrick (1.8.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
